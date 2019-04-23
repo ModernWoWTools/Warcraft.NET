@@ -1,4 +1,5 @@
 # Warcraft.NET
+[![Build status](https://ci.appveyor.com/api/projects/status/ojd6net49mel2hs5/branch/master?svg=true)](https://ci.appveyor.com/project/Luzifix/warcraft-net/branch/master)
 
 ## About
 Warcraft.NET is a open source C# library for World of Warcraft binary file formats. The goal of the library is to support following game versions:
