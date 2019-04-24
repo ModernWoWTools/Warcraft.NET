@@ -22,7 +22,6 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// </summary>
         public MWMO()
         {
-
         }
 
         /// <summary>

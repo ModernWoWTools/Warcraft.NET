@@ -18,7 +18,6 @@ namespace Warcraft.NET.Files.ADT.Chunks.Wotlk
         /// </summary>
         List<MCINEntry> Entries { get; set; } = new List<MCINEntry>();
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MCIN"/> class.
         /// </summary>

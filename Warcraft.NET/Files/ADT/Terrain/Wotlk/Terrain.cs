@@ -66,7 +66,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         /// <param name="inData">The binary data.</param>
         public Terrain(byte[] inData) : base(inData)
         {
-            
         }
     }
 }

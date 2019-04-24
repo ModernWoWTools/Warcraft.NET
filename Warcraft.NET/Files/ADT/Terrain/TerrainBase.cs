@@ -119,7 +119,6 @@ namespace Warcraft.NET.Files.ADT.Terrain
                         .MakeGenericMethod(chunkPropertie.PropertyType)
                         .Invoke(null, new[] { bw, chunkPropertie.GetValue(this) });
                     }
-
                 }
 
                 return ms.ToArray();
