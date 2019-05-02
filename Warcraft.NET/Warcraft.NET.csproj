@@ -9,4 +9,9 @@
     <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\WMO\Flags\BfA\" />
+    <Folder Include="Files\WMO\Flags\WoD\" />
+  </ItemGroup>
+
 </Project>

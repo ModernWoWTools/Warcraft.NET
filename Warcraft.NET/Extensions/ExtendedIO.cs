@@ -123,6 +123,37 @@ namespace Warcraft.NET.Extensions
         }
 
         /// <summary>
+        /// Reads a 4-byte <see cref="RGBA"/> structure from the data stream.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>The color.</returns>
+        public static RGBA ReadRGBA(this BinaryReader reader)
+        {
+            return new RGBA
+            {
+                R = reader.ReadByte(),
+                G = reader.ReadByte(),
+                B = reader.ReadByte(),
+                A = reader.ReadByte()
+            };
+        }
+
+        /// <summary>
+        /// Reads a 4-byte <see cref="RGBA"/> structure from the data stream.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>The color.</returns>
+        public static RGBA ReadBGRA(this BinaryReader reader)
+        {
+            return new RGBA
+            {
+                B = reader.ReadByte(),
+                G = reader.ReadByte(),
+                R = reader.ReadByte(),
+                A = reader.ReadByte()
+            };
+        }
+
         /// Reads ab 4.byte <see cref="UVMapEntry"/> from the data stream.
         /// </summary>
         /// <param name="binaryReader">The reader.</param>
@@ -168,7 +199,8 @@ namespace Warcraft.NET.Extensions
 
             if (!reader.SeekChunk(chunk.GetSignature()))
             {
-                throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
+                //throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
+                return default(T);
             }
 
             string chunkSignature = reader.ReadBinarySignature();
@@ -272,6 +304,31 @@ namespace Warcraft.NET.Extensions
         }
 
         /// <summary>
+        /// Writes a 4-byte <see cref="RGBA"/> to the data stream.
+        /// </summary>
+        /// <param name="binaryWriter"></param>
+        /// <param name="color"></param>
+        public static void WriteRGBA(this BinaryWriter binaryWriter, RGBA color)
+        {
+            binaryWriter.Write(color.R);
+            binaryWriter.Write(color.G);
+            binaryWriter.Write(color.B);
+            binaryWriter.Write(color.A);
+        }
+
+        /// <summary>
+        /// Writes a 4-byte <see cref="RGBA"/> to the data stream.
+        /// </summary>
+        /// <param name="binaryWriter"></param>
+        /// <param name="color"></param>
+        public static void WriteBGRA(this BinaryWriter binaryWriter, RGBA color)
+        {
+            binaryWriter.Write(color.B);
+            binaryWriter.Write(color.G);
+            binaryWriter.Write(color.R);
+            binaryWriter.Write(color.A);
+        }
+
         /// Writes an 4-byte <see cref="UVMapEntry"/> to the data stream.
         /// </summary>
         /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
