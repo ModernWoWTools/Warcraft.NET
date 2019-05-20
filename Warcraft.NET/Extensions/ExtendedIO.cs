@@ -232,6 +232,16 @@ namespace Warcraft.NET.Extensions
         {
             return new Quaternion(binaryReader.ReadVector3(), binaryReader.ReadSingle());
         }
+
+        /// <summary>
+        /// Reads Size and Offset from the stream.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        public static M2Array ReadM2Array(this BinaryReader reader)
+        {
+            return new M2Array(size: reader.ReadUInt32(), offset: reader.ReadUInt32());
+        }
         #endregion
 
         #region Write
@@ -419,6 +429,17 @@ namespace Warcraft.NET.Extensions
             binaryWriter.WriteVector3(vector);
 
             binaryWriter.Write(quaternion.W);
+        }
+
+        /// <summary>
+        /// Writes Size and Offset to the stream. <see cref="M2Array"/>
+        /// </summary>
+        /// <param name="Size">The Size to write.</param>
+        /// <param name="Offset">The Offset to write.</param>
+        public static void WriteM2Array(this BinaryWriter binaryWriter, uint Size, uint Offset)
+        {
+            binaryWriter.Write(Size);
+            binaryWriter.Write(Offset);
         }
         #endregion
 
