@@ -170,16 +170,17 @@ namespace Warcraft.NET.Extensions
         /// <summary>
         /// Reads a 4-byte RIFF chunk signature from the data stream.
         /// </summary>
-        /// <param name="binaryReader">The reader.</param>
+        /// <param name="binaryReader"></param>
+        /// <param name="reverseSignature"></param>
         /// <returns>The signature as a string.</returns>
-        public static string ReadBinarySignature(this BinaryReader binaryReader)
+        public static string ReadBinarySignature(this BinaryReader binaryReader, bool reverseSignature = true)
         {
             // The signatures are stored in reverse in the file, so we'll need to read them backwards into
             // the buffer.
             var signatureBuffer = new char[4];
             for (var i = 0; i < 4; ++i)
             {
-                signatureBuffer[3 - i] = binaryReader.ReadChar();
+                signatureBuffer[(reverseSignature ? 3 - i : i)] = binaryReader.ReadChar();
             }
 
             var signature = new string(signatureBuffer);
@@ -191,16 +192,20 @@ namespace Warcraft.NET.Extensions
         /// interface, and implement a parameterless constructor.
         /// </summary>
         /// <param name="reader">The current <see cref="BinaryReader"/>.</param>
+        /// <param name="returnDefault"></param>
         /// <typeparam name="T">The chunk type.</typeparam>
         /// <returns>The chunk.</returns>
-        public static T ReadIFFChunk<T>(this BinaryReader reader) where T : IIFFChunk, new()
+        /// <summary>
+        public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false) where T : IIFFChunk, new()
         {
             T chunk = new T();
-
+            
             if (!reader.SeekChunk(chunk.GetSignature()))
             {
-                //throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
-                return default(T);
+                if (returnDefault)
+                    return default(T);
+
+                throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
             }
 
             string chunkSignature = reader.ReadBinarySignature();
@@ -215,6 +220,17 @@ namespace Warcraft.NET.Extensions
             chunk.LoadBinaryData(chunkData);
 
             return chunk;
+        }
+
+        /// <summary>
+        /// Reads a 16-byte 32-bit <see cref="Quaternion"/> structure from the data stream, and advances the position of the stream by
+        /// 16 bytes.
+        /// </summary>
+        /// <returns>The quaternion.</returns>
+        /// <param name="binaryReader">The reader.</param>
+        public static Quaternion ReadQuaternion(this BinaryReader binaryReader)
+        {
+            return new Quaternion(binaryReader.ReadVector3(), binaryReader.ReadSingle());
         }
         #endregion
 
@@ -345,9 +361,12 @@ namespace Warcraft.NET.Extensions
         /// <typeparam name="T">The chunk type.</typeparam>
         /// <param name="binaryWriter">The writer.</param>
         /// <param name="chunk">The chunk.</param>
-        public static void WriteIFFChunk<T>(this BinaryWriter binaryWriter, T chunk) where T : IIFFChunk, IBinarySerializable
+        public static void WriteIFFChunk<T>(this BinaryWriter binaryWriter, T chunk, bool writeAtEOF = false) where T : IIFFChunk, IBinarySerializable
         {
-            var serializedChunk = chunk.Serialize();
+            if (writeAtEOF)
+                binaryWriter.Seek(0, SeekOrigin.End);
+
+            var serializedChunk = chunk.Serialize(binaryWriter.BaseStream.Position + (sizeof(uint) * 2));
 
             binaryWriter.WriteChunkSignature(chunk.GetSignature());
             binaryWriter.Write((uint)serializedChunk.Length);
@@ -388,33 +407,49 @@ namespace Warcraft.NET.Extensions
                     throw new ArgumentOutOfRangeException(nameof(storeAs), storeAs, null);
             }
         }
+
+        /// <summary>
+        /// Writes a 16-byte <see cref="Quaternion"/> to the data stream.
+        /// </summary>
+        /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
+        /// <param name="quaternion">The quaternion to write.</param>
+        public static void WriteQuaternion(this BinaryWriter binaryWriter, Quaternion quaternion)
+        {
+            var vector = new Vector3(quaternion.X, quaternion.Y, quaternion.Z);
+            binaryWriter.WriteVector3(vector);
+
+            binaryWriter.Write(quaternion.W);
+        }
         #endregion
 
         /// <summary>
         /// Try to seek to given chunkSignature
         /// </summary>
-        /// <param name="binaryReader">The reader.</param>
-        /// <param name="chunkSignature">.</param>
-        /// <param name="fromBegin">The reader.</param>
-        /// <returns>The signature as a string.</returns>
-        public static bool SeekChunk(this BinaryReader reader, string chunkSignature, bool fromBegin = true)
+        /// <param name="reader">The reader.</param>
+        /// <param name="chunkSignature"></param>
+        /// <param name="fromBegin"></param>
+        /// <param name="skipSignature"></param>
+        /// <param name="reverseSignature"></param>
+        /// <returns></returns>
+        public static bool SeekChunk(this BinaryReader reader, string chunkSignature, bool fromBegin = true, bool skipSignature = false, bool reverseSignature = true)
         {
             if (fromBegin)
                 reader.BaseStream.Seek(0, SeekOrigin.Begin);
 
             try
             {
-                var foundChuckSignature = reader.ReadBinarySignature();
+                var foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
                 while (foundChuckSignature != chunkSignature)
                 {
                     var size = reader.ReadInt32();
                     reader.BaseStream.Position += size;
-                    foundChuckSignature = reader.ReadBinarySignature();
+                    foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
                 }
 
                 if (foundChuckSignature == chunkSignature)
                 {
-                    reader.BaseStream.Position -= sizeof(uint);
+                    if (!skipSignature)
+                        reader.BaseStream.Position -= sizeof(uint);
                     return true;
                 }
             }

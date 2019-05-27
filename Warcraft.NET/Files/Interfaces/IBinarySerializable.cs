@@ -36,6 +36,6 @@ namespace Warcraft.NET.Files.Interfaces
         /// Serializes the current object into a byte array.
         /// </summary>
         /// <returns>The serialized object.</returns>
-        byte[] Serialize();
+        byte[] Serialize(long offset = 0);
     }
 }

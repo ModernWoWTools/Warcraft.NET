@@ -77,7 +77,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
         /// Gets the size of the data contained in this chunk.
         /// </summary>
         /// <returns>The size.</returns>
-        public byte[] Serialize()
+        public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))

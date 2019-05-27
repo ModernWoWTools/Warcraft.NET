@@ -61,7 +61,7 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.Legion
                         .GetType()
                         .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
                         .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new[] { bw, chunkPropertie.GetValue(this) });
+                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false });
                     }
                 }
 

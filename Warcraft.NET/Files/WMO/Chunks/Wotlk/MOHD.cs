@@ -121,7 +121,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
         }
 
         /// <inheritdoc/>
-        public byte[] Serialize()
+        public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))

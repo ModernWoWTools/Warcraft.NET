@@ -90,7 +90,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
         }
 
         /// <inheritdoc/>
-        public byte[] Serialize()
+        public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             {

@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Warcraft.NET.Files.ADT.Chunks
+namespace Warcraft.NET.Files.WMO.Chunks.BfA
 {
     /// <summary>
-    /// MMID Chunk - Contains a list of M2 model indexes.
+    /// MODI Chunk - Contains a list model file ids.
     /// </summary>
-    public class MMID : IIFFChunk, IBinarySerializable
+    public class MODI : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MMID";
+        public const string Signature = "MODI";
 
         /// <summary>
-        /// Gets or sets the list of indexes for models in an MMID chunk.
+        /// Gets or sets the list of file ids in an MODI chunk.
         /// </summary>
-        public List<uint> ModelFilenameOffsets { get; set; } = new List<uint>();
+        public List<uint> ModelFileIds { get; set; } = new List<uint>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MMID"/> class.
+        /// Initializes a new instance of the <see cref="MODI"/> class.
         /// </summary>
-        public MMID()
+        public MODI()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MMID"/> class.
+        /// Initializes a new instance of the <see cref="MODI"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public MMID(byte[] inData)
+        public MODI(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -41,10 +41,10 @@ namespace Warcraft.NET.Files.ADT.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var offsetCount = inData.Length / 4;
+                var offsetCount = inData.Length / sizeof(uint);
                 for (var i = 0; i < offsetCount; ++i)
                 {
-                    ModelFilenameOffsets.Add(br.ReadUInt32());
+                    ModelFileIds.Add(br.ReadUInt32());
                 }
             }
         }
@@ -67,9 +67,9 @@ namespace Warcraft.NET.Files.ADT.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (uint modelFilenameOffset in ModelFilenameOffsets)
+                foreach (uint modelFileId in ModelFileIds)
                 {
-                    bw.Write(modelFilenameOffset);
+                    bw.Write(modelFileId);
                 }
 
                 return ms.ToArray();

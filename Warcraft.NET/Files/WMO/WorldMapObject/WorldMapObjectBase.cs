@@ -55,7 +55,7 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject
                         .GetType()
                         .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                         .MakeGenericMethod(chunkProperty.PropertyType)
-                        .Invoke(null, new[] { br });
+                        .Invoke(null, new object[] { br, true });
 
                         chunkProperty.SetValue(this, chunk);
                     }

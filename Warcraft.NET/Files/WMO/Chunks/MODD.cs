@@ -1,34 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.WMO.Entries.Wotlk;
+using Warcraft.NET.Files.WMO.Entries;
 
-namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
+namespace Warcraft.NET.Files.WMO.Chunks
 {
-    public class MOMT : IIFFChunk, IBinarySerializable
+    public class MODD : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MOMT";
+        public const string Signature = "MODD";
 
         /// <summary>
-        /// Gets or sets <see cref="MOMTEntry"s />
+        /// Gets or sets <see cref="MODDEntry"s />
         /// </summary>
-        public List<MOMTEntry> MOMTEntries { get; set; } = new List<MOMTEntry>();
+        public List<MODDEntry> MODDEntries { get; set; } = new List<MODDEntry>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MOMT"/> class.
+        /// Initializes a new instance of the <see cref="MODD"/> class.
         /// </summary>
-        public MOMT()
+        public MODD()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MOMT"/> class.
+        /// Initializes a new instance of the <see cref="MODD"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public MOMT(byte[] inData)
+        public MODD(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -51,9 +51,9 @@ namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var materialCount = br.BaseStream.Length / MOMTEntry.GetSize();
+                var materialCount = br.BaseStream.Length / MODDEntry.GetSize();
                 for (var i = 0; i < materialCount; ++i)
-                    MOMTEntries.Add(new MOMTEntry(br.ReadBytes(MOMTEntry.GetSize())));
+                    MODDEntries.Add(new MODDEntry(br.ReadBytes(MODDEntry.GetSize())));
             }
         }
 
@@ -63,7 +63,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (var material in MOMTEntries)
+                foreach (var material in MODDEntries)
                     bw.Write(material.Serialize());
                 return ms.ToArray();
             }

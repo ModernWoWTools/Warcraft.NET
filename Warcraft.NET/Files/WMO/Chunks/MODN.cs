@@ -8,37 +8,37 @@ using Warcraft.NET.Files.Interfaces;
 namespace Warcraft.NET.Files.WMO.Chunks
 {
     /// <summary>
-    /// MOTX Chunk - Contains pathes to used textures
+    /// MODN Chunk - Contains pathes to used models
     /// </summary>
-    public class MOTX : IIFFChunk, IBinarySerializable
+    public class MODN : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MOTX";
+        public const string Signature = "MODN";
 
         /// <summary>
-        /// Gets a dictionary of the texture offsets mapped to texture file pathes.
+        /// Gets a dictionary of the model offsets mapped to model file pathes.
         /// </summary>
-        public Dictionary<long, string> Textures { get; } = new Dictionary<long, string>();
+        public Dictionary<long, string> Models { get; } = new Dictionary<long, string>();
 
         /// <summary>
-        /// Next texture offset
+        /// Next model offset
         /// </summary>
-        protected long NextOffset = 4;
+        protected long NextOffset = 0;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MOTX"/> class.
+        /// Initializes a new instance of the <see cref="MODN"/> class.
         /// </summary>
-        public MOTX()
+        public MODN()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MOTX"/> class.
+        /// Initializes a new instance of the <see cref="MODN"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MOTX(byte[] inData)
+        public MODN(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -61,40 +61,38 @@ namespace Warcraft.NET.Files.WMO.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                ms.Seek(4, SeekOrigin.Begin);
-
                 while (ms.Position < ms.Length)
                 {
                     if (ms.Position % 4 == 0)
-                        Textures.Add(ms.Position, br.ReadNullTerminatedString());
+                        Models.Add(ms.Position, br.ReadNullTerminatedString());
                     else
                         ms.Position += 4 - (ms.Position % 4);
                 }
 
-                // Set next texture offset
+                // Set next model offset
                 NextOffset = ms.Position;
                 if (NextOffset % 4 != 0)
                     NextOffset += 4 - (NextOffset % 4);
             }
         }
 
-        public long Add(string texture)
+        public long Add(string model)
         {
-            // Return stored texture offset
-            if (Textures.ContainsValue(texture))
-                return Textures.FirstOrDefault(t => t.Value == texture).Key;
+            // Return stored model offset
+            if (Models.ContainsValue(model))
+                return Models.FirstOrDefault(m => m.Value == model).Key;
 
-            // Set texture offset
-            long textureOffset = NextOffset;
-            Textures.Add(NextOffset, texture);
+            // Set model offset
+            long modelOffset = NextOffset;
+            Models.Add(NextOffset, model);
 
             // Calc next offset
-            NextOffset += Encoding.ASCII.GetBytes(texture).LongLength + 1;
+            NextOffset += Encoding.ASCII.GetBytes(model).LongLength + 1;
             if (NextOffset % 4 != 0)
                 NextOffset += 4 - (NextOffset % 4);
 
-            // Return texture offset
-            return textureOffset;
+            // Return model offset
+            return modelOffset;
         }
 
         /// <inheritdoc/>
@@ -103,15 +101,11 @@ namespace Warcraft.NET.Files.WMO.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                // padding
-                for (var i = 0; i < 4; i++)
-                    bw.Write('\0');
-
-                foreach (var texture in Textures)
+                foreach (var models in Models)
                 {
                     if (ms.Position % 4 == 0)
                     {
-                        bw.WriteNullTerminatedString(texture.Value);
+                        bw.WriteNullTerminatedString(models.Value);
                     }
                     else
                     {
@@ -119,7 +113,7 @@ namespace Warcraft.NET.Files.WMO.Chunks
                         for (var i = 0; i < stringPadCount; i++)
                             bw.Write('\0');
 
-                        bw.WriteNullTerminatedString(texture.Value);
+                        bw.WriteNullTerminatedString(models.Value);
                     }
                 }
 
