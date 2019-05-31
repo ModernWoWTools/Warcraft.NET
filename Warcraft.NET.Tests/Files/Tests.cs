@@ -44,10 +44,10 @@ namespace Warcraft.NET.Tests.Files
             WotlkWrittenWMO = new WotlkWMO(File.ReadAllBytes(WotlkWrittenWMOPath));
 
             // WoD
-            var wmo2 = new WoDWMO(File.ReadAllBytes(BfAWMOPath));
+            var wmo2 = new WoDWMO(File.ReadAllBytes(WoDWMOPath));
             WoDWMO = wmo2;
-            File.WriteAllBytes(BfAWrittenWMOPath, wmo2.Serialize());
-            WoDWrittenWMO = new WoDWMO(File.ReadAllBytes(BfAWrittenWMOPath));
+            File.WriteAllBytes(WoDWrittenWMOPath, wmo2.Serialize());
+            WoDWrittenWMO = new WoDWMO(File.ReadAllBytes(WoDWrittenWMOPath));
 
             // Legion
             var wmo3 = new LegionWMO(File.ReadAllBytes(LegionWMOPath));

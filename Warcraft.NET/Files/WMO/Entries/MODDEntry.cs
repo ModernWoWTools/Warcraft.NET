@@ -1,4 +1,5 @@
 ﻿using SharpDX;
+using System;
 using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
@@ -15,6 +16,11 @@ namespace Warcraft.NET.Files.WMO.Entries
         /// Gets or sets doodad name index.
         /// </summary>
         public uint NameIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets doodad flags
+        /// </summary>
+        public MODDFlags Flags { get; set; }
 
         /// <summary>
         /// Gets or sets doodad position
@@ -64,7 +70,12 @@ namespace Warcraft.NET.Files.WMO.Entries
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                NameIndex = br.ReadUInt32();
+                var finalNameBytes = new byte[4];
+                var nameOffsetBytes = br.ReadBytes(3);
+                Buffer.BlockCopy(nameOffsetBytes, 0, finalNameBytes, 0, 3);
+
+                NameIndex = BitConverter.ToUInt32(finalNameBytes, 0);
+                Flags = (MODDFlags)br.ReadByte();
                 Position = br.ReadVector3();
                 Orientation = br.ReadQuaternion();
                 Scale = br.ReadSingle();
@@ -78,7 +89,12 @@ namespace Warcraft.NET.Files.WMO.Entries
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(NameIndex);
+                var nameOffsetBytes = BitConverter.GetBytes(NameIndex);
+                var finalNameOffsetBytes = new byte[3];
+                Buffer.BlockCopy(nameOffsetBytes, 0, finalNameOffsetBytes, 0, 3);
+
+                bw.Write(finalNameOffsetBytes);
+                bw.Write((byte)Flags);
                 bw.WriteVector3(Position);
                 bw.WriteQuaternion(Orientation);
                 bw.Write(Scale);
