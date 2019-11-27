@@ -9,7 +9,7 @@ namespace Warcraft.NET.Tests.Files.Structures
     public class RotatorTests
     {
         [TestMethod]
-        public void ToString()
+        public void TestToString() 
         {
             // Arrage
             float Pitch = .1f;
@@ -26,7 +26,7 @@ namespace Warcraft.NET.Tests.Files.Structures
         }
 
         [TestMethod]
-        public void Flatten()
+        public void TestFlatten()
         {
             // Arrage
             float Pitch = .1f;
