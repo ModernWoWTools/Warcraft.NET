@@ -6,7 +6,7 @@ namespace Warcraft.NET.Tests.Files.WMO.Chunks.Legion
     public class MOHDTests
     {
         [TestMethod]
-        public void LoadBinaryData()
+        public void TestLoadBinaryData()
         {
             Assert.AreEqual(Tests.LegionWMO.Header.Materials, Tests.LegionWrittenWMO.Header.Materials);
             Assert.AreEqual(Tests.LegionWMO.Header.Portals, Tests.LegionWrittenWMO.Header.Portals);
@@ -22,13 +22,13 @@ namespace Warcraft.NET.Tests.Files.WMO.Chunks.Legion
         }
 
         [TestMethod]
-        public void GetSignature()
+        public void TestGetSignature()
         {
             Assert.AreEqual(Tests.LegionWMO.Header.GetSignature(), Tests.LegionWrittenWMO.Header.GetSignature());
         }
 
         [TestMethod]
-        public void GetSize()
+        public void TestGetSize()
         {
             Assert.AreEqual(Tests.LegionWMO.Header.GetSize(), Tests.LegionWrittenWMO.Header.GetSize());
         }
