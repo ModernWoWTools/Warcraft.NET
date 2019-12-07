@@ -19,49 +19,14 @@ namespace Warcraft.NET.Files.WDT.Chunks
         public uint Version { get; set; }
 
         /// <summary>
-        /// Gets or sets lgt file id
-        /// </summary>
-        uint LgtFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets ooc file id
-        /// </summary>
-        uint OccFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets fogs file id
-        /// </summary>
-        uint FogsFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets mpv file id
-        /// </summary>
-        uint MpvFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets tex file id
-        /// </summary>
-        uint TexFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets wdl file id
-        /// </summary>
-        uint WdlFileID { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets pd4 file id
-        /// </summary>
-        uint Pd4FileID { get; set; } = 0;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MVER"/> class.
+        /// Initializes a new instance of the <see cref="MAID"/> class.
         /// </summary>
         public MVER()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MVER"/> class.
+        /// Initializes a new instance of the <see cref="MAID"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
         public MVER(byte[] inData)

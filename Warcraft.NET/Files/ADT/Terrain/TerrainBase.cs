@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace Warcraft.NET.Files.ADT.Terrain
 {
-    public abstract class TerrainBase
+    public abstract class TerrainBase : ChunkedFile
     {
         /// <summary>
         /// Gets or sets the contains the ADT version.
@@ -40,89 +40,8 @@ namespace Warcraft.NET.Files.ADT.Terrain
         /// Initializes a new instance of the <see cref="TerrainBase"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public TerrainBase(byte[] inData)
+        public TerrainBase(byte[] inData) : base(inData) 
         {
-            LoadBinaryData(inData);
-        }
-
-        /// <summary>
-        /// Deserialzes the provided binary data of the object. This is the full data block which follows the data
-        /// signature and data block length.
-        /// </summary>
-        /// <param name="inData">The binary data containing the object.</param>
-        public void LoadBinaryData(byte[] inData)
-        {
-            using (var ms = new MemoryStream(inData))
-            using (var br = new BinaryReader(ms))
-            {
-                var terrainChunkProperties = GetType()
-                    .GetProperties()
-                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
-
-                foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
-                {
-                    try
-                    {
-                        IIFFChunk chunk = (IIFFChunk)br
-                        .GetType()
-                        .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
-                        .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { br, false });
-
-                        chunkPropertie.SetValue(this, chunk);
-                    }
-                    catch (TargetInvocationException ex)
-                    {
-                        ChunkOptionalAttribute chuckIsOptional = (ChunkOptionalAttribute)chunkPropertie.GetCustomAttribute(typeof(ChunkOptionalAttribute), false);
-
-                        // If chunk is not optional throw the exception
-                        if (ex.InnerException.GetType() != typeof(ChunkSignatureNotFoundException) || chuckIsOptional == null || !chuckIsOptional.Optional)
-                        {
-                            throw ex.InnerException;
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the size of the data contained in this chunk.
-        /// </summary>
-        /// <returns>The size.</returns>
-        public uint GetSize()
-        {
-            return (uint)Serialize().Length;
-        }
-
-        /// <summary>
-        /// Serializes the current object into a byte array.
-        /// </summary>
-        /// <returns>The serialized object.</returns>
-        public byte[] Serialize(long offset = 0)
-        {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                var terrainChunkProperties = GetType()
-                    .GetProperties()
-                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
-
-                foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
-                {
-                    IIFFChunk chunk = (IIFFChunk)chunkPropertie.GetValue(this);
-
-                    if (chunk != null)
-                    {
-                        bw
-                        .GetType()
-                        .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
-                        .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false });
-                    }
-                }
-
-                return ms.ToArray();
-            }
         }
     }
 }
