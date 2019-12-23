@@ -61,20 +61,21 @@ namespace Warcraft.NET.Files.WMO.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                ms.Seek(4, SeekOrigin.Begin);
-
                 while (ms.Position < ms.Length)
                 {
                     if (ms.Position % 4 == 0)
-                        Textures.Add(ms.Position, br.ReadNullTerminatedString());
-                    else
-                        ms.Position += 4 - (ms.Position % 4);
-                }
+                    {
+                        long texPos = ms.Position;
+                        string texPath = br.ReadNullTerminatedString();
 
-                // Set next texture offset
-                NextOffset = ms.Position;
-                if (NextOffset % 4 != 0)
-                    NextOffset += 4 - (NextOffset % 4);
+                        if (texPath.Trim().Length > 0)
+                            Textures.Add(texPos, texPath);
+                    }
+                    else
+                    {
+                        ms.Position += 4 - (ms.Position % 4);
+                    }
+                }
             }
         }
 
