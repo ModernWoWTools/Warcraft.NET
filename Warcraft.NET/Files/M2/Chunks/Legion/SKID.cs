@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
@@ -15,7 +13,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or sets the Skin FileDataId
         /// </summary>
-        public uint SkinFileDataId { get; set; }
+        public uint SkinFileDataId { get; set; } = 0;
 
         /// <summary>
         /// Initializes a new instance of <see cref="SKID"/>

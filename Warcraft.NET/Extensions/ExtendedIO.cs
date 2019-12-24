@@ -277,16 +277,16 @@ namespace Warcraft.NET.Extensions
         /// </summary>
         /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
         /// <param name="signature">Signature.</param>
-        public static void WriteChunkSignature(this BinaryWriter binaryWriter, string signature)
+        public static void WriteChunkSignature(this BinaryWriter binaryWriter, string signature, bool reverseSignature = true)
         {
             if (signature.Length != 4)
             {
                 throw new InvalidDataException("The signature must be an ASCII string of exactly four characters.");
             }
 
-            for (var i = 3; i >= 0; --i)
+            for (var i = 0; i < 4; ++i)
             {
-                binaryWriter.Write(signature[i]);
+                binaryWriter.Write(signature[(reverseSignature ? 3 - i : i)]);
             }
         }
 
@@ -371,14 +371,14 @@ namespace Warcraft.NET.Extensions
         /// <typeparam name="T">The chunk type.</typeparam>
         /// <param name="binaryWriter">The writer.</param>
         /// <param name="chunk">The chunk.</param>
-        public static void WriteIFFChunk<T>(this BinaryWriter binaryWriter, T chunk, bool writeAtEOF = false) where T : IIFFChunk, IBinarySerializable
+        public static void WriteIFFChunk<T>(this BinaryWriter binaryWriter, T chunk, bool writeAtEOF = false, bool reverseSignature = true) where T : IIFFChunk, IBinarySerializable
         {
             if (writeAtEOF)
                 binaryWriter.Seek(0, SeekOrigin.End);
 
             var serializedChunk = chunk.Serialize(binaryWriter.BaseStream.Position + (sizeof(uint) * 2));
 
-            binaryWriter.WriteChunkSignature(chunk.GetSignature());
+            binaryWriter.WriteChunkSignature(chunk.GetSignature(), reverseSignature);
             binaryWriter.Write((uint)serializedChunk.Length);
             binaryWriter.Write(serializedChunk);
         }

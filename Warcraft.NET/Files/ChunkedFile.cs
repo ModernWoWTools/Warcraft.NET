@@ -91,7 +91,7 @@ namespace Warcraft.NET.Files
                         .GetType()
                         .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
                         .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false });
+                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false, true });
                     }
                 }
 

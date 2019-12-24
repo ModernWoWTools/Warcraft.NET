@@ -1,32 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.M2.Chunks.BfA
+namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
-    public class TXID : IIFFChunk, IBinarySerializable
+    public class SFID : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "TXID";
+        public const string Signature = "SFID";
 
         /// <summary>
-        /// Gets or Sets the Texture FileDataIds
+        /// Gets or Sets the Skin FileDataIds
         /// </summary>
-        public List<uint> TextureFileDataIds { get; set; } = new List<uint>();
+        public List<uint> SkinFileDataIds { get; set; } = new List<uint>();
 
         /// <summary>
-        /// Initializes a new instance of <see cref="TXID"/>
+        /// Initializes a new instance of <see cref="SFID"/>
         /// </summary>
-        public TXID() { }
+        public SFID() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="TXID"/>
+        /// Initializes a new instance of <see cref="SFID"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public TXID(byte[] inData) => LoadBinaryData(inData);
+        public SFID(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -40,10 +39,10 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                uint nTextures = (uint)inData.Length / 4;
+                uint nSkin = (uint)inData.Length / 4;
 
-                for (var i = 0; i < nTextures; i++)
-                    TextureFileDataIds.Add(br.ReadUInt32());
+                for (var i = 0; i < nSkin; i++)
+                    SkinFileDataIds.Add(br.ReadUInt32());
             }
         }
 
@@ -53,8 +52,8 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach(uint TextureFileDataId in TextureFileDataIds)
-                    bw.Write(TextureFileDataId);
+                foreach(uint SkinFileDataId in SkinFileDataIds)
+                    bw.Write(SkinFileDataId);
 
                 return ms.ToArray();
             }
