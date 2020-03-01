@@ -1,33 +1,34 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.WDT.Entrys;
+using System.Collections.Generic;
+using Warcraft.NET.Files.WDT.Entrys.WoD;
 
-namespace Warcraft.NET.Files.WDT.Chunks
+namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
     /// <summary>
-    /// MAIN Chunk - Contains file ids for map files
+    /// MPLT Chunk - Contains WoD light placement information
     /// </summary>
-    public class MAIN : IIFFChunk, IBinarySerializable
+    public class MPLT : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
         public const string Signature = "MAIN";
 
-        public MAINEntry[,] Entrys = new MAINEntry[64, 64];
+        public List<MPLTEntry> Entrys = new List<MPLTEntry>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MAIN"/> class.
+        /// Initializes a new instance of the <see cref="MPLT"/> class.
         /// </summary>
-        public MAIN()
+        public MPLT()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MAIN"/> class.
+        /// Initializes a new instance of the <see cref="MPLT"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MAIN(byte[] inData)
+        public MPLT(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -38,12 +39,11 @@ namespace Warcraft.NET.Files.WDT.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                for (int y = 0; y < 64; y++)
+                var mpltCount = br.BaseStream.Length / MPLTEntry.GetSize();
+
+                for (var i = 0; i < mpltCount; ++i)
                 {
-                    for (int x = 0; x < 64; x++)
-                    {
-                        Entrys[x, y] = new MAINEntry(br.ReadBytes(MAINEntry.GetSize()));
-                    }
+                    Entrys.Add(new MPLTEntry(br.ReadBytes(MPLTEntry.GetSize())));
                 }
             }
         }
@@ -66,14 +66,6 @@ namespace Warcraft.NET.Files.WDT.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                for (int y = 0; y < 64; y++)
-                {
-                    for (int x = 0; x < 64; x++)
-                    {
-                        bw.Write(Entrys[x, y].Serialize());
-                    }
-                }
-
                 return ms.ToArray();
             }
         }

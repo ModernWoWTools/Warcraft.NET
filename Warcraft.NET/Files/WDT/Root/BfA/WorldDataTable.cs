@@ -8,7 +8,7 @@ namespace Warcraft.NET.Files.WDT.Root.BfA
         /// <summary>
         /// Gets or sets the contains the WDT version.
         /// </summary>
-        [ChunkOrder(4), ChunkOptional]
+        [ChunkOrder(6), ChunkOptional]
         public MAID Ids { get; set; }
 
         /// <summary>
