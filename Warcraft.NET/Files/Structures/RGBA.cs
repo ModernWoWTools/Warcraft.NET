@@ -44,8 +44,7 @@
         /// Initializes a new instance of the <see cref="RGBA"/> struct.
         /// </summary>
         /// <param name="color">In color.</param>
-        public RGBA(RGBA color)
-            : this(color.R, color.G, color.B, color.A)
+        public RGBA(RGBA color) : this(color.R, color.G, color.B, color.A)
         {
         }
 

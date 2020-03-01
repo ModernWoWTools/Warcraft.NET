@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
     /// <summary>
     /// An entry struct containing information about the model.
     /// </summary>
-    public class MDDFEntry
+    public class MDDFEntry 
     {
         /// <summary>
         /// Gets or sets the specifies which model to use via the MMID chunk.
@@ -55,7 +55,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
                 {
                     NameId = br.ReadUInt32();
                     UniqueID = br.ReadUInt32();
-                    Position = br.ReadVector3();
+                    Position = br.ReadVector3(AxisConfiguration.Native);
                     Rotation = br.ReadRotator();
 
                     ScalingFactor = br.ReadUInt16();
@@ -84,7 +84,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
             {
                 bw.Write(NameId);
                 bw.Write(UniqueID);
-                bw.WriteVector3(Position);
+                bw.WriteVector3(Position, AxisConfiguration.Native);
                 bw.WriteRotator(Rotation);
                 bw.Write(ScalingFactor);
                 bw.Write((ushort)Flags);

@@ -3,10 +3,10 @@
 namespace Warcraft.NET.Files.ADT.Flags
 {
     /// <summary>
-    /// Flags for the <see cref="MODFFlags"/>.
+    /// Flags for the <see cref="MLMDFlags"/>.
     /// </summary>
     [Flags]
-    public enum MODFFlags : ushort
+    public enum MLMDFlags : ushort
     {
         /// <summary>
         /// Set for destroyable buildings like the tower in DeathknightStart. This makes it a server-controllable game object.

@@ -16,7 +16,10 @@ namespace Warcraft.NET.Files
         /// <param name="inData">The binary data.</param>
         public ChunkedFile(byte[] inData)
         {
-            LoadBinaryData(inData);
+            if (inData != null)
+            {
+                LoadBinaryData(inData);
+            }
         }
 
         /// <summary>

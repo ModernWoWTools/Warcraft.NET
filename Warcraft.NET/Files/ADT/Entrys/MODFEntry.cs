@@ -69,7 +69,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
                 NameId = br.ReadUInt32();
                 UniqueId = br.ReadInt32();
 
-                Position = br.ReadVector3();
+                Position = br.ReadVector3(AxisConfiguration.Native);
                 Rotation = br.ReadRotator();
                 BoundingBox = br.ReadBoundingBox();
 
@@ -99,7 +99,7 @@ namespace Warcraft.NET.Files.ADT.Entrys
                     bw.Write(NameId);
                     bw.Write(UniqueId);
 
-                    bw.WriteVector3(Position);
+                    bw.WriteVector3(Position, AxisConfiguration.Native);
                     bw.WriteRotator(Rotation);
                     bw.WriteBoundingBox(BoundingBox);
 
