@@ -66,7 +66,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach(MTXFFlags textureFlag in TextureFlags)
+                foreach (MTXFFlags textureFlag in TextureFlags)
                 {
                     bw.Write((uint)textureFlag);
                 }

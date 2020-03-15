@@ -26,4 +26,17 @@ namespace Warcraft.NET.Attribute
 
         public bool Optional { get { return optional_; } }
     }
+
+
+    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    public sealed class ChunkArrayAttribute : System.Attribute
+    {
+        private readonly int length;
+        public ChunkArrayAttribute([CallerLineNumber]int length = 0)
+        {
+            this.length = length;
+        }
+
+        public int Length { get { return length; } }
+    }
 }

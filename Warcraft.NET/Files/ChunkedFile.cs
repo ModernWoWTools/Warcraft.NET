@@ -5,11 +5,20 @@ using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
+using System;
 
 namespace Warcraft.NET.Files
 {
     public abstract class ChunkedFile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChunkedFile"/> class.
+        /// </summary>
+        public ChunkedFile()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkedFile"/> class.
         /// </summary>
@@ -40,13 +49,35 @@ namespace Warcraft.NET.Files
                 {
                     try
                     {
-                        IIFFChunk chunk = (IIFFChunk)br
-                        .GetType()
-                        .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
-                        .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { br, false });
+                        ChunkArrayAttribute chunkArray = (ChunkArrayAttribute)chunkPropertie.GetCustomAttribute(typeof(ChunkArrayAttribute), false);
 
-                        chunkPropertie.SetValue(this, chunk);
+                        if (chunkArray != null && chunkPropertie.PropertyType.IsArray)
+                        {
+                            var chunks = Array.CreateInstance(chunkPropertie.PropertyType.GetElementType(), chunkArray.Length);
+
+                            for (int i = 0; i < chunkArray.Length; i++)
+                            {
+                                IIFFChunk chunk = (IIFFChunk)br
+                                .GetType()
+                                .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
+                                .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
+                                .Invoke(null, new object[] { br, false });
+
+                                chunks.SetValue(chunk, i);
+                            }
+
+                            chunkPropertie.SetValue(this, chunks);
+                        }
+                        else
+                        {
+                            IIFFChunk chunk = (IIFFChunk)br
+                            .GetType()
+                            .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
+                            .MakeGenericMethod(chunkPropertie.PropertyType)
+                            .Invoke(null, new object[] { br, false });
+
+                            chunkPropertie.SetValue(this, chunk);
+                        }
                     }
                     catch (TargetInvocationException ex)
                     {
@@ -86,15 +117,39 @@ namespace Warcraft.NET.Files
 
                 foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
                 {
-                    IIFFChunk chunk = (IIFFChunk)chunkPropertie.GetValue(this);
+                    ChunkArrayAttribute chunkArray = (ChunkArrayAttribute)chunkPropertie.GetCustomAttribute(typeof(ChunkArrayAttribute), false);
 
-                    if (chunk != null)
+                    if (chunkArray != null && chunkPropertie.PropertyType.IsArray)
                     {
-                        bw
-                        .GetType()
-                        .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
-                        .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false, true });
+                        IIFFChunk[] chunks = (IIFFChunk[])chunkPropertie.GetValue(this);
+
+                        if (chunks != null)
+                        {
+                            foreach (IIFFChunk chunk in chunks)
+                            {
+                                if (chunk != null)
+                                {
+                                    bw
+                                    .GetType()
+                                    .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
+                                    .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
+                                    .Invoke(null, new object[] { bw, chunk, false, true });
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        IIFFChunk chunk = (IIFFChunk)chunkPropertie.GetValue(this);
+
+                        if (chunk != null)
+                        {
+                            bw
+                            .GetType()
+                            .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
+                            .MakeGenericMethod(chunkPropertie.PropertyType)
+                            .Invoke(null, new object[] { bw, chunk, false, true });
+                        }
                     }
                 }
 
