@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Files\ADT\TerrainObject\One\" />
     <Folder Include="Files\WMO\Flags\BfA\" />
     <Folder Include="Files\WMO\Flags\WoD\" />
   </ItemGroup>
