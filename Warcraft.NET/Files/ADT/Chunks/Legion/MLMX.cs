@@ -6,7 +6,7 @@ using System.IO;
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
 {
     /// <summary>
-    /// MLMX Chunk - Contains model bounding information.
+    /// MLMX Chunk - Contains WMO model bounding information.
     /// </summary>
     public class MLMX : IIFFChunk, IBinarySerializable
     {
@@ -16,9 +16,9 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         public const string Signature = "MLMX";
 
         /// <summary>
-        /// Gets or sets model extents.
+        /// Gets or sets model extents. Same count as <see cref="MLMD"/>
         /// </summary>
-        public List<MLMXEntry> Entries { get; set; }
+        public List<MLMXEntry> Entries { get; set; } = new List<MLMXEntry>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MLMX"/> class.

@@ -16,9 +16,9 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         public const string Signature = "MLDX";
 
         /// <summary>
-        /// Gets or sets model extents.
+        /// Gets or sets model extents. Same count as <see cref="MLDD"/>
         /// </summary>
-        public List<MLDXEntry> Entries { get; set; }
+        public List<MLDXEntry> Entries { get; set; } = new List<MLDXEntry>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MLDX"/> class.
