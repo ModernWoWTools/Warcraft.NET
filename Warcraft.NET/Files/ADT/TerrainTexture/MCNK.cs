@@ -90,8 +90,18 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.WriteIFFChunk(TextureLayers);
-                bw.WriteIFFChunk(BakedShadows);
+                if (TextureLayers != null)
+                   bw.WriteIFFChunk(TextureLayers);
+
+                if (BakedShadows != null)
+                    bw.WriteIFFChunk(BakedShadows);
+
+                if (AlphaMaps != null)
+                    bw.WriteIFFChunk(AlphaMaps);
+
+                if (TerrainMaterials != null)
+                    bw.WriteIFFChunk(TerrainMaterials);
+
                 return ms.ToArray();
             }
         }

@@ -54,6 +54,7 @@ namespace Warcraft.NET.Files
                         if (chunkArray != null && chunkPropertie.PropertyType.IsArray)
                         {
                             var chunks = Array.CreateInstance(chunkPropertie.PropertyType.GetElementType(), chunkArray.Length);
+                            ms.Seek(0, SeekOrigin.Begin);
 
                             for (int i = 0; i < chunkArray.Length; i++)
                             {
@@ -61,7 +62,7 @@ namespace Warcraft.NET.Files
                                 .GetType()
                                 .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                                 .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
-                                .Invoke(null, new object[] { br, false });
+                                .Invoke(null, new object[] { br, false, false });
 
                                 chunks.SetValue(chunk, i);
                             }
@@ -74,7 +75,7 @@ namespace Warcraft.NET.Files
                             .GetType()
                             .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                             .MakeGenericMethod(chunkPropertie.PropertyType)
-                            .Invoke(null, new object[] { br, false });
+                            .Invoke(null, new object[] { br, false, true });
 
                             chunkPropertie.SetValue(this, chunk);
                         }

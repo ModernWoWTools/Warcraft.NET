@@ -74,10 +74,10 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                if (ModelReferences.ModelReferences.Length > 0)
+                if (ModelReferences != null && ModelReferences.ModelReferences.Length > 0)
                     bw.WriteIFFChunk(ModelReferences);
 
-                if (WorldObjectReferences.WorldObjectReferences.Length > 0)
+                if (WorldObjectReferences != null && WorldObjectReferences.WorldObjectReferences.Length > 0)
                     bw.WriteIFFChunk(WorldObjectReferences);
 
                 return ms.ToArray();

@@ -193,14 +193,15 @@ namespace Warcraft.NET.Extensions
         /// </summary>
         /// <param name="reader">The current <see cref="BinaryReader"/>.</param>
         /// <param name="returnDefault"></param>
+        /// <param name="fromBegin"></param>
         /// <typeparam name="T">The chunk type.</typeparam>
         /// <returns>The chunk.</returns>
         /// <summary>
-        public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false) where T : IIFFChunk, new()
+        public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false, bool fromBegin = true) where T : IIFFChunk, new()
         {
             T chunk = new T();
             
-            if (!reader.SeekChunk(chunk.GetSignature()))
+            if (!reader.SeekChunk(chunk.GetSignature(), fromBegin))
             {
                 if (returnDefault)
                     return default(T);
