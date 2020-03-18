@@ -5,7 +5,13 @@ using Warcraft.NET.Files.ADT.Chunks.Wotlk;
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
 {
     public class Terrain : TerrainBase
-    {       
+    {
+        /// <summary>
+        /// Gets or sets the contains an array of offsets where MCNKs are in the file.
+        /// </summary>
+        // [ChunkOrder(2)]
+        //public MCNK Chunk { get; set; }
+
         /// <summary>
         /// Gets or sets the contains a list of all textures referenced by this ADT.
         /// </summary>
@@ -61,10 +67,10 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         public MH2O Water { get; set; }
 
         /// <summary>
-        /// Gets or sets the the texture flags. This chunk is present in WOTLK chunks and above.
+        /// Gets or Sets a array of flags for entries in MTEX. Always same number of entries as MTEX.
         /// </summary>
         [ChunkOrder(100), ChunkOptional]
-        public MTFX TextureFlags { get; set; }
+        public MTXF TextureFlags { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Wotlk.Terrain"/> class.
