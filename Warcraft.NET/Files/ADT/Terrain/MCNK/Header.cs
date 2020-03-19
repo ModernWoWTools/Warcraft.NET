@@ -98,7 +98,12 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
         /// <summary>
         /// Gets or sets an unknown value. It is used, but it's unclear for what.
         /// </summary>
-        public ushort Unknown { get; set; }
+        public ushort Unk0 { get; set; }
+
+        /// <summary>
+        /// Gets or sets GroudEffect id
+        /// </summary>
+        public byte[] GroundEffectMap { get; set; } = new byte[16];
 
         /// <summary>
         /// Gets or sets a low-quality texture map of the MCNK. Used with LOD.
@@ -152,6 +157,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
         public uint VertexLightingOffset { get; set; }
 
         /// <summary>
+        /// Gets or sets an unknown value. Currently not used
+        /// </summary>
+        public uint Unk1 { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Header"/> class.
         /// </summary>
         /// <param name="data">ExtendedData.</param>
@@ -166,12 +176,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                     MapIndexY = br.ReadUInt32();
                     TextureLayerCount = br.ReadUInt32();
                     ModelReferenceCount = br.ReadUInt32();
-
-                    if (Flags.HasFlag(MCNKFlags.UsesHighResHoles))
-                    {
-                        HighResHoles = br.ReadUInt64();
-                    }
-
                     HeightmapOffset = br.ReadUInt32();
                     VertexNormalOffset = br.ReadUInt32();
                     TextureLayersOffset = br.ReadUInt32();
@@ -182,14 +186,9 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                     BakedShadowsSize = br.ReadUInt32();
                     AreaID = br.ReadUInt32();
                     WorldModelObjectReferenceCount = br.ReadUInt32();
-
-                    if (!Flags.HasFlag(MCNKFlags.UsesHighResHoles))
-                    {
-                        LowResHoles = br.ReadUInt16();
-                    }
-
-                    Unknown = br.ReadUInt16();
-                    LowResTextureMap = br.ReadUInt16();
+                    LowResHoles = br.ReadUInt16();
+                    Unk0 = br.ReadUInt16();
+                    GroundEffectMap = br.ReadBytes(GroundEffectMap.Length);
                     PredTex = br.ReadUInt32();
                     NoEffectDoodad = br.ReadUInt32();
                     SoundEmittersOffset = br.ReadUInt32();
@@ -197,11 +196,9 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                     LiquidOffset = br.ReadUInt32();
                     LiquidSize = br.ReadUInt32();
                     MapTilePosition = br.ReadVector3();
-
-                    if (Flags.HasFlag(MCNKFlags.HasVertexShading))
-                    {
-                        VertexShadingOffset = br.ReadUInt32();
-                    }
+                    VertexShadingOffset = br.ReadUInt32();
+                    VertexLightingOffset = br.ReadUInt32();
+                    Unk1 = br.ReadUInt32();
                 }
             }
         }
@@ -229,12 +226,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                 bw.Write(MapIndexY);
                 bw.Write(TextureLayerCount);
                 bw.Write(ModelReferenceCount);
-
-                if (Flags.HasFlag(MCNKFlags.UsesHighResHoles))
-                {
-                    bw.Write(HighResHoles);
-                }
-
                 bw.Write(HeightmapOffset);
                 bw.Write(VertexNormalOffset);
                 bw.Write(TextureLayersOffset);
@@ -245,14 +236,9 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                 bw.Write(BakedShadowsSize);
                 bw.Write(AreaID);
                 bw.Write(WorldModelObjectReferenceCount);
-
-                if (!Flags.HasFlag(MCNKFlags.UsesHighResHoles))
-                {
-                    bw.Write(LowResHoles);
-                }
-
-                bw.Write(Unknown);
-                bw.Write(LowResTextureMap);
+                bw.Write(LowResHoles);
+                bw.Write(Unk0);
+                bw.Write(GroundEffectMap);
                 bw.Write(PredTex);
                 bw.Write(NoEffectDoodad);
                 bw.Write(SoundEmittersOffset);
@@ -260,11 +246,9 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
                 bw.Write(LiquidOffset);
                 bw.Write(LiquidSize);
                 bw.WriteVector3(MapTilePosition);
-
-                if (Flags.HasFlag(MCNKFlags.HasVertexShading))
-                {
-                    bw.Write(VertexShadingOffset);
-                }
+                bw.Write(VertexShadingOffset);
+                bw.Write(VertexLightingOffset);
+                bw.Write(Unk1);
 
                 return ms.ToArray();
             }

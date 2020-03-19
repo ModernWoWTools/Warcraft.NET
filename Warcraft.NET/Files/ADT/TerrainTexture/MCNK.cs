@@ -2,7 +2,6 @@
 using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Chunks;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture
 {

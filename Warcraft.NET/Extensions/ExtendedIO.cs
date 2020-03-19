@@ -200,7 +200,7 @@ namespace Warcraft.NET.Extensions
         public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false, bool fromBegin = true) where T : IIFFChunk, new()
         {
             T chunk = new T();
-            
+
             if (!reader.SeekChunk(chunk.GetSignature(), fromBegin))
             {
                 if (returnDefault)
@@ -242,6 +242,98 @@ namespace Warcraft.NET.Extensions
         public static M2Array ReadM2Array(this BinaryReader reader)
         {
             return new M2Array(size: reader.ReadUInt32(), offset: reader.ReadUInt32());
+        }
+
+        /// <summary>
+        /// Reads a 6-byte <see cref="ShortVector3"/> structure from the data stream and advances the position of the stream by
+        /// 6 bytes.
+        /// </summary>
+        /// <returns>The vector3s.</returns>
+        /// <param name="binaryReader">The reader.</param>
+        /// <param name="convertTo">Which axis configuration the read vector should be converted to.</param>
+        public static ShortVector3 ReadShortVector3(this BinaryReader binaryReader, AxisConfiguration convertTo = AxisConfiguration.YUp)
+        {
+            switch (convertTo)
+            {
+                case AxisConfiguration.Native:
+                {
+                    return new ShortVector3(binaryReader.ReadInt16(), binaryReader.ReadInt16(), binaryReader.ReadInt16());
+                }
+                case AxisConfiguration.YUp:
+                {
+                    var x1 = binaryReader.ReadInt16();
+                    var y1 = binaryReader.ReadInt16();
+                    var z1 = binaryReader.ReadInt16();
+
+                    var x = x1;
+                    var y = z1;
+                    var z = (short)-y1;
+
+                    return new ShortVector3(x, y, z);
+                }
+                case AxisConfiguration.ZUp:
+                {
+                    var x1 = binaryReader.ReadInt16();
+                    var y1 = binaryReader.ReadInt16();
+                    var z1 = binaryReader.ReadInt16();
+
+                    var x = x1;
+                    var y = (short)-z1;
+                    var z = y1;
+
+                    return new ShortVector3(x, y, z);
+                }
+                default:
+                {
+                    throw new ArgumentOutOfRangeException(nameof(convertTo), convertTo, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reads a 3-byte <see cref="ByteVector3"/> structure from the data stream and advances the position of the stream by
+        /// 3 bytes.
+        /// </summary>
+        /// <returns>The vector3s.</returns>
+        /// <param name="binaryReader">The reader.</param>
+        /// <param name="convertTo">Which axis configuration the read vector should be converted to.</param>
+        public static ByteVector3 ReadByteVector3(this BinaryReader binaryReader, AxisConfiguration convertTo = AxisConfiguration.YUp)
+        {
+            switch (convertTo)
+            {
+                case AxisConfiguration.Native:
+                    {
+                        return new ByteVector3(binaryReader.ReadByte(), binaryReader.ReadByte(), binaryReader.ReadByte());
+                    }
+                case AxisConfiguration.YUp:
+                    {
+                        var x1 = binaryReader.ReadByte();
+                        var y1 = binaryReader.ReadByte();
+                        var z1 = binaryReader.ReadByte();
+
+                        var x = x1;
+                        var y = z1;
+                        var z = (byte)-y1;
+
+                        return new ByteVector3(x, y, z);
+                    }
+                case AxisConfiguration.ZUp:
+                    {
+                        var x1 = binaryReader.ReadByte();
+                        var y1 = binaryReader.ReadByte();
+                        var z1 = binaryReader.ReadByte();
+
+                        var x = x1;
+                        var y = (byte)-z1;
+                        var z = y1;
+
+                        return new ByteVector3(x, y, z);
+                    }
+                default:
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(convertTo), convertTo, null);
+                    }
+            }
         }
         #endregion
 
@@ -441,6 +533,72 @@ namespace Warcraft.NET.Extensions
         {
             binaryWriter.Write(Size);
             binaryWriter.Write(Offset);
+        }
+
+        /// <summary>
+        /// Writes a 6-byte <see cref="ShortVector3"/> value to the data stream in XYZ order. This function
+        /// expects a Y-up vector.
+        /// </summary>
+        /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
+        /// <param name="vector">The Vector to write.</param>
+        /// <param name="storeAs">Which axis configuration the read vector should be stored as.</param>
+        public static void WriteShortVector3(this BinaryWriter binaryWriter, ShortVector3 vector, AxisConfiguration storeAs = AxisConfiguration.ZUp)
+        {
+            switch (storeAs)
+            {
+                case AxisConfiguration.Native:
+                case AxisConfiguration.YUp:
+                {
+                    binaryWriter.Write(vector.X);
+                    binaryWriter.Write(vector.Y);
+                    binaryWriter.Write(vector.Z);
+                    break;
+                }
+                case AxisConfiguration.ZUp:
+                {
+                    binaryWriter.Write(vector.X);
+                    binaryWriter.Write((short)(vector.Z * -1));
+                    binaryWriter.Write(vector.Y);
+                    break;
+                }
+                default:
+                {
+                    throw new ArgumentOutOfRangeException(nameof(storeAs), storeAs, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Writes a 3-byte <see cref="ByteVector3"/> value to the data stream in XYZ order. This function
+        /// expects a Y-up vector.
+        /// </summary>
+        /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
+        /// <param name="vector">The Vector to write.</param>
+        /// <param name="storeAs">Which axis configuration the read vector should be stored as.</param>
+        public static void WriteByteVector3(this BinaryWriter binaryWriter, ByteVector3 vector, AxisConfiguration storeAs = AxisConfiguration.ZUp)
+        {
+            switch (storeAs)
+            {
+                case AxisConfiguration.Native:
+                case AxisConfiguration.YUp:
+                    {
+                        binaryWriter.Write(vector.X);
+                        binaryWriter.Write(vector.Y);
+                        binaryWriter.Write(vector.Z);
+                        break;
+                    }
+                case AxisConfiguration.ZUp:
+                    {
+                        binaryWriter.Write(vector.X);
+                        binaryWriter.Write((byte)(vector.Z * -1));
+                        binaryWriter.Write(vector.Y);
+                        break;
+                    }
+                default:
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(storeAs), storeAs, null);
+                    }
+            }
         }
         #endregion
 
