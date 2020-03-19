@@ -7,12 +7,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
     public class Terrain : TerrainBase
     {
         /// <summary>
-        /// Gets or sets the contains an array of offsets where MCNKs are in the file.
-        /// </summary>
-        // [ChunkOrder(2)]
-        //public MCNK Chunk { get; set; }
-
-        /// <summary>
         /// Gets or sets the contains a list of all textures referenced by this ADT.
         /// </summary>
         [ChunkOrder(3)]
@@ -65,6 +59,12 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         /// </summary>
         [ChunkOrder(10)]
         public MH2O Water { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contains an array of offsets where MCNKs are in the file.
+        /// </summary>
+        [ChunkOrder(11), ChunkArray(256)]
+        public MCNK[] Chunks { get; set; }
 
         /// <summary>
         /// Gets or Sets a array of flags for entries in MTEX. Always same number of entries as MTEX.
