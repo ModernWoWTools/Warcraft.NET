@@ -46,6 +46,13 @@ namespace Warcraft.NET.Files.ADT.Entrys
         /// <summary>
         /// Initializes a new instance of the <see cref="MDDFEntry"/> class.
         /// </summary>
+        public MDDFEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MDDFEntry"/> class.
+        /// </summary>
         /// <param name="data">ExtendedData.</param>
         public MDDFEntry(byte[] data)
         {

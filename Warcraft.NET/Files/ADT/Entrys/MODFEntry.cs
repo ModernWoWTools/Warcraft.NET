@@ -60,6 +60,13 @@ namespace Warcraft.NET.Files.ADT.Entrys
         /// <summary>
         /// Initializes a new instance of the <see cref="MODFEntry"/> class.
         /// </summary>
+        public MODFEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MODFEntry"/> class.
+        /// </summary>
         /// <param name="data">ExtendedData.</param>
         public MODFEntry(byte[] data)
         {
