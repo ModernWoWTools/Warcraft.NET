@@ -12,15 +12,13 @@ namespace Warcraft.NET.Files.ADT.Terrain
         public MVER Version { get; set; }
 
         /// <summary>
-        /// Gets or sets the contains the ADT Header with offsets. The header has offsets to the other chunks in the
-        /// ADT.
+        /// Gets or sets the contains the ADT Header with offsets. The header has offsets to the other chunks in the ADT
         /// </summary>
         [ChunkOrder(2)]
         public MHDR Header { get; set; }
 
         /// <summary>
         /// Gets or sets the contains the ADT bounding box
-        /// ADT.
         /// </summary>
         [ChunkOrder(100), ChunkOptional]
         public MFBO BoundingBox { get; set; }

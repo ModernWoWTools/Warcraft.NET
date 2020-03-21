@@ -1,11 +1,6 @@
-﻿using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
-using System.Collections;
+﻿using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Chunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
 {
     /// <summary>
     /// MCAL Chunk - Contains alpha map data in one of three forms - uncompressed 2048, uncompressed 4096 and compressed.

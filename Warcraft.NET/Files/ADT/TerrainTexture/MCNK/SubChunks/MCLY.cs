@@ -1,10 +1,9 @@
-﻿using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Chunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
 {
     /// <summary>
     /// MCLY Chunk - Contains definitions for the alpha map layers.

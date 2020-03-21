@@ -10,7 +10,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MLDD";
+        new public const string Signature = "MLDD";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MLDD"/> class.
@@ -28,7 +28,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         }
 
         /// <inheritdoc/>
-        public string GetSignature()
+        new public string GetSignature()
         {
             return Signature;
         }

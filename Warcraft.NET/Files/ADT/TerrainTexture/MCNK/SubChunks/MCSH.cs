@@ -1,35 +1,35 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 
-namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
 {
     /// <summary>
-    /// MCRW Chunk - Holds world object references.
+    /// MCSH chunk - holds baked terrain shadows.
     /// </summary>
-    public class MCRW : IIFFChunk, IBinarySerializable
+    public class MCSH : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MCRW";
+        public const string Signature = "MCSH";
 
         /// <summary>
-        /// Holds world object references
+        /// Gets or sets an array of alpha map layers in this MCNK.
         /// </summary>
-        public uint[] WorldObjectReferences;
+        public byte[] ShadowMap;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCRW"/> class.
+        /// Initializes a new instance of the <see cref="MCSH"/> class.
         /// </summary>
-        public MCRW()
+        public MCSH()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCRW"/> class.
+        /// Initializes a new instance of the <see cref="MCSH"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MCRW(byte[] inData)
+        public MCSH(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -40,11 +40,10 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long worldObjectCount = ms.Length / sizeof(uint);
-                WorldObjectReferences = new uint[worldObjectCount];
-                for (var i = 0; i < worldObjectCount; ++i)
+                ShadowMap = new byte[ms.Length];
+                for (ushort i = 0; i < ms.Length; i++)
                 {
-                    WorldObjectReferences[i] = br.ReadUInt32();
+                    ShadowMap[i] = br.ReadByte();
                 }
             }
         }
@@ -67,9 +66,9 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (uint worldObject in WorldObjectReferences)
+                foreach(byte shadow in ShadowMap)
                 {
-                    bw.Write(worldObject);
+                    bw.Write(shadow);
                 }
 
                 return ms.ToArray();

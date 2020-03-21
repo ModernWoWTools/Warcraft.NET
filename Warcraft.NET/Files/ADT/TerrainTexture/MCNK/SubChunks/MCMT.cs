@@ -1,35 +1,35 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 
-namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
 {
     /// <summary>
-    /// MCRD Chunk - Holds model references.
+    /// MCMT chunk - Terrain material record id.
     /// </summary>
-    public class MCRD : IIFFChunk, IBinarySerializable
+    public class MCMT : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MCRD";
+        public const string Signature = "MCMT";
 
         /// <summary>
-        /// Holds model references
+        /// Gets or sets an array of terrain material ids.
         /// </summary>
-        public uint[] ModelReferences;
+        public byte[] TerrainMaterialIds;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCRD"/> class.
+        /// Initializes a new instance of the <see cref="MCMT"/> class.
         /// </summary>
-        public MCRD()
+        public MCMT()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCRD"/> class.
+        /// Initializes a new instance of the <see cref="MCMT"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MCRD(byte[] inData)
+        public MCMT(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -40,11 +40,11 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long modelCount = ms.Length / sizeof(uint);
-                ModelReferences = new uint[modelCount];
-                for (var i = 0; i < modelCount; ++i)
+                TerrainMaterialIds = new byte[ms.Length];
+
+                for (var i = 0; i < ms.Length; ++i)
                 {
-                    ModelReferences[i] = br.ReadUInt32();
+                    TerrainMaterialIds[i] = br.ReadByte();
                 }
             }
         }
@@ -67,9 +67,9 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (uint model in ModelReferences)
+                foreach(byte terrainMatrialId in TerrainMaterialIds)
                 {
-                    bw.Write(model);
+                    bw.Write(terrainMatrialId);
                 }
 
                 return ms.ToArray();

@@ -2,7 +2,7 @@
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCMK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Chunks;
+using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
 {
@@ -36,7 +36,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         /// </summary>
         public MCNK()
         {
-            var a = 2;
         }
 
         /// <summary>
