@@ -20,7 +20,7 @@ namespace Warcraft.NET.Files.ADT.Terrain
         /// Gets or sets the header, which contains information about the MCNK and its subchunks such as offsets,
         /// position and flags.
         /// </summary>
-        public Header Header { get; set; }
+        public Header Header { get; set; } = new Header();
 
         /// <summary>
         /// Gets or sets the heightmap chunk.
