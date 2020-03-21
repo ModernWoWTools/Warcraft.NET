@@ -96,54 +96,97 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
             using (var bw = new BinaryWriter(ms))
             {
                 uint headerAndSizeOffset = 8;
+                Header newHeader = new Header()
+                {
+                    Flags = Header.Flags,
+                    MapIndexX = Header.MapIndexX,
+                    MapIndexY = Header.MapIndexY,
+                    ModelReferenceCount = Header.ModelReferenceCount,
+                    HighResHoles = Header.HighResHoles,
+                    AreaID = Header.AreaID,
+                    LowResHoles = Header.LowResHoles,
+                    Unk0 = Header.Unk0,
+                    GroundEffectMap = Header.GroundEffectMap,
+                    LowResTextureMap = Header.LowResTextureMap,
+                    PredTex = Header.PredTex,
+                    NoEffectDoodad = Header.NoEffectDoodad,
+                    MapTilePosition = Header.MapTilePosition,
+                    Unk1 = Header.Unk1
+                };
+
                 ms.Seek(Header.GetSize(), SeekOrigin.Begin);
 
                 // Write MCVT
-                Header.HeightmapOffset = 0;
                 if (Heightmap != null)
                 {
-                    Header.HeightmapOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.HeightmapOffset = (uint)ms.Position + headerAndSizeOffset;
                     bw.WriteIFFChunk(Heightmap);
                 }
 
-                // ...
+                // Write MCNR
+                if (VertexNormals != null)
+                {
+                    newHeader.VertexNormalOffset = (uint)ms.Position + headerAndSizeOffset;
+                    bw.WriteIFFChunk(VertexNormals);
+                }
 
                 // Write MCCV
-                Header.VertexShadingOffset = 0;
                 if (VertexShading != null)
                 {
-                    Header.VertexShadingOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.VertexShadingOffset = (uint)ms.Position + headerAndSizeOffset;
                     bw.WriteIFFChunk(VertexShading);
                 }
 
                 // Write MCLV
-                Header.VertexLightingOffset = 0;
                 if (VertexLighting != null)
                 {
-                    Header.VertexLightingOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.VertexLightingOffset = (uint)ms.Position + headerAndSizeOffset;
                     bw.WriteIFFChunk(VertexLighting);
                 }
 
-                // Write MCNR
-                Header.VertexNormalOffset = 0;
-                if (VertexNormals != null)
+                // Write MCLY
+                if (TextureLayers != null)
                 {
-                    Header.VertexNormalOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.TextureLayersOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.TextureLayerCount = (uint)TextureLayers.Layers.Count;
                     bw.WriteIFFChunk(VertexNormals);
                 }
 
-                // Write MCSE
-                Header.SoundEmittersOffset = 0;
-                Header.SoundEmitterCount = Header.SoundEmitterCount;
-                if (VertexNormals != null)
+                // Write MCRF
+                if (ModelReferences != null)
                 {
-                    Header.SoundEmitterCount = Header.SoundEmitterCount;
-                    Header.SoundEmittersOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.ModelReferencesOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.ModelReferenceCount = (uint)ModelReferences.ModelReferences.Count;
+                    newHeader.WorldModelObjectReferenceCount = (uint)ModelReferences.WorldObjectReferences.Count;
+                    bw.WriteIFFChunk(ModelReferences);
+                }
+
+                // Write MCSH
+                if (newHeader.Flags.HasFlag(MCMK.Flags.MCNKFlags.HasBakedShadows) && BakedShadows != null)
+                {
+                    newHeader.BakedShadowsOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.BakedShadowsSize = ModelReferences.GetSize() + 8;
+                    bw.WriteIFFChunk(ModelReferences);
+                }
+
+                // Write MCAL
+                if (AlphaMaps != null)
+                {
+                    newHeader.AlphaMapsOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.AlphaMapsSize = AlphaMaps.GetSize() + 8;
+                    bw.WriteIFFChunk(AlphaMaps);
+                }
+
+                // Write MCSE
+                if (SoundEmitters != null)
+                {
+                    newHeader.SoundEmittersOffset = (uint)ms.Position + headerAndSizeOffset;
+                    newHeader.SoundEmitterCount = 0;
                     bw.WriteIFFChunk(SoundEmitters);
                 }
 
                 ms.Seek(0, SeekOrigin.Begin);
-                bw.Write(Header.Serialize());
+                bw.Write(newHeader.Serialize());
 
                 return ms.ToArray();
             }
