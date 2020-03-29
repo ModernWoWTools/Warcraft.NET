@@ -17,97 +17,97 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets flags for this ADT.
         /// </summary>
-        public MHDRFlags Flags { get; set; }
+        public MHDRFlags Flags { get; set; } = (MHDRFlags)0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MCIN Chunk can be found.
         /// </summary>
-        public int MCINOffset { get; set; }
+        public int MCINOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MTEX Chunk can be found.
         /// </summary>
-        public int MTEXOffset { get; set; }
+        public int MTEXOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MMDX Chunk can be found.
         /// </summary>
-        public int MMDXOffset { get; set; }
+        public int MMDXOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MMID Chunk can be found.
         /// </summary>
-        public int MMIDOffset { get; set; }
+        public int MMIDOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MWMO Chunk can be found.
         /// </summary>
-        public int MWMOOffset { get; set; }
+        public int MWMOOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MWID Chunk can be found.
         /// </summary>
-        public int MWIDOffset { get; set; }
+        public int MWIDOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MMDF Chunk can be found.
         /// </summary>
-        public int MDDFOffset { get; set; }
+        public int MDDFOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MODF Chunk can be found.
         /// </summary>
-        public int MODFOffset { get; set; }
+        public int MODFOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MFBO Chunk can be found. This is only set if the Flags contains MDHR_MFBO.
         /// </summary>
-        public int MFBOOffset { get; set; }
+        public int MFBOOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MH2O Chunk can be found.
         /// </summary>
-        public int MH2OOffset { get; set; }
+        public int MH2OOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets offset into the file where the MTXF Chunk can be found.
         /// </summary>
-        public int MTXFOffset { get; set; }
+        public int MTXFOffset { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets mamp value (Cata+)
         /// </summary>
-        public byte MAMPValue { get; set; }
+        public byte MAMPValue { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets padding 1
         /// </summary>
-        public byte Padding1 { get; set; }
+        public byte Padding1 { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets padding 2
         /// </summary>
-        public byte Padding2 { get; set; }
+        public byte Padding2 { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets padding 3
         /// </summary>
-        public byte Padding3 { get; set; }
+        public byte Padding3 { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets unused 1
         /// </summary>
-        public uint Unused1 { get; set; }
+        public uint Unused1 { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets unused 2
         /// </summary>
-        public uint Unused2 { get; set; }
+        public uint Unused2 { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets unused 3
         /// </summary>
-        public uint Unused3 { get; set; }
+        public uint Unused3 { get; set; } = 0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MHDR"/> class.

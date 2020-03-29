@@ -16,22 +16,22 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// <summary>
         /// Index into <see cref="MLDD"/> per lod
         /// </summary>
-        public uint[] ModelLodOffset = new uint[3];
+        public uint[] ModelLodOffset = new uint[3] { 0, 0, 0 };
 
         /// <summary>
         /// Number of elements used from <see cref="MLDD"/> per lod
         /// </summary>
-        public uint[] ModelLodLength = new uint[3];
+        public uint[] ModelLodLength = new uint[3] { 0, 0, 0 };
 
         /// <summary>
         /// Index into <see cref="MLDD"/> per lod
         /// </summary>
-        public uint[] WorldObjectLodOffset = new uint[3];
+        public uint[] WorldObjectLodOffset = new uint[3] { 0, 0, 0 };
 
         /// <summary>
         /// Number of elements used from <see cref="MLDD"/> per lod
         /// </summary>
-        public uint[] WorldObjectLodLength = new uint[3];
+        public uint[] WorldObjectLodLength = new uint[3] { 0, 0, 0 };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MLFD"/> class.

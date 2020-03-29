@@ -93,9 +93,9 @@ namespace Warcraft.NET.Extensions
         /// </summary>
         /// <returns>The box.</returns>
         /// <param name="binaryReader">The reader.</param>
-        public static BoundingBox ReadBoundingBox(this BinaryReader binaryReader)
+        public static BoundingBox ReadBoundingBox(this BinaryReader binaryReader, AxisConfiguration convertTo = AxisConfiguration.YUp)
         {
-            return new BoundingBox(binaryReader.ReadVector3(), binaryReader.ReadVector3());
+            return new BoundingBox(binaryReader.ReadVector3(convertTo), binaryReader.ReadVector3(convertTo));
         }
 
         /// <summary>
@@ -400,10 +400,10 @@ namespace Warcraft.NET.Extensions
         /// </summary>
         /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
         /// <param name="box">In box.</param>
-        public static void WriteBoundingBox(this BinaryWriter binaryWriter, BoundingBox box)
+        public static void WriteBoundingBox(this BinaryWriter binaryWriter, BoundingBox box, AxisConfiguration storeAs = AxisConfiguration.ZUp)
         {
-            binaryWriter.WriteVector3(box.Minimum);
-            binaryWriter.WriteVector3(box.Maximum);
+            binaryWriter.WriteVector3(box.Minimum, storeAs);
+            binaryWriter.WriteVector3(box.Maximum, storeAs);
         }
 
         /// <summary>

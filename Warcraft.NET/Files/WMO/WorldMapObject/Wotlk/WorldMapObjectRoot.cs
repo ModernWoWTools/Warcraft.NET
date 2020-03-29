@@ -43,36 +43,5 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.Wotlk
         public WorldMapObjectRoot(byte[] inData) : base(inData)
         {
         }
-
-        /// <summary>
-        /// Serializes the current object into a byte array.
-        /// </summary>
-        /// <returns>The serialized object.</returns>
-        public override byte[] Serialize()
-        {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                var terrainChunkProperties = GetType()
-                    .GetProperties()
-                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
-
-                foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
-                {
-                    IIFFChunk chunk = (IIFFChunk)chunkPropertie.GetValue(this);
-
-                    if (chunk != null)
-                    {
-                        bw
-                        .GetType()
-                        .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
-                        .MakeGenericMethod(chunkPropertie.PropertyType)
-                        .Invoke(null, new object[] { bw, chunkPropertie.GetValue(this), false });
-                    }
-                }
-
-                return ms.ToArray();
-            }
-        }
     }
 }

@@ -11,6 +11,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
     public class MCNR : IIFFChunk, IBinarySerializable
     {
         /// <summary>
+        /// Holds wotlk padding size
+        /// </summary>
+        public static readonly int PaddingLength = 13;
+
+        /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
         public const string Signature = "MCNR";
@@ -19,6 +24,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
         /// Gets or sets vertex normals
         /// </summary>
         public ByteVector3[] VertexNormals { get; set; } = new ByteVector3[9 * 9 + 8 * 8];
+
+        /// <summary>
+        /// Gets or sets vertex normals padding
+        /// </summary>
+        public byte[] Padding { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MCNR"/> class.
@@ -42,11 +52,14 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long verticeNormalCount = ms.Length / (sizeof(byte) * 3);
-
-                for (var i = 0; i < verticeNormalCount; ++i)
+                for (var i = 0; i < VertexNormals.Length; ++i)
                 {
                     VertexNormals[i] = br.ReadByteVector3();
+                }
+
+                if (ms.Length - ms.Position == PaddingLength)
+                {
+                    Padding = br.ReadBytes(PaddingLength);
                 }
             }
         }
@@ -72,6 +85,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
                 foreach (ByteVector3 vertexNormal in VertexNormals)
                 {
                     bw.WriteByteVector3(vertexNormal);
+                }
+
+                if (Padding != null)
+                {
+                    bw.Write(Padding);
                 }
 
                 return ms.ToArray();

@@ -22,13 +22,20 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         /// <summary>
         /// Initializes a new instance of the <see cref="MLDXEntry"/> class.
         /// </summary>
+        public MLDXEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MLDXEntry"/> class.
+        /// </summary>
         /// <param name="data">ExtendedData.</param>
         public MLDXEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                BoundingBox = br.ReadBoundingBox();
+                BoundingBox = br.ReadBoundingBox(Structures.AxisConfiguration.Native);
                 Radius = br.ReadSingle();
             }
         }
@@ -51,7 +58,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.WriteBoundingBox(BoundingBox);
+                bw.WriteBoundingBox(BoundingBox, Structures.AxisConfiguration.Native);
                 bw.Write(Radius);
 
                 return ms.ToArray();

@@ -41,7 +41,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long verticeCount = ms.Length / Vertices.Length;
+                long verticeCount = ms.Length / sizeof(float);
 
                 for (var i = 0; i < verticeCount; ++i)
                 {

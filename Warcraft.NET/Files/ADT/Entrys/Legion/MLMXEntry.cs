@@ -22,6 +22,13 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         /// <summary>
         /// Initializes a new instance of the <see cref="MLMXEntry"/> class.
         /// </summary>
+        public MLMXEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MLMXEntry"/> class.
+        /// </summary>
         /// <param name="data">ExtendedData.</param>
         public MLMXEntry(byte[] data)
         {

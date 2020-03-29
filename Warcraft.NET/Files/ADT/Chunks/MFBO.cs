@@ -25,8 +25,22 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// </summary>
         public ShortPlane Minimum { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MFBO"/> class.
+        /// </summary>
         public MFBO()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MFBO"/> class.
+        /// </summary>
+        /// <param name="minimum">Minimum height</param>
+        /// <param name="maximum">Maximum height</param>
+        public MFBO(short minimum, short maximum)
+        {
+            this.Minimum = new ShortPlane(minimum);
+            this.Maximum = new ShortPlane(maximum);
         }
 
         /// <summary>

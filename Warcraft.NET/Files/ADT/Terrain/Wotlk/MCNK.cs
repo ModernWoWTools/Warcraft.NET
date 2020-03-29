@@ -57,6 +57,15 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
             {
                 long headerAndSizeOffset = -8;
 
+                // Read MCNR
+                if (Header.VertexNormalOffset > 0)
+                {
+                    ms.Seek(Header.VertexNormalOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(4, SeekOrigin.Current); // Skip Head
+                    int mcnrLength = br.ReadInt32() + MCNR.PaddingLength;
+                    VertexNormals = new MCNR(br.ReadBytes(mcnrLength));
+                }
+
                 // Read MCLY
                 if (Header.TextureLayersOffset > 0)
                 {

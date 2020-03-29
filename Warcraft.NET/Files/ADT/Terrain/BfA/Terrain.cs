@@ -26,6 +26,13 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
         /// <summary>
         /// Initializes a new instance of the <see cref="Terrain"/> class.
         /// </summary>
+        public Terrain() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Terrain"/> class.
+        /// </summary>
         /// <param name="inData">The binary data.</param>
         public Terrain(byte[] inData) : base(inData)
         {

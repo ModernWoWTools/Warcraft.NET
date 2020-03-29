@@ -20,7 +20,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         /// Gets or sets the a unique actor ID for the model. Blizzard implements this as game global, but it's only
         /// checked in loaded tiles. When not in use, it's set to -1.
         /// </summary>
-        public int UniqueId { get; set; }
+        public uint UniqueID { get; set; }
 
         /// <summary>
         /// Gets or sets the position of the WMO.
@@ -69,7 +69,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
             using (var br = new BinaryReader(ms))
             {
                 NameId = br.ReadUInt32();
-                UniqueId = br.ReadInt32();
+                UniqueID = br.ReadUInt32();
 
                 Position = br.ReadVector3(AxisConfiguration.Native);
                 Rotation = br.ReadRotator();
@@ -98,7 +98,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
                 using (var bw = new BinaryWriter(ms))
                 {
                     bw.Write(NameId);
-                    bw.Write(UniqueId);
+                    bw.Write(UniqueID);
 
                     bw.WriteVector3(Position, AxisConfiguration.Native);
                     bw.WriteRotator(Rotation);
