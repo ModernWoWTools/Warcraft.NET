@@ -42,9 +42,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long vertexShadingCount = ms.Length / VertexShading.Length;
-
-                for (var i = 0; i < vertexShadingCount; ++i)
+                for (var i = 0; i < VertexShading.Length; ++i)
                 {
                     VertexShading[i] = br.ReadRGBA();
                 }
