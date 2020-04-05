@@ -86,6 +86,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 {
                     ms.Seek(Header.BakedShadowsOffset + headerAndSizeOffset, SeekOrigin.Begin);
                     BakedShadows = br.ReadIFFChunk<MCSH>(false, false);
+                    Header.Flags |= MCMK.Flags.MCNKFlags.HasBakedShadows;
                 }
 
                 // Read MCAL
@@ -134,8 +135,16 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 // Write MCNR
                 if (VertexNormals != null)
                 {
+                    byte[] padding = VertexNormals.Padding;
                     newHeader.VertexNormalOffset = (uint)ms.Position + headerAndSizeOffset;
+                    VertexNormals.Padding = null;
+
                     bw.WriteIFFChunk(VertexNormals);
+
+                    if (padding != null)
+                    {
+                        bw.Write(padding);
+                    }
                 }
 
                 // Write MCCV
@@ -157,7 +166,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 {
                     newHeader.TextureLayersOffset = (uint)ms.Position + headerAndSizeOffset;
                     newHeader.TextureLayerCount = (uint)TextureLayers.Layers.Count;
-                    bw.WriteIFFChunk(VertexNormals);
+                    bw.WriteIFFChunk(TextureLayers);
                 }
 
                 // Write MCRF
@@ -174,7 +183,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 {
                     newHeader.BakedShadowsOffset = (uint)ms.Position + headerAndSizeOffset;
                     newHeader.BakedShadowsSize = ModelReferences.GetSize() + 8;
-                    bw.WriteIFFChunk(ModelReferences);
+                    bw.WriteIFFChunk(BakedShadows);
+                }
+                else
+                {
+                    newHeader.Flags &= ~MCMK.Flags.MCNKFlags.HasBakedShadows;
                 }
 
                 // Write MCAL
