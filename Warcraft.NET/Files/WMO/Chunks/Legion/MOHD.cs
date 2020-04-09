@@ -120,7 +120,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Legion
                 DoodadSets = br.ReadUInt32();
                 Color = br.ReadRGBA();
                 WMOId = br.ReadUInt32();
-                BoundingBox = br.ReadBoundingBox();
+                BoundingBox = br.ReadBoundingBox(Structures.AxisConfiguration.Native);
                 Flags = (MOHDFlags)br.ReadUInt16();
                 NumLod = br.ReadUInt16();
             }
@@ -141,7 +141,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Legion
                 bw.Write(DoodadSets);
                 bw.WriteRGBA(Color);
                 bw.Write(WMOId);
-                bw.WriteBoundingBox(BoundingBox);
+                bw.WriteBoundingBox(BoundingBox, Structures.AxisConfiguration.Native);
                 bw.Write((ushort)Flags);
                 bw.Write(NumLod);
                 return ms.ToArray();
