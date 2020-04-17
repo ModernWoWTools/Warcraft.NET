@@ -54,11 +54,6 @@ namespace Warcraft.NET.Files.TEX
 
                 foreach (TXBTEntry entry in BlobTexture.Entries)
                 {
-                    if (entry.DXTType == 0 && !entry.Flags.HasFlag(TXBTFlags.AlphaDxt1))
-                    {
-                        var a = 2;
-                    }
-
                     ms.Seek(txmdStartOffset + entry.TXMDOffset, SeekOrigin.Begin);
                     textureDataList.Add(br.ReadIFFChunk<TXMD>(false, false));
                 }
