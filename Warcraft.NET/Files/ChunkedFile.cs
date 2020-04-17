@@ -62,7 +62,7 @@ namespace Warcraft.NET.Files
                                 .GetType()
                                 .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                                 .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
-                                .Invoke(null, new object[] { br, false, false });
+                                .Invoke(null, new object[] { br, false, false, true });
 
                                 chunks.SetValue(chunk, i);
                             }
@@ -75,7 +75,7 @@ namespace Warcraft.NET.Files
                             .GetType()
                             .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                             .MakeGenericMethod(chunkPropertie.PropertyType)
-                            .Invoke(null, new object[] { br, false, true });
+                            .Invoke(null, new object[] { br, false, true, true });
 
                             chunkPropertie.SetValue(this, chunk);
                         }

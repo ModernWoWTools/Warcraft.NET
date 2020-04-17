@@ -6,6 +6,7 @@ using System.Text;
 using Warcraft.NET.Files.Structures;
 using System.Collections.Generic;
 using Warcraft.NET.Exceptions;
+using System.Collections;
 
 namespace Warcraft.NET.Extensions
 {
@@ -197,11 +198,11 @@ namespace Warcraft.NET.Extensions
         /// <typeparam name="T">The chunk type.</typeparam>
         /// <returns>The chunk.</returns>
         /// <summary>
-        public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false, bool fromBegin = true) where T : IIFFChunk, new()
+        public static T ReadIFFChunk<T>(this BinaryReader reader, bool returnDefault = false, bool fromBegin = true, bool reverseSignature = true) where T : IIFFChunk, new()
         {
             T chunk = new T();
 
-            if (!reader.SeekChunk(chunk.GetSignature(), fromBegin))
+            if (!reader.SeekChunk(chunk.GetSignature(), fromBegin, false, reverseSignature))
             {
                 if (returnDefault)
                     return default(T);
@@ -209,7 +210,7 @@ namespace Warcraft.NET.Extensions
                 throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
             }
 
-            string chunkSignature = reader.ReadBinarySignature();
+            string chunkSignature = reader.ReadBinarySignature(reverseSignature);
             var chunkSize = reader.ReadUInt32();
             var chunkData = reader.ReadBytes((int)chunkSize);
 
