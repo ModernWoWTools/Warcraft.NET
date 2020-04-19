@@ -43,8 +43,6 @@ namespace Warcraft.NET.Files.TEX
         {
             LoadBinaryData(inData);
 
-            List<TXMD> textureDataList = new List<TXMD>();
-
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
@@ -55,11 +53,9 @@ namespace Warcraft.NET.Files.TEX
                 foreach (TXBTEntry entry in BlobTexture.Entries)
                 {
                     ms.Seek(txmdStartOffset + entry.TXMDOffset, SeekOrigin.Begin);
-                    textureDataList.Add(br.ReadIFFChunk<TXMD>(false, false));
+                    entry.TextureData = br.ReadIFFChunk<TXMD>(false, false);
                 }
             }
-
-            TextureData = textureDataList.ToArray();
         }
 
         /// <summary>
@@ -77,12 +73,12 @@ namespace Warcraft.NET.Files.TEX
                 bw.Seek(BlobTexture.Entries.Count * TXBTEntry.GetSize() + 8, SeekOrigin.Current);
 
                 // We must first write TXMD chunk to get the correct offsets for txbt
-                int index = 0;
                 uint txmdStartOffset = (uint)ms.Position;
-                foreach (TXMD data in TextureData)
+
+                foreach (TXBTEntry entry in BlobTexture.Entries)
                 {
-                    BlobTexture.Entries[index++].TXMDOffset = (uint)ms.Position - txmdStartOffset;
-                    bw.WriteIFFChunk(data);
+                    entry.TXMDOffset = (uint)ms.Position - txmdStartOffset;
+                    bw.WriteIFFChunk(entry.TextureData);
                 }
 
                 // Now we can write txbt with the correct offsets

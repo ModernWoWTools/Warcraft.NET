@@ -3,6 +3,7 @@ using SharpDX;
 using System.IO;
 using Warcraft.NET.Files.TEX.Flags;
 using System.Collections;
+using Warcraft.NET.Files.TEX.Chunks;
 
 namespace Warcraft.NET.Files.TEX.Entrys
 {
@@ -51,6 +52,10 @@ namespace Warcraft.NET.Files.TEX.Entrys
         /// </summary>
         public TXBTFlags Flags { get; set; }
 
+        /// <summary>
+        /// Gets or sets Texture Data
+        /// </summary>
+        public TXMD TextureData { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TXBTEntry"/> class.

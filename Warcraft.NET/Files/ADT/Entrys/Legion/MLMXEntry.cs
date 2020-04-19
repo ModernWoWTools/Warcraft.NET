@@ -35,7 +35,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                BoundingBox = br.ReadBoundingBox();
+                BoundingBox = br.ReadBoundingBox(Structures.AxisConfiguration.Native);
                 Radius = br.ReadSingle();
             }
         }
@@ -58,7 +58,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.WriteBoundingBox(BoundingBox);
+                bw.WriteBoundingBox(BoundingBox, Structures.AxisConfiguration.Native);
                 bw.Write(Radius);
 
                 return ms.ToArray();
