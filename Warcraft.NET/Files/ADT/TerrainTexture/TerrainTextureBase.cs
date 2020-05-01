@@ -1,6 +1,7 @@
 ﻿using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.ADT.Chunks;
 using Warcraft.NET.Files.ADT.Chunks.Cata;
+using Warcraft.NET.Files.ADT.Chunks.MoP;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture
 {
@@ -17,6 +18,9 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture
 
         [ChunkOrder(6), ChunkArray(256)]
         public MCNK[] Chunks { get; set; }
+
+        [ChunkOrder(7), ChunkOptional]
+        public MTXP TextureFlags { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TerrainTexture"/> class.

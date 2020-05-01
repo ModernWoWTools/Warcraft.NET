@@ -1,5 +1,4 @@
 ﻿using Warcraft.NET.Attribute;
-using Warcraft.NET.Files.ADT.Chunks;
 using Warcraft.NET.Files.ADT.Chunks.BfA;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture.BfA
@@ -23,7 +22,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.BfA
         /// Initializes a new instance of the <see cref="TerrainTexture"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public TerrainTexture(byte[] inData) : base(inData) 
+        public TerrainTexture(byte[] inData) : base(inData)
         {
         }
     }
