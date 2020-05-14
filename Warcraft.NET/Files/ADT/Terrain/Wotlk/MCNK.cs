@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCMK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
+using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
 using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
@@ -210,6 +212,51 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 bw.Write(newHeader.Serialize());
 
                 return ms.ToArray();
+            }
+        }
+
+        public void FixGroundEffectMap()
+        {
+            // Reset ground effect map
+            Array.Fill(Header.GroundEffectMap, (byte)0);
+
+            bool firstLayer = true;
+            int layerIndex = 1;
+            foreach (MCLYEntry layer in TextureLayers.Layers)
+            {
+                // skip first layer
+                if (firstLayer)
+                {
+                    firstLayer = false;
+                    continue;
+                }
+
+                byte[] alphaMap = AlphaMaps.GetAlphaMapForLayer(layer);
+
+                for (int y = 0; y < 8; ++y)
+                {
+                    for (int x = 0; x < 8; ++x)
+                    {
+                        int sum = 0;
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            for (int i = 0; i < 8; ++i)
+                            {
+                                sum += alphaMap[(y * 8 + j) * 64 + (x * 8 + i)];
+                            }
+                        }
+
+                        if (sum > 120 * 8 * 8)
+                        {
+                            int mapIndex = (y * 8 + x) / 4;
+                            int bitIndex = ((y * 8 + x) % 4) * 2; // -6
+
+                            Header.GroundEffectMap[mapIndex] |= Convert.ToByte(((layerIndex & 3) << bitIndex));
+                        }
+                    }
+                }
+
+                layerIndex++;
             }
         }
     }
