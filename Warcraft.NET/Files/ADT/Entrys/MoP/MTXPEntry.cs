@@ -67,14 +67,12 @@ namespace Warcraft.NET.Files.ADT.Entrys.MoP
             }
         }
 
-        private BitArray bits;
-
         protected void ReadMTXPFlags(BinaryReader br)
         {
             BitArray unknown1Bits = new BitArray(3);
             BitArray textureScaleBits = new BitArray(4);
             BitArray unknown2Bits = new BitArray(24);
-            bits = new BitArray(BitConverter.GetBytes(br.ReadUInt32()));
+            BitArray bits = new BitArray(BitConverter.GetBytes(br.ReadUInt32()));
 
             DontLoadSpecularOrHeightTexture = (bits[0] == true);
 
