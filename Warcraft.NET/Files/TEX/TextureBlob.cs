@@ -62,7 +62,7 @@ namespace Warcraft.NET.Files.TEX
         /// Serializes the current object into a byte array.
         /// </summary>
         /// <returns>The serialized object.</returns>
-        public byte[] Serialize(long offset = 0)
+        public new byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
