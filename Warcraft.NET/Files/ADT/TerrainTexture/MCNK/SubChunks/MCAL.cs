@@ -63,7 +63,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             return Data;
         }
 
-        public byte[] GetAlphaMapForLayer(MCLYEntry mclyEntry)
+        public byte[] GetAlphaMapForLayer(MCLYEntry mclyEntry, bool bigAlpha = false)
         {
             if (Data != null && mclyEntry.Flags.HasFlag(MCLYFlags.UseAlpha))
             {
@@ -72,6 +72,10 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
                 if (mclyEntry.Flags.HasFlag(MCLYFlags.CompressedAlpha))
                 {
                     return ReadCompressedAlpha(alphaBuffer);
+                }
+                else if (bigAlpha)
+                {
+                    return ReadBigAlpha(alphaBuffer);
                 }
                 else
                 {
@@ -117,6 +121,23 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
                     ++offInner;
                 }
             }
+
+            return alphaMap;
+        }
+
+        private byte[] ReadBigAlpha(byte[] alphaBuffer)
+        {
+            byte[] alphaMap = new byte[64 * 64];
+            int a = 0;
+            for (int j = 0; j < 64; ++j)
+            {
+                for (int i = 0; i < 64; ++i)
+                {
+                    alphaMap[a] = alphaBuffer[a];
+                    a++;
+                }
+            }
+            Array.Copy(alphaMap, 62 * 64, alphaMap, 63 * 64, 64);
 
             return alphaMap;
         }

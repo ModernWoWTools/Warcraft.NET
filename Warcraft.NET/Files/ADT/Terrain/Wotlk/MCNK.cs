@@ -215,7 +215,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
             }
         }
 
-        public void FixGroundEffectMap()
+        public void FixGroundEffectMap(bool bigAlpha = false)
         {
             // Reset ground effect map
             Array.Fill(Header.GroundEffectMap, (byte)0);
@@ -231,7 +231,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                     continue;
                 }
 
-                byte[] alphaMap = AlphaMaps.GetAlphaMapForLayer(layer);
+                byte[] alphaMap = AlphaMaps.GetAlphaMapForLayer(layer, bigAlpha);
 
                 for (int y = 0; y < 8; ++y)
                 {
