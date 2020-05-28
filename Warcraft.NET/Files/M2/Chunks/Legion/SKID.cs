@@ -13,7 +13,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or sets the Skin FileDataId
         /// </summary>
-        public uint SkinFileDataId { get; set; } = 0;
+        public uint SkeletonFileDataId { get; set; } = 0;
 
         /// <summary>
         /// Initializes a new instance of <see cref="SKID"/>
@@ -38,7 +38,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                SkinFileDataId = br.ReadUInt32();
+                SkeletonFileDataId = br.ReadUInt32();
             }
         }
 
@@ -48,7 +48,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(SkinFileDataId);
+                bw.Write(SkeletonFileDataId);
 
                 return ms.ToArray();
             }
