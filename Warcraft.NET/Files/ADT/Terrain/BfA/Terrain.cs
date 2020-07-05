@@ -8,7 +8,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
         /// <summary>
         /// Gets or sets the water informations in this ADT.
         /// </summary>
-        [ChunkOrder(3)]
+        [ChunkOrder(3), ChunkOptional]
         public MH2O Water { get; set; }
 
         /// <summary>

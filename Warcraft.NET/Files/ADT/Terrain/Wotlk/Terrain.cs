@@ -57,7 +57,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         /// <summary>
         /// Gets or sets the water informations in this ADT.
         /// </summary>
-        [ChunkOrder(10)]
+        [ChunkOrder(10), ChunkOptional]
         public MH2O Water { get; set; }
 
         /// <summary>
