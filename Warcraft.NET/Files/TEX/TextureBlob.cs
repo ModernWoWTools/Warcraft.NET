@@ -8,7 +8,7 @@ using Warcraft.NET.Files.TEX.Flags;
 
 namespace Warcraft.NET.Files.TEX
 {
-    public class TextureBlob : ChunkedFile
+    public class ModelBlob : ChunkedFile
     {
         /// <summary>
         /// Gets or sets the texture blob version.
@@ -29,17 +29,17 @@ namespace Warcraft.NET.Files.TEX
         public TXMD[] TextureData { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextureBlob"/> class.
+        /// Initializes a new instance of the <see cref="ModelBlob"/> class.
         /// </summary>
-        public TextureBlob()
+        public ModelBlob()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextureBlob"/> class.
+        /// Initializes a new instance of the <see cref="ModelBlob"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public TextureBlob(byte[] inData)
+        public ModelBlob(byte[] inData)
         {
             LoadBinaryData(inData);
 

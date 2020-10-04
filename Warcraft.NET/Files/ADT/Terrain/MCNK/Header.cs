@@ -138,7 +138,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
         /// <summary>
         /// Gets or sets the size of the liquid chunk. This is 8 when not used - if it is 8, use the newer MH2O chunk.
         /// </summary>
-        public uint LiquidSize { get; set; } = 0;
+        public uint LiquidSize { get; set; } = 8;
 
         /// <summary>
         /// Gets or sets the map tile position. This position is a global offset that is applied to the entire heightmap

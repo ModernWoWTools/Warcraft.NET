@@ -193,6 +193,7 @@ namespace Warcraft.NET.Extensions
         /// interface, and implement a parameterless constructor.
         /// </summary>
         /// <param name="reader">The current <see cref="BinaryReader"/>.</param>
+        /// <param name="reader">The current <see cref="BinaryReader"/>.</param>
         /// <param name="returnDefault"></param>
         /// <param name="fromBegin"></param>
         /// <typeparam name="T">The chunk type.</typeparam>

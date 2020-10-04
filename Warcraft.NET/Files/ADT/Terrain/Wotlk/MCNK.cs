@@ -13,6 +13,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
     /// </summary>
     public class MCNK : MCNKBase
     {
+
         /// <summary>
         /// Gets or sets the alphamap Layer chunk.
         /// </summary>
@@ -122,7 +123,8 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                     PredTex = Header.PredTex,
                     NoEffectDoodad = Header.NoEffectDoodad,
                     MapTilePosition = Header.MapTilePosition,
-                    Unk1 = Header.Unk1
+                    Unk1 = Header.Unk1,
+                    LiquidSize = Header.LiquidSize
                 };
 
                 ms.Seek(Header.GetSize(), SeekOrigin.Begin);
@@ -132,6 +134,13 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 {
                     newHeader.HeightmapOffset = (uint)ms.Position + headerAndSizeOffset;
                     bw.WriteIFFChunk(Heightmap);
+                }
+
+                // Write MCCV
+                if (VertexShading != null)
+                {
+                    newHeader.VertexShadingOffset = (uint)ms.Position + headerAndSizeOffset;
+                    bw.WriteIFFChunk(VertexShading);
                 }
 
                 // Write MCNR
@@ -147,13 +156,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                     {
                         bw.Write(padding);
                     }
-                }
-
-                // Write MCCV
-                if (VertexShading != null)
-                {
-                    newHeader.VertexShadingOffset = (uint)ms.Position + headerAndSizeOffset;
-                    bw.WriteIFFChunk(VertexShading);
                 }
 
                 // Write MCLV

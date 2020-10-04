@@ -28,14 +28,14 @@ namespace Warcraft.NET.Files.ADT.Terrain
         public MCVT Heightmap { get; set; }
 
         /// <summary>
-        /// Gets or sets the normal map chunk.
-        /// </summary>
-        public MCNR VertexNormals { get; set; }
-
-        /// <summary>
         /// Gets or sets the vertex shading chunk.
         /// </summary>
         public MCCV VertexShading { get; set; }
+
+        /// <summary>
+        /// Gets or sets the normal map chunk.
+        /// </summary>
+        public MCNR VertexNormals { get; set; }
 
         /// <summary>
         /// Gets or sets the vertex lighting chunk.
@@ -79,13 +79,6 @@ namespace Warcraft.NET.Files.ADT.Terrain
                     Heightmap = br.ReadIFFChunk<MCVT>(false, false);
                 }
 
-                // Read MCNR
-                if (Header.VertexNormalOffset > 0)
-                {
-                    ms.Seek(Header.VertexNormalOffset + headerAndSizeOffset, SeekOrigin.Begin);
-                    VertexNormals = br.ReadIFFChunk<MCNR>(false, false);
-                }
-
                 // Read MCCV
                 if (Header.VertexShadingOffset > 0)
                 {
@@ -93,10 +86,17 @@ namespace Warcraft.NET.Files.ADT.Terrain
                     VertexShading = br.ReadIFFChunk<MCCV>(false, false);
                 }
 
+                // Read MCNR
+                if (Header.VertexNormalOffset > 0)
+                {
+                    ms.Seek(Header.VertexNormalOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    VertexNormals = br.ReadIFFChunk<MCNR>(false, false);
+                }
+
                 // Read MCLV
                 if (Header.VertexLightingOffset > 0)
                 {
-                    ms.Seek(Header.VertexShadingOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(Header.VertexLightingOffset + headerAndSizeOffset, SeekOrigin.Begin);
                     VertexLighting = br.ReadIFFChunk<MCLV>(false, false);
                 }
 

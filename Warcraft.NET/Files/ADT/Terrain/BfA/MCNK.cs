@@ -53,7 +53,8 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
                     PredTex = Header.PredTex,
                     NoEffectDoodad = Header.NoEffectDoodad,
                     MapTilePosition = Header.MapTilePosition,
-                    Unk1 = Header.Unk1
+                    Unk1 = Header.Unk1,
+                    LiquidSize = Header.LiquidSize
                 };
 
                 ms.Seek(Header.GetSize(), SeekOrigin.Begin);
