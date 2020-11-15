@@ -16,7 +16,7 @@ namespace Warcraft.NET.Files.M2
         /// <summary>
         /// Gets or sets the model skin file ids
         /// </summary>
-        //[ChunkOrder(2), ChunkOptional]
+        [ChunkOrder(2), ChunkOptional]
         public SFID SkinFileIds { get; set; }
 
         /// <summary>
