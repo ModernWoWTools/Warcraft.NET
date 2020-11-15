@@ -34,8 +34,7 @@ namespace Warcraft.NET.Files.Structures
         /// Initializes a new instance of <see cref="M2Array"/>.
         /// </summary>
         /// <param name="array">In array.</param>
-        public M2Array(M2Array array) 
-            : this(array.Size, array.Offset)
+        public M2Array(M2Array array) : this(array.Size, array.Offset)
         {
 
         }

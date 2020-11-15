@@ -62,7 +62,7 @@ namespace Warcraft.NET.Files
                                 .GetType()
                                 .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                                 .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
-                                .Invoke(null, new object[] { br, false, false, true });
+                                .Invoke(null, new object[] { br, false, false, IsReverseSignature() });
 
                                 chunks.SetValue(chunk, i);
                             }
@@ -75,7 +75,7 @@ namespace Warcraft.NET.Files
                             .GetType()
                             .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
                             .MakeGenericMethod(chunkPropertie.PropertyType)
-                            .Invoke(null, new object[] { br, false, true, true });
+                            .Invoke(null, new object[] { br, false, true, IsReverseSignature() });
 
                             chunkPropertie.SetValue(this, chunk);
                         }
@@ -134,7 +134,7 @@ namespace Warcraft.NET.Files
                                     .GetType()
                                     .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
                                     .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
-                                    .Invoke(null, new object[] { bw, chunk, false, true });
+                                    .Invoke(null, new object[] { bw, chunk, false, IsReverseSignature() });
                                 }
                             }
                         }
@@ -149,13 +149,18 @@ namespace Warcraft.NET.Files
                             .GetType()
                             .GetExtensionMethod(Assembly.GetExecutingAssembly(), "WriteIFFChunk")
                             .MakeGenericMethod(chunkPropertie.PropertyType)
-                            .Invoke(null, new object[] { bw, chunk, false, true });
+                            .Invoke(null, new object[] { bw, chunk, false, IsReverseSignature() });
                         }
                     }
                 }
 
                 return ms.ToArray();
             }
+        }
+    
+        public virtual bool IsReverseSignature()
+        {
+            return true;
         }
     }
 }

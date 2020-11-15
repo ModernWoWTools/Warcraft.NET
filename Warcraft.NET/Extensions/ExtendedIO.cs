@@ -7,6 +7,7 @@ using Warcraft.NET.Files.Structures;
 using System.Collections.Generic;
 using Warcraft.NET.Exceptions;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 namespace Warcraft.NET.Extensions
 {
@@ -336,6 +337,17 @@ namespace Warcraft.NET.Extensions
                         throw new ArgumentOutOfRangeException(nameof(convertTo), convertTo, null);
                     }
             }
+        }
+
+        /// <summary>
+        /// Reads struct
+        /// </summary>
+        /// <param name="binaryReader">The reader.</param>
+        public static T ReadStruct<T>(this BinaryReader reader) where T : struct
+        {
+            byte[] result = reader.ReadBytes(Unsafe.SizeOf<T>());
+
+            return Unsafe.ReadUnaligned<T>(ref result[0]);
         }
         #endregion
 
