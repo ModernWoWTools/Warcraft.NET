@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SharpDX;
+using System.Collections.Generic;
 
 namespace Warcraft.NET.Extensions
 {
@@ -39,6 +40,19 @@ namespace Warcraft.NET.Extensions
         {
             key = keyValuePair.Key;
             value = keyValuePair.Value;
+        }
+
+        public static float Volume(this BoundingBox boundingBox)
+        {
+            return boundingBox.Height * boundingBox.Width * boundingBox.Depth;
+        }
+
+        public static BoundingBox Multiply(this BoundingBox boundingBox, float scale)
+        {
+            boundingBox.Maximum = Vector3.Multiply(boundingBox.Maximum, scale);
+            boundingBox.Minimum = Vector3.Multiply(boundingBox.Minimum, scale);
+
+            return boundingBox;
         }
     }
 }
