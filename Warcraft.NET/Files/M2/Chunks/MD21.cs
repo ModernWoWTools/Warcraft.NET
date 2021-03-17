@@ -122,10 +122,10 @@ namespace Warcraft.NET.Files.M2.Chunks
                 var ofsTranslookup = br.ReadUInt32();
                 var nUVAnimLookup = br.ReadUInt32();
                 var ofsUVAnimLookup = br.ReadUInt32();
-                VertexBox = br.ReadBoundingBox(AxisConfiguration.Native);
-                VertexBoxRadius = br.ReadSingle();
                 BoundingBox = br.ReadBoundingBox(AxisConfiguration.Native);
                 BoundingBoxRadius = br.ReadSingle();
+                VertexBox = br.ReadBoundingBox(AxisConfiguration.Native);
+                VertexBoxRadius = br.ReadSingle();
                 var nBoundingTriangles = br.ReadUInt32();
                 var ofsBoundingTriangles = br.ReadUInt32();
                 var nBoundingVertices = br.ReadUInt32();
