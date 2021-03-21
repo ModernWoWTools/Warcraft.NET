@@ -264,13 +264,7 @@ namespace Warcraft.NET.Files.M2.Chunks
         /// <inheritdoc/>
         public byte[] Serialize(long offset = 0)
         {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(Version);
-
-                return ms.ToArray();
-            }
+            throw new NotImplementedException("Write MD21 currently not implemented");
         }
     }
 }
