@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Warcraft.NET.Files.WMO.Entries
 {
@@ -7,6 +8,8 @@ namespace Warcraft.NET.Files.WMO.Entries
     /// </summary>
     public class MODSEntry
     {
+        const short NameByteLength = 0x14;
+
         /// <summary>
         /// Gets or sets doodad set name.
         /// </summary>
@@ -50,7 +53,7 @@ namespace Warcraft.NET.Files.WMO.Entries
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Name = br.ReadChars(0x14);
+                Name = br.ReadChars(NameByteLength);
                 StartIndex = br.ReadUInt32();
                 Count = br.ReadUInt32();
 
@@ -65,12 +68,19 @@ namespace Warcraft.NET.Files.WMO.Entries
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(Name);
+                if (Name.Length > NameByteLength)
+                    throw new InvalidDataException("Name length invalid!");
+
+                List<char> paddedName = new List<char>(Name);
+                for (var i = paddedName.Count; i < NameByteLength; i++)
+                    paddedName.Add('\0');
+
+                bw.Write(paddedName.ToArray());
                 bw.Write(StartIndex);
                 bw.Write(Count);
 
                 // Padding
-                bw.Write(new char[4]);
+                bw.Write((uint)0);
                 return ms.ToArray();
             }
         }
