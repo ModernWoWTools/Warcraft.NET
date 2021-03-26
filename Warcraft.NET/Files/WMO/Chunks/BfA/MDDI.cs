@@ -5,7 +5,7 @@ using System.IO;
 namespace Warcraft.NET.Files.WMO.Chunks.BfA
 {
     /// <summary>
-    /// MDDI Chunk - Contains float values to doodads entrys
+    /// MDDI Chunk - Contains scale values to doodads entrys
     /// </summary>
     public class MDDI : IIFFChunk, IBinarySerializable
     {
@@ -15,9 +15,9 @@ namespace Warcraft.NET.Files.WMO.Chunks.BfA
         public const string Signature = "MDDI";
 
         /// <summary>
-        /// Gets or sets the list of float values in an MDDI chunk.
+        /// Gets or sets the list of scale values in an MDDI chunk.
         /// </summary>
-        public List<float> FloatValues { get; set; } = new List<float>();
+        public List<float> ScaleValues { get; set; } = new List<float>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MDDI"/> class.
@@ -44,7 +44,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.BfA
                 var offsetCount = inData.Length / sizeof(uint);
                 for (var i = 0; i < offsetCount; ++i)
                 {
-                    FloatValues.Add(br.ReadUInt32());
+                    ScaleValues.Add(br.ReadUInt32());
                 }
             }
         }
@@ -67,9 +67,9 @@ namespace Warcraft.NET.Files.WMO.Chunks.BfA
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (uint floatValue in FloatValues)
+                foreach (uint scale in ScaleValues)
                 {
-                    bw.Write(floatValue);
+                    bw.Write(scale);
                 }
 
                 return ms.ToArray();
