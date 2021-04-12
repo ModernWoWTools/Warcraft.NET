@@ -13,7 +13,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MAIN";
+        public const string Signature = "MPLT";
 
         public List<MPLTEntry> Entrys = new List<MPLTEntry>();
 
@@ -66,6 +66,9 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
+                foreach (MPLTEntry entry in Entrys)
+                    bw.Write(entry.Serialize());
+
                 return ms.ToArray();
             }
         }

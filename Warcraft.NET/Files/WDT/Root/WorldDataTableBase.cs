@@ -1,5 +1,4 @@
 ﻿using Warcraft.NET.Attribute;
-using ADT = Warcraft.NET.Files.ADT.Chunks;
 using Warcraft.NET.Files.WDT.Chunks;
 
 namespace Warcraft.NET.Files.WDT.Root
