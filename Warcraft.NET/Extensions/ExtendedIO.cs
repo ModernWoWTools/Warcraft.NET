@@ -190,6 +190,20 @@ namespace Warcraft.NET.Extensions
         }
 
         /// <summary>
+        /// Peeks a 4-byte RIFF chunk signature from the data stream. This does not
+        /// advance the position of the stream.
+        /// </summary>
+        /// <param name="binaryReader">The reader.</param>
+        /// <returns>The signature.</returns>
+        public static string PeekChunkSignature(this BinaryReader binaryReader)
+        {
+            var chunkSignature = binaryReader.ReadBinarySignature();
+            binaryReader.BaseStream.Position -= chunkSignature.Length;
+
+            return chunkSignature;
+        }
+
+        /// <summary>
         /// Reads an IFF-style chunk from the stream. The chunk must have the <see cref="IIFFChunk"/>
         /// interface, and implement a parameterless constructor.
         /// </summary>
