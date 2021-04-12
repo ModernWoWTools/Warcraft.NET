@@ -26,6 +26,15 @@ namespace Warcraft.NET.Files.WDT.Chunks
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="MVER"/> class.
+        /// </summary>
+        /// <param name="version">Map version</param>
+        public MVER(uint version)
+        {
+            Version = version;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MAID"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
