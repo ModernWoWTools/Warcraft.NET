@@ -649,7 +649,7 @@ namespace Warcraft.NET.Extensions
                 var foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
                 while (foundChuckSignature != chunkSignature)
                 {
-                    var size = reader.ReadInt32();
+                    var size = reader.ReadUInt32();
                     reader.BaseStream.Position += size;
                     foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
                 }
@@ -661,7 +661,7 @@ namespace Warcraft.NET.Extensions
                     return true;
                 }
             }
-            catch (EndOfStreamException) { }
+            catch (Exception) { }
 
             return false;
         }
