@@ -38,11 +38,6 @@ namespace Warcraft.NET.Files.ADT.Terrain
         public MCNR VertexNormals { get; set; }
 
         /// <summary>
-        /// Gets or sets the vertex lighting chunk.
-        /// </summary>
-        public MCLV VertexLighting { get; set; }
-
-        /// <summary>
         /// Gets or sets the sound emitters chunk.
         /// </summary>
         public MCSE SoundEmitters { get; set; }
@@ -91,13 +86,6 @@ namespace Warcraft.NET.Files.ADT.Terrain
                 {
                     ms.Seek(Header.VertexNormalOffset + headerAndSizeOffset, SeekOrigin.Begin);
                     VertexNormals = br.ReadIFFChunk<MCNR>(false, false);
-                }
-
-                // Read MCLV
-                if (Header.VertexLightingOffset > 0)
-                {
-                    ms.Seek(Header.VertexLightingOffset + headerAndSizeOffset, SeekOrigin.Begin);
-                    VertexLighting = br.ReadIFFChunk<MCLV>(false, false);
                 }
 
                 // Read MCSE

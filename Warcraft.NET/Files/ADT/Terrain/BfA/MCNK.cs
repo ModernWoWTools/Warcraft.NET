@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCMK;
+using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.BfA
 {
@@ -9,6 +10,11 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
     /// </summary>
     public class MCNK : MCNKBase
     {
+        /// <summary>
+        /// Gets or sets the vertex lighting chunk.
+        /// </summary>
+        public MCLV VertexLighting { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MCNK"/> class.
         /// </summary>
@@ -29,6 +35,19 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
         public override void LoadBinaryData(byte[] inData)
         {
             base.LoadBinaryData(inData);
+
+            using (var ms = new MemoryStream(inData))
+            using (var br = new BinaryReader(ms))
+            {
+                long headerAndSizeOffset = -8;
+                
+                // Read MCLV
+                if (Header.VertexLightingOffset > 0)
+                {
+                    ms.Seek(Header.VertexLightingOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    VertexLighting = br.ReadIFFChunk<MCLV>(false, false);
+                }
+            }
         }
 
         /// <inheritdoc/>

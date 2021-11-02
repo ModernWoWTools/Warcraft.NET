@@ -158,13 +158,6 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                     }
                 }
 
-                // Write MCLV
-                if (VertexLighting != null)
-                {
-                    newHeader.VertexLightingOffset = (uint)ms.Position + headerAndSizeOffset;
-                    bw.WriteIFFChunk(VertexLighting);
-                }
-
                 // Write MCLY
                 if (TextureLayers != null)
                 {
