@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.One
         /// <summary>
         /// Level of detail offset information
         /// </summary>
-        [ChunkOrder(6)]
+        [ChunkOrder(6), ChunkOptional]
         public MLFD LevelForDetail { get; set; }
 
         /// <summary>
