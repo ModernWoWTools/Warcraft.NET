@@ -20,9 +20,9 @@ namespace Warcraft.NET.Files.ADT.Entrys.MoP
         public byte Unknown1 { get; set; } = 0;
 
         /// <summary>
-        /// Texture scale max is 15, default 1
+        /// Texture scale max is 15, default 0
         /// </summary>
-        public byte TextureScale { get; set; } = 1;
+        public byte TextureScale { get; set; } = 0;
 
         /// <summary>
         /// Unknown Value 2
