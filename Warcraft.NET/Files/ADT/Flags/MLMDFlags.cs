@@ -3,10 +3,10 @@
 namespace Warcraft.NET.Files.ADT.Flags
 {
     /// <summary>
-    /// Flags for the <see cref="MODFFlags"/>.
+    /// Flags for the <see cref="MLMDFlags"/>.
     /// </summary>
     [Flags]
-    public enum MODFFlags : ushort
+    public enum MLMDFlags : ushort
     {
         /// <summary>
         /// Set for destroyable buildings like the tower in DeathknightStart. This makes it a server-controllable game object.
@@ -27,5 +27,10 @@ namespace Warcraft.NET.Files.ADT.Flags
         /// Flag to skip MWID and MODF and point directly to CASC Filedata Ids for more performance (Legion)
         /// </summary>
         NameIdIsFiledataId = 0x8,
+
+        /// <summary>
+        /// Flag to use doodad set from MWDS chunk  (SL)
+        /// </summary>
+        UseDoodadSetsFromMWDS = 0x80,
     }
 }
