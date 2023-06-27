@@ -158,7 +158,9 @@ namespace Warcraft.NET.Files.M2.Chunks
 
                 br.BaseStream.Position = ofsModelname;
                 Name = new string(br.ReadChars((int)lenModelname));
-                Name = Name.Remove(Name.Length - 1);
+                if (lenModelname > 0)
+                    Name = Name.Remove(Name.Length - 1);
+
                 Sequences = ReadStructList<SequenceStruct>(nSequences, ofsSequences, br);
                 Animations = ReadStructList<AnimationStruct>(nAnimations, ofsAnimations, br);
                 AnimationLookups = ReadStructList<AnimationLookupStruct>(nAnimationLookup, ofsAnimationLookup, br);
