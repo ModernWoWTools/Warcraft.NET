@@ -59,64 +59,65 @@ namespace Warcraft.Compression.Squish
             return blockcount * blocksize;
         }
 
-        public static Image<Rgba32> DecompressToImage(byte[] block, int width, int height, SquishFlags flags)
+        public static Image<Rgba32> DecompressToImage(byte[] blocks, int width, int height, SquishFlags flags)
         {
 
-            return DecompressToImage(block, 0, width, height, flags);
+            return DecompressToImage(blocks, 0, width, height, flags);
         }
 
-        public static Image<Rgba32> DecompressToImage(byte[] block, int offset, int width, int height, SquishFlags flags)
+        public static Image<Rgba32> DecompressToImage(byte[] blocks, int offset, int width, int height, SquishFlags flags)
         {
             var result = new Image<Rgba32>(width, height);
-            var bufferOffset = 0;
+            
+            // fix any bad flags
+            flags = fixFlags(flags);
 
-            var bytesPerBlock = flags.HasFlag(SquishFlags.DXT1) ? 8 : 16;
-            var blockOffset = offset;
-            // Loop over block.
-            for (var y = 0; y < height; y += 4)
+            // initialise the block input
+            int sourceBlock = 0;
+            int bytesPerBlock = flags.HasFlag(SquishFlags.DXT1) ? 8 : 16;
+
+            // loop over rgba
+            for (int y = 0; y < height; y += 4)
             {
-                for (var x = 0; x < width; x += 4)
+                for (int x = 0; x < width; x += 4)
                 {
-                    // Decompress the block.
-                    var targetRgba = new byte[4 * width * height];
-                    decompress(targetRgba, block, blockOffset, flags);
+                    // decompress the rgba
+                    byte[] targetRgba = new byte[4 * 16];
+                    decompress(targetRgba, blocks, sourceBlock, flags);
 
-                    // Write the decompressed pixels to the correct image locations.
-                    var sourcePixelOffset = 0;
-                    for (var py = 0; py < 4; ++py)
+                    // write the decompressed pixels to the correct image locations
+                    int sourcePixel = 0;
+
+                    for (int py = 0; py < 4; ++py)
                     {
-                        for (var px = 0; px < 4; ++px)
+                        for (int px = 0; px < 4; ++px)
                         {
-                            // Get the target location.
-                            var sx = x + px;
-                            var sy = y + py;
+                            // get the target location
+                            int sx = x + px;
+                            int sy = y + py;
+
                             if (sx < width && sy < height)
                             {
+                                int targetPixel = 4 * (width * sy + sx);
+
                                 var sourceColour = new Rgba32
                                 (
-                                    targetRgba[sourcePixelOffset + 0],
-                                    targetRgba[sourcePixelOffset + 1],
-                                    targetRgba[sourcePixelOffset + 2],
-                                    targetRgba[sourcePixelOffset + 3]
+                                    targetRgba[sourcePixel + 0],
+                                    targetRgba[sourcePixel + 1],
+                                    targetRgba[sourcePixel + 2],
+                                    targetRgba[sourcePixel + 3]
                                 );
 
                                 result[sx, sy] = sourceColour;
-
-                                /*
-                                var i = 4 * (sx + (sy * width));
-                                fullBuffer[bufferOffset + i + 0] = targetRgba[sourcePixelOffset + 2];
-                                fullBuffer[bufferOffset + i + 1] = targetRgba[sourcePixelOffset + 1];
-                                fullBuffer[bufferOffset + i + 2] = targetRgba[sourcePixelOffset + 0];
-                                fullBuffer[bufferOffset + i + 3] = targetRgba[sourcePixelOffset + 3];
-                                */
                             }
 
-                            sourcePixelOffset += 4; // Skip this pixel as it is outside the image.
+                            // skip this pixel as its outside the image
+                            sourcePixel += 4;
                         }
                     }
 
                     // advance
-                    blockOffset += bytesPerBlock;
+                    sourceBlock += bytesPerBlock;
                 }
             }
 
@@ -195,7 +196,7 @@ namespace Warcraft.Compression.Squish
             // decompress alpha separately if necessary
             if (flags.HasFlag(SquishFlags.DXT3))
             {
-                decompressAlphaDxt3(rgba, alphaBlock, block, 0);
+                decompressAlphaDxt3(rgba, block, alphaBlock);
             }
             else if (flags.HasFlag(SquishFlags.DXT5))
             {
@@ -603,21 +604,21 @@ namespace Warcraft.Compression.Squish
             }
         }
 
-        public static void decompressAlphaDxt3(byte[] rgba, int rgbaOffset, byte[] block, int offset)
+        public static void decompressAlphaDxt3(byte[] rgba, byte[] block, int rgbaOffset)
         {
             // Unpack the alpha values pairwise.
             for (var i = 0; i < 8; ++i)
             {
                 // Quantise down to 4 bits.
-                var quant = rgba[rgbaOffset + i];
+                var quant = block[rgbaOffset + i];
 
                 // Unpack the values.
                 var lo = quant & 0x0f;
                 var hi = quant & 0xf0;
 
                 // Convert back up to bytes.
-                block[offset + 8 * i + 3] = (byte)(lo | (lo << 4));
-                block[offset + 8 * i + 7] = (byte)(hi | (hi >> 4));
+                rgba[8 * i + 3] = (byte)(lo | (lo << 4));
+                rgba[8 * i + 7] = (byte)(hi | (hi >> 4));
             }
         }
 

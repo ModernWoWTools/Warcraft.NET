@@ -188,17 +188,17 @@ namespace Warcraft.NET.Files.BLP
             }
             else if (compressionType == TextureCompressionType.DXTC)
             {
-                Header.AlphaBitDepth = 8;
-
-                // Determine best DXTC type (1, 3 or 5)
                 if (image.HasAlpha())
                 {
+                    // DXT3 with alpha
                     Header.PixelFormat = BLPPixelFormat.DXT3;
+                    Header.AlphaBitDepth = 8;
                 }
                 else
                 {
-                    // DXT1 for no alpha
+                    // DXT1 without alpha
                     Header.PixelFormat = BLPPixelFormat.DXT1;
+                    Header.AlphaBitDepth = 0;
                 }
             }
             else if (compressionType == TextureCompressionType.Uncompressed)
@@ -239,7 +239,7 @@ namespace Warcraft.NET.Files.BLP
         public BLP(Image<Rgba32> image, BLPPixelFormat pixelFormat)
         {
             if (pixelFormat != BLPPixelFormat.DXT1 && pixelFormat != BLPPixelFormat.DXT3 && pixelFormat != BLPPixelFormat.DXT5)
-                throw new ArgumentException("Thix constructor only support DXT pixel format!");
+                throw new ArgumentException("This constructor only support DXT pixel format!");
 
             // Set up the header
             Header = new BLPHeader
@@ -248,6 +248,9 @@ namespace Warcraft.NET.Files.BLP
                 AlphaBitDepth = 8,
                 PixelFormat = pixelFormat,
             };
+
+            if (pixelFormat == BLPPixelFormat.DXT1)
+                Header.AlphaBitDepth = (uint)(image.HasAlpha() ? 1 : 0);
 
             // What the mip type does is currently unknown, but it's usually set to 1.
             Header.MipMapType = 1;
@@ -678,9 +681,10 @@ namespace Warcraft.NET.Files.BLP
                 {
                     using var rgbaStream = new MemoryStream();
                     using var bw = new BinaryWriter(rgbaStream);
-                    for (var y = 0; y < targetYRes; ++y)
+
+                    for (var y = 0; y < targetYRes; y++)
                     {
-                        for (var x = 0; x < targetXRes; ++x)
+                        for (var x = 0; x < targetXRes; x++)
                         {
                             bw.Write(resizedImage[x, y].R);
                             bw.Write(resizedImage[x, y].G);
