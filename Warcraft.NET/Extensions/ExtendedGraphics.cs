@@ -1,5 +1,6 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
+using System;
 
 namespace Warcraft.Extensions
 {
@@ -29,6 +30,14 @@ namespace Warcraft.Extensions
             }
 
             return false;
+        }
+
+        public static Span<T> GetPixelSpan<T>(this Image<T> imageRef) where T : unmanaged, IPixel<T>
+        {
+            var memoryFootprint = new T[imageRef.Width * imageRef.Height];
+            var pixelSpan = new Span<T>(memoryFootprint);
+            imageRef.CopyPixelDataTo(pixelSpan);
+            return pixelSpan;
         }
     }
 }

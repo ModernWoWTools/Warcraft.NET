@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Processing.Processors.Transforms;
-using SixLabors.Primitives;
 using Warcraft.Compression.Squish;
 using Warcraft.Extensions;
 
@@ -777,7 +775,7 @@ namespace Warcraft.NET.Files.BLP
         /// <param name="inColour">Input color.</param>
         private Rgba32 FindClosestMatchingColor(Rgba32 inColour)
         {
-            var nearestColour = Rgba32.Black;
+            var nearestColour = new Rgba32(0, 0, 0);
 
             // Drop out if the palette contains an exact match
             if (_palette.Contains(inColour))
