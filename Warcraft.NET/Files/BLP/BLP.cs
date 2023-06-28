@@ -549,8 +549,9 @@ namespace Warcraft.NET.Files.BLP
             mipMaps.Add(CompressImage(inImage, 0));
 
             // Then, compress the image N amount of times into mipmaps
-            for (uint i = 0; i < GetNumReasonableMipMapLevels(); ++i)
+            for (uint i = 1; i < GetNumReasonableMipMapLevels(); ++i)
             {
+                Console.WriteLine(i);
                 mipMaps.Add(CompressImage(inImage, i));
             }
 
@@ -977,15 +978,14 @@ namespace Warcraft.NET.Files.BLP
             var smallestXRes = GetResolution().X;
             var smallestYRes = GetResolution().Y;
 
-            uint mipLevels = 0;
-            while (smallestXRes > 1 && smallestYRes > 1)
+            uint mipLevels = 1;
+            do
             {
-                // Bisect the resolution using the current number of mip levels.
-                smallestXRes = smallestXRes / (uint)Math.Pow(2, mipLevels);
-                smallestYRes = smallestYRes / (uint)Math.Pow(2, mipLevels);
+                smallestXRes = Math.Max(smallestXRes / 2, 1);
+                smallestYRes = Math.Max(smallestYRes / 2, 1);
 
                 ++mipLevels;
-            }
+            } while (smallestXRes != 1 && smallestYRes != 1);
 
             return mipLevels.Clamp<uint>(0, 15);
         }
