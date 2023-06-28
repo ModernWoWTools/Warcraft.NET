@@ -549,7 +549,6 @@ namespace Warcraft.NET.Files.BLP
             // Then, compress the image N amount of times into mipmaps
             for (uint i = 1; i < GetNumReasonableMipMapLevels(); ++i)
             {
-                Console.WriteLine(i);
                 mipMaps.Add(CompressImage(inImage, i));
             }
 
