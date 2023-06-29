@@ -760,15 +760,10 @@ namespace Warcraft.NET.Files.BLP
         /// <returns>The resized image.</returns>
         private static Image<Rgba32> ResizeImage(Image<Rgba32> inImage, int imageWidth, int imageHeight)
         {
-            var resizeOptions = new ResizeOptions
-            {
-                Mode = ResizeMode.Min,
-                Sampler = new BicubicResampler(),
-                Size = new Size(imageHeight, imageWidth),
-            };
+            var cloneImage = inImage.Clone();
+            cloneImage.Mutate(image => image.Resize(imageWidth, imageHeight));
 
-            var resizedImage = inImage.Clone(cx => cx.Resize(resizeOptions));
-            return resizedImage;
+            return cloneImage;
         }
 
         /// <summary>
@@ -1163,6 +1158,19 @@ namespace Warcraft.NET.Files.BLP
         public int GetMipMapCount()
         {
             return _rawMipMaps.Count;
+        }
+
+        /// <summary>
+        /// Resize the blp and return it in a new instance
+        /// </summary>
+        /// <param name="imageWidth">The width to resize to.</param>
+        /// <param name="imageHeight">The height to resize to.</param>
+        /// <returns>The resized BLP</returns>
+        public BLP Resize(int imageWidth, int imageHeight)
+        {
+            var image = ResizeImage(GetMipMap(0), imageWidth, imageHeight);
+
+            return new BLP(image, GetPixelFormat());
         }
     }
 }
