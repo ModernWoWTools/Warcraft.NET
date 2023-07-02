@@ -77,7 +77,7 @@ namespace Warcraft.NET.Files.M2.Entrys
 
     public struct TextureStruct
     {
-        public uint Type;
+        public TextureType Type;
         public TextureFlags Flags;
         public string Filename;
     }
@@ -258,6 +258,37 @@ namespace Warcraft.NET.Files.M2.Entrys
         Unknown400 = 0x400,
         Unknown800 = 0x800,
     }
+
+    public enum TextureType : uint
+    {
+        None = 0,                     // NONE -- Texture given in filename
+        ComponentSkin = 1,            // TEX_COMPONENT_SKIN -- Skin -- Body + clothes
+        ComponentObjectSkin = 2,      // TEX_COMPONENT_OBJECT_SKIN -- Object Skin -- Item, Capes ("Item\ObjectComponents\Cape\*.blp")
+        ComponentWeaponBlade = 3,     // TEX_COMPONENT_WEAPON_BLADE -- Weapon Blade -- Used on several models but not used in the client as far as I see. Armor Reflect?
+        ComponentWeaponHandle = 4,    // TEX_COMPONENT_WEAPON_HANDLE -- Weapon Handle
+        ComponentEnvironment = 5,     // TEX_COMPONENT_ENVIRONMENT -- (OBSOLETE) Environment (Please remove from source art)
+        ComponentCharHair = 6,        // TEX_COMPONENT_CHAR_HAIR -- Character Hair
+        ComponentSkinFacialHair = 7,  // TEX_COMPONENT_CHAR_FACIAL_HAIR -- (OBSOLETE) Character Facial Hair (Please remove from source art)
+        ComponentSkinExtra = 8,       // TEX_COMPONENT_SKIN_EXTRA -- Skin Extra
+        ComponentUiSkin = 9,          // TEX_COMPONENT_UI_SKIN -- UI Skin -- Used on inventory art M2s (1): inventoryartgeometry.m2 and inventoryartgeometryold.m2
+        ComponentTaurenMane = 10,     // TEX_COMPONENT_TAUREN_MANE -- Character Misc // (OBSOLETE) Tauren Mane (Please remove from source art)
+        ComponentMonster1 = 11,       // TEX_COMPONENT_MONSTER_1 -- Monster Skin 1 -- Skin for creatures or gameobjects #1
+        ComponentMonster2 = 12,       // TEX_COMPONENT_MONSTER_2 -- Monster Skin 2 -- Skin for creatures or gameobjects #2
+        ComponentMonster3 = 13,       // TEX_COMPONENT_MONSTER_3 -- Monster Skin 3 -- Skin for creatures or gameobjects #3
+        ComponentItemIcon = 14,       // TEX_COMPONENT_ITEM_ICON -- Item Icon -- Used on inventory art M2s (2): ui-button.m2 and forcedbackpackitem.m2 (CSimpleModel_ReplaceIconTexture("texture"))
+        GuildBackgroundColor = 15,    // (Cata+) Guild Background Color
+        GuildEmblemColor = 16,        // (Cata+) Guild Emblem Color
+        GuildBorderColor = 17,        // (Cata+) Guild Border Color
+        GuildEmblem = 18,             // (Cata+) Guild Emblem
+        CharacterEyes = 19,           // (SL+) Character Eyes
+        CharacterAccessory = 20,      // (SL+) Character Jewelry // Accessory
+        CharacterSecondarySkin = 21,  // (SL+) Character Secondary Skin
+        CharacterSecondaryHair = 22,  // (SL+) Character Secondary Hair
+        CharacterSecondaryArmor = 23, // (SL+) Character Secondary Armor
+        Unk0 = 24,                    // (SL+)
+        Unk1 = 25,                    // (DF+) Seen in DracthyrDragon.m2
+        Unk2 = 26,                    // (DF+) Seen in DracthyrDragon.m2
+    }                                 
 
     [Flags]
     public enum TextureFlags

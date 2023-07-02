@@ -57,6 +57,8 @@ namespace Warcraft.NET.Files.M2.Chunks
         public List<RibbonEmitterStruct> RibbonEmitters { get; set; }
         public List<ParticleEmitterStruct> ParticleEmitters { get; set; }
 
+        private byte[] data;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MD21"/> class.
         /// </summary>
@@ -76,6 +78,7 @@ namespace Warcraft.NET.Files.M2.Chunks
         /// <inheritdoc/>
         public void LoadBinaryData(byte[] inData)
         {
+            data = inData;
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
@@ -209,14 +212,14 @@ namespace Warcraft.NET.Files.M2.Chunks
 
             for (var i = 0; i < count; i++)
             {
-                textures[i].Type = br.ReadUInt32();
+                textures[i].Type = (TextureType)br.ReadUInt32();
                 textures[i].Flags = (TextureFlags)br.ReadUInt32();
                 textures[i].Filename = "";
 
                 var lenFilename = br.ReadUInt32();
                 var ofsFilename = br.ReadUInt32();
 
-                if (textures[i].Type == 0)
+                if (textures[i].Type == TextureType.None)
                 {
                     if (ofsFilename >= 10)
                     {
@@ -263,10 +266,14 @@ namespace Warcraft.NET.Files.M2.Chunks
             return (uint)Serialize().Length;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Serializes the current object into a byte array.
+        /// WARNING: The serializer just write back the original MD21 content!
+        /// </summary>
+        /// <returns>The serialized object.</returns>
         public byte[] Serialize(long offset = 0)
         {
-            throw new NotImplementedException("Write MD21 currently not implemented");
+            return data;
         }
     }
 }
