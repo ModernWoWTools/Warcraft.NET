@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Exceptions;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCMK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
@@ -39,13 +40,16 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long headerAndSizeOffset = -8;
-                
-                // Read MCLV
-                if (Header.VertexLightingOffset > 0)
+                long headerEndPositon = Header.GetSize();
+
+                try
                 {
-                    ms.Seek(Header.VertexLightingOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(headerEndPositon, SeekOrigin.Begin);
                     VertexLighting = br.ReadIFFChunk<MCLV>(false, false);
+                }
+                catch (ChunkSignatureNotFoundException)
+                {
+                    // Ignore missing chunks
                 }
             }
         }

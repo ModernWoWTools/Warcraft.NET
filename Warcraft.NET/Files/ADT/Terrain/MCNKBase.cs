@@ -3,6 +3,7 @@ using System.IO;
 using Warcraft.NET.Files.ADT.Terrain.MCMK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
 using Warcraft.NET.Extensions;
+using Warcraft.NET.Exceptions;
 
 namespace Warcraft.NET.Files.ADT.Terrain
 {
@@ -64,35 +65,49 @@ namespace Warcraft.NET.Files.ADT.Terrain
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long headerAndSizeOffset = -8;
                 Header = new Header(br.ReadBytes(Header.GetSize()));
+                long headerEndPositon = Header.GetSize();
 
                 // Read MCVT
-                if (Header.HeightmapOffset > 0)
+                try
                 {
-                    ms.Seek(Header.HeightmapOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(headerEndPositon, SeekOrigin.Begin);
                     Heightmap = br.ReadIFFChunk<MCVT>(false, false);
+                }
+                catch (ChunkSignatureNotFoundException)
+                {
+                    // Ignore missing chunks
                 }
 
                 // Read MCCV
-                if (Header.VertexShadingOffset > 0)
+                try
                 {
-                    ms.Seek(Header.VertexShadingOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(headerEndPositon, SeekOrigin.Begin);
                     VertexShading = br.ReadIFFChunk<MCCV>(false, false);
+                } catch (ChunkSignatureNotFoundException)
+                {
+                    // Ignore missing chunks
                 }
 
                 // Read MCNR
-                if (Header.VertexNormalOffset > 0)
+                try
                 {
-                    ms.Seek(Header.VertexNormalOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(headerEndPositon, SeekOrigin.Begin);
                     VertexNormals = br.ReadIFFChunk<MCNR>(false, false);
+                }
+                catch (ChunkSignatureNotFoundException)
+                {
+                    // Ignore missing chunks
                 }
 
                 // Read MCSE
-                if (Header.SoundEmittersOffset > 0)
+                try
                 {
-                    ms.Seek(Header.SoundEmittersOffset + headerAndSizeOffset, SeekOrigin.Begin);
+                    ms.Seek(headerEndPositon, SeekOrigin.Begin);
                     SoundEmitters = br.ReadIFFChunk<MCSE>(false, false);
+                } catch (ChunkSignatureNotFoundException)
+                {
+                    // Ignore missing chunks
                 }
             }
         }
