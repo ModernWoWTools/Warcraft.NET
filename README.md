@@ -6,20 +6,8 @@ Warcraft.NET is a open source C# library for World of Warcraft binary file forma
 - Wrath of the Lich King (3.3.5)
 - Warlords of Draenor (6.2.4)
 - Legion (7.x.x)
-- Battle for Azeroth (8.0.x)
-
-## Supported Formats
-### ADT
-- [ ] [Implement all ADT Chunks](https://github.com/Luzifix/Warcraft.NET/issues/3)
-
-### M2
-- [ ] [Implement all M2 Chunks](https://github.com/Luzifix/Warcraft.NET/issues/1)
-
-### WMO
-- [ ] [Implement all WMO Chunks](https://github.com/Luzifix/Warcraft.NET/issues/2)
-
-## Projects
-- [ADTConvert2](https://github.com/Luzifix/ADTConvert2) - A converter which can convert the World of Warcraft ADT Format form LK(3.3.5) to WoD(6.x.x), Legion(7.x.x) & BfA(8.0.x) 
+- Battle for Azeroth (8.x.x)
+- Shadowlands (9.2.x)
 
 ## Licensing
 Warcraft.NET is Free Software, and is distributed under the GPLv3 license. This means, in simple terms, that you are free to do whatever you want with the source code and any binaries compiled or generated from it as long as you pass on those rights to anyone aquiring a copy of the source code or binaries. The full licence can be read in the file "LICENSE" at the root of the source tree, or at http://choosealicense.com/licenses/gpl-3.0/, where a more people-friendly summary is also available.
