@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
 {

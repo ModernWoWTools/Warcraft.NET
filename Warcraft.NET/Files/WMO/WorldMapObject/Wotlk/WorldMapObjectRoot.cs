@@ -1,9 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using System.Reflection;
-using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.WMO.Chunks;
 using Warcraft.NET.Files.WMO.Chunks.Wotlk;
 

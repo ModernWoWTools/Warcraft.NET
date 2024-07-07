@@ -213,7 +213,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
         public void FixGroundEffectMap(bool bigAlpha = false)
         {
             // Reset ground effect map
-            Array.Fill(Header.GroundEffectMap, (byte)0);
+            Header.GroundEffectMap.Fill((byte)0);
 
             bool firstLayer = true;
             int layerIndex = 1;

@@ -1,5 +1,4 @@
 ﻿using Warcraft.NET.Attribute;
-using Warcraft.NET.Files.ADT.Chunks;
 using Warcraft.NET.Files.ADT.Chunks.Legion;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.One

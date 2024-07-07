@@ -5,7 +5,6 @@ using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Processors.Transforms;
 using Warcraft.Compression.Squish;
 using Warcraft.Extensions;
 

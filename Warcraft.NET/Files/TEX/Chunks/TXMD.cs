@@ -1,7 +1,4 @@
 ﻿using Warcraft.NET.Files.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using Warcraft.NET.Files.TEX.Entrys;
 
 namespace Warcraft.NET.Files.TEX.Chunks
 {

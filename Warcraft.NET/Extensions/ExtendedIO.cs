@@ -6,7 +6,6 @@ using System.Text;
 using Warcraft.NET.Files.Structures;
 using System.Collections.Generic;
 using Warcraft.NET.Exceptions;
-using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace Warcraft.NET.Extensions

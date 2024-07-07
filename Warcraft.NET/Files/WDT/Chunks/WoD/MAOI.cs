@@ -1,7 +1,6 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Collections.Generic;
-using Warcraft.NET.Files.WDT.Entrys.WoD;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {

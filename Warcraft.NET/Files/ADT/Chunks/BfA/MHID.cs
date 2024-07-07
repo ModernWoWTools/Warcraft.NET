@@ -1,5 +1,4 @@
-﻿using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 
