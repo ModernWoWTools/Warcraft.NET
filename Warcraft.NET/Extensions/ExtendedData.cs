@@ -1,5 +1,6 @@
-﻿using SharpDX;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Numerics;
+using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Extensions
 {
@@ -55,7 +56,7 @@ namespace Warcraft.NET.Extensions
             return boundingBox;
         }
 
-        public static BoundingBox Transform(this BoundingBox bboundingBoxox, ref Matrix matrix)
+        public static BoundingBox Transform(this BoundingBox bboundingBoxox, ref Matrix4x4 matrix)
         {
             var corners = new Vector3[8];
             bboundingBoxox.GetCorners(corners);
@@ -65,7 +66,7 @@ namespace Warcraft.NET.Extensions
             for (var i = 0; i < corners.Length; ++i)
             {
                 Vector3 v;
-                Vector3.TransformCoordinate(ref corners[i], ref matrix, out v);
+                TransformCoordinate(ref corners[i], ref matrix, out v);
                 TakeMin(ref newMin, ref v);
                 TakeMax(ref newMax, ref v);
             }
@@ -91,6 +92,19 @@ namespace Warcraft.NET.Extensions
                 v.Y = other.Y;
             if (v.Z < other.Z)
                 v.Z = other.Z;
+        }
+        
+        public static void TransformCoordinate(ref Vector3 coordinate, ref Matrix4x4 transform, out Vector3 result)
+        {
+            var vector = new Vector4
+            {
+                X = coordinate.X * transform.M11 + coordinate.Y * transform.M21 + coordinate.Z * transform.M31 + transform.M41,
+                Y = coordinate.X * transform.M12 + coordinate.Y * transform.M22 + coordinate.Z * transform.M32 + transform.M42,
+                Z = coordinate.X * transform.M13 + coordinate.Y * transform.M23 + coordinate.Z * transform.M33 + transform.M43,
+                W = 1f / (coordinate.X * transform.M14 + coordinate.Y * transform.M24 + coordinate.Z * transform.M34 + transform.M44)
+            };
+
+            result = new Vector3(vector.X * vector.W, vector.Y * vector.W, vector.Z * vector.W);
         }
     }
 }

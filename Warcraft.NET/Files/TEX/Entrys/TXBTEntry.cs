@@ -1,6 +1,4 @@
-﻿using Warcraft.NET.Extensions;
-using SharpDX;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Files.TEX.Flags;
 using System.Collections;
 using Warcraft.NET.Files.TEX.Chunks;

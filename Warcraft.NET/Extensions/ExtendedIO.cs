@@ -1,12 +1,11 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System;
 using System.IO;
-using SharpDX;
 using System.Text;
 using Warcraft.NET.Files.Structures;
 using System.Collections.Generic;
+using System.Numerics;
 using Warcraft.NET.Exceptions;
-using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace Warcraft.NET.Extensions

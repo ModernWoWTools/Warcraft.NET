@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Warcraft.Extensions
+namespace Warcraft.NET.Extensions
 {
     /// <summary>
     /// Extension methods used internally in the library for mathematical computations.

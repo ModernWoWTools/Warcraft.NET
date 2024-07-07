@@ -1,5 +1,5 @@
-﻿using SharpDX;
-using System;
+﻿using System;
+using System.Numerics;
 using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.M2.Entrys

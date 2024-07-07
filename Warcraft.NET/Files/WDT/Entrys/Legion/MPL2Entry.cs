@@ -1,5 +1,4 @@
-﻿using SharpDX;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 using Warcraft.NET.Files.WDT.Entrys.WoD;

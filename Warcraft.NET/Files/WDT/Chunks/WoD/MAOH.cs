@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
         /// </summary>
         public const string Signature = "MAOI";
 
-        public List<MAOIEntry> Entrys = new List<MAOIEntry>();
+        public List<MAOIEntry> Entrys = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MAOI"/> class.

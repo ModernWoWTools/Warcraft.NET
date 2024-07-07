@@ -1,7 +1,6 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Collections.Generic;
-using Warcraft.NET.Files.WDT.Entrys.WoD;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
@@ -15,7 +14,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
         /// </summary>
         public const string Signature = "MAOH";
 
-        public List<short> InterleavedMap = new List<short>();
+        public List<short> InterleavedMap = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MAOH"/> class.

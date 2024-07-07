@@ -1,35 +1,35 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System.IO;
+﻿using System.IO;
+using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
 {
     /// <summary>
-    /// MCSH chunk - holds baked terrain shadows.
+    /// MCMT chunk - Terrain material record id.
     /// </summary>
-    public class MCSH : IIFFChunk, IBinarySerializable
+    public class MCMT : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MCSH";
+        public const string Signature = "MCMT";
 
         /// <summary>
-        /// Gets or sets an array of alpha map layers in this MCNK.
+        /// Gets or sets an array of terrain material ids.
         /// </summary>
-        public byte[] ShadowMap;
+        public byte[] TerrainMaterialIds;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCSH"/> class.
+        /// Initializes a new instance of the <see cref="MCMT"/> class.
         /// </summary>
-        public MCSH()
+        public MCMT()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCSH"/> class.
+        /// Initializes a new instance of the <see cref="MCMT"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MCSH(byte[] inData)
+        public MCMT(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -40,10 +40,11 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                ShadowMap = new byte[ms.Length];
-                for (ushort i = 0; i < ms.Length; i++)
+                TerrainMaterialIds = new byte[ms.Length];
+
+                for (var i = 0; i < ms.Length; ++i)
                 {
-                    ShadowMap[i] = br.ReadByte();
+                    TerrainMaterialIds[i] = br.ReadByte();
                 }
             }
         }
@@ -66,9 +67,9 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach(byte shadow in ShadowMap)
+                foreach(byte terrainMatrialId in TerrainMaterialIds)
                 {
-                    bw.Write(shadow);
+                    bw.Write(terrainMatrialId);
                 }
 
                 return ms.ToArray();

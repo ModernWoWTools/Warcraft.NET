@@ -13,31 +13,31 @@ namespace Warcraft.NET.Files.WDL
         /// Gets or sets the contains the WDL version.
         /// </summary>
         [ChunkOrder(1)]
-        public MVER Version { get; set; } = new MVER(18);
+        public MVER Version { get; set; } = new(18);
 
         /// <summary>
         /// Contains position information for all M2 models in this ADT.
         /// </summary>
         [ChunkOrder(2)]
-        public ADT.Chunks.Legion.MLDD LevelDoodadDetail { get; set; } = new ADT.Chunks.Legion.MLDD();
+        public ADT.Chunks.Legion.MLDD LevelDoodadDetail { get; set; } = new();
 
         /// <summary>
         /// Contains M2 model bounding information. Same count as <see cref="ADT.Chunks.Legion.MLDD"/>
         /// </summary>
         [ChunkOrder(3)]
-        public ADT.Chunks.Legion.MLDX LevelDoodadExtent { get; set; } = new ADT.Chunks.Legion.MLDX();
+        public ADT.Chunks.Legion.MLDX LevelDoodadExtent { get; set; } = new();
 
         /// <summary>
         /// Contains position information for all WMO models in this ADT.
         /// </summary>
         [ChunkOrder(4)]
-        public ADT.Chunks.Legion.MLMD LevelWorldObjectDetail { get; set; } = new ADT.Chunks.Legion.MLMD();
+        public ADT.Chunks.Legion.MLMD LevelWorldObjectDetail { get; set; } = new();
 
         /// <summary>
         /// Contains WMO model bounding information. Same count as <see cref="ADT.Chunks.Legion.MLMD"/>
         /// </summary>
         [ChunkOrder(5)]
-        public ADT.Chunks.Legion.MLMX LevelWorldObjectExtent { get; set; } = new ADT.Chunks.Legion.MLMX();
+        public ADT.Chunks.Legion.MLMX LevelWorldObjectExtent { get; set; } = new();
 
         /// <summary>
         /// Gets the map area offsets.
@@ -49,19 +49,19 @@ namespace Warcraft.NET.Files.WDL
         /// Gets or sets the map areas.
         /// </summary>
         [ChunkOrder(7)]
-        public List<MARE?> MapAreas { get; set; } = new List<MARE?>(4096);
+        public List<MARE?> MapAreas { get; set; } = new(4096);
 
         /// <summary>
         /// Gets or sets the map unkown ocean values.
         /// </summary>
         [ChunkOrder(8)]
-        public List<MAOE?> MapAreaOcean { get; set; } = new List<MAOE?>(4096);
+        public List<MAOE?> MapAreaOcean { get; set; } = new(4096);
 
         /// <summary>
         /// Gets or sets the map area holes.
         /// </summary>
         [ChunkOrder(9)]
-        public List<MAHO?> MapAreaHoles { get; set; } = new List<MAHO?>(4096);
+        public List<MAHO?> MapAreaHoles { get; set; } = new(4096);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldDataTableBase"/> class.

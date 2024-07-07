@@ -1,19 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>default</LangVersion>
+    <PackageId>Warcraft.NET</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Luzifix, MaxtorCoder, Kaev</Authors>
+    <Description>Library to read and write World of Warcraft file formats</Description>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Luzifix/Warcraft.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Luzifix/Warcraft.NET</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpDX" Version="4.2.0" />
-    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
-      <PackageReference Include="SharpCompress" Version="0.29.0" />
-      <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
+    <PackageReference Include="SharpCompress" Version="0.29.0" />
+     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Files\WMO\Flags\BfA\" />
     <Folder Include="Files\WMO\Flags\WoD\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

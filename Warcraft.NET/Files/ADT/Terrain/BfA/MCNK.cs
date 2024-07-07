@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Warcraft.NET.Exceptions;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.ADT.Terrain.MCMK;
+using Warcraft.NET.Files.ADT.Terrain.MCNK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.BfA

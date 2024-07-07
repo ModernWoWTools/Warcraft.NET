@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
 {

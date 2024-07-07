@@ -18,7 +18,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets a list of full paths to the textures referenced in this ADT.
         /// </summary>
-        public List<string> Filenames { get; set; } = new List<string>();
+        public List<string> Filenames { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MTEX"/> class.

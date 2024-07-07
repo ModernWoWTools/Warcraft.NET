@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.BfA
         /// <summary>
         /// Gets or sets the list of scale values in an MDDI chunk.
         /// </summary>
-        public List<float> ScaleValues { get; set; } = new List<float>();
+        public List<float> ScaleValues { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MDDI"/> class.

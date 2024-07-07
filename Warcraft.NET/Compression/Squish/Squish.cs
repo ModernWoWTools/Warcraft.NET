@@ -1,9 +1,9 @@
-﻿using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
-namespace Warcraft.Compression.Squish
+namespace Warcraft.NET.Compression.Squish
 {
     [Flags]
     public enum SquishFlags

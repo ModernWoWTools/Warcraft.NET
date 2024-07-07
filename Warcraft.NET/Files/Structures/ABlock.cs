@@ -25,7 +25,7 @@ namespace Warcraft.NET.Files.Structures
             {
                 var offset = elementsOffset + (i * Marshal.SizeOf(type));
                 br.BaseStream.Position += offset;
-                yield return (T)br.ReadStruct<T>();
+                yield return br.ReadStruct<T>();
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks;
+using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture
 {

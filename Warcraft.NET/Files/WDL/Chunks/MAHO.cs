@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.WDL.Chunks
         /// <summary>
         /// Gets the hole masks.
         /// </summary>
-        public List<short> HoleMasks { get; } = new List<short>();
+        public List<short> HoleMasks { get; } = new();
 
         /// <summary>
         /// Gets a value indicating whether the area has no holes.

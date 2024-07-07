@@ -1,7 +1,7 @@
 ﻿using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.ADT.TerrainObject.Zero.MCMK.SubChunks;
+using Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.Zero
 {

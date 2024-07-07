@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or Sets the Skin FileDataIds
         /// </summary>
-        public List<uint> SkinFileDataIds { get; set; } = new List<uint>();
+        public List<uint> SkinFileDataIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="SFID"/>

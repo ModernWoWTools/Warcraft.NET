@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.BfA
         /// <summary>
         /// Gets or sets the list of file ids in an MODI chunk.
         /// </summary>
-        public List<uint> ModelFileIds { get; set; } = new List<uint>();
+        public List<uint> ModelFileIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MODI"/> class.

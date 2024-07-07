@@ -1,5 +1,4 @@
-﻿using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 
@@ -18,7 +17,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.BfA
         /// <summary>
         /// Gets or sets a list of file id to the height textures reference in this ADT.
         /// </summary>
-        public List<uint> Textures { get; set; } = new List<uint>();
+        public List<uint> Textures { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MHID"/> class.

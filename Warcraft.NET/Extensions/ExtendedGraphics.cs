@@ -1,8 +1,8 @@
-﻿using SixLabors.ImageSharp;
+﻿using System;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System;
 
-namespace Warcraft.Extensions
+namespace Warcraft.NET.Extensions
 {
     /// <summary>
     /// Extension methods used internally in the library for graphics classes.

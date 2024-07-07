@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.TEX.Chunks;
 using Warcraft.NET.Files.TEX.Entrys;
-using Warcraft.NET.Files.TEX.Flags;
 
 namespace Warcraft.NET.Files.TEX
 {

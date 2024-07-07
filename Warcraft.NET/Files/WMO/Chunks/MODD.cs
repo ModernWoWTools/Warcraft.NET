@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WMO.Chunks
         /// <summary>
         /// Gets or sets <see cref="MODDEntry"s />
         /// </summary>
-        public List<MODDEntry> MODDEntries { get; set; } = new List<MODDEntry>();
+        public List<MODDEntry> MODDEntries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MODD"/> class.

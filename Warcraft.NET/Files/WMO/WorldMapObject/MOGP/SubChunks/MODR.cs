@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
+namespace Warcraft.NET.Files.WMO.WorldMapObject.MOGP.SubChunks
 {
     /// <summary>
     /// MODR Chunk - Holds doodad references
@@ -19,7 +17,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
         /// <summary>
         /// Gets or sets doodad references
         /// </summary>
-        public List<ushort> Doodadreferences { get; set; } = new List<ushort>();
+        public List<ushort> Doodadreferences { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MODR"/> class.

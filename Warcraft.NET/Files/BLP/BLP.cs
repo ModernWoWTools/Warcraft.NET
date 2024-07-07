@@ -5,9 +5,8 @@ using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Processors.Transforms;
-using Warcraft.Compression.Squish;
-using Warcraft.Extensions;
+using Warcraft.NET.Compression.Squish;
+using Warcraft.NET.Extensions;
 
 namespace Warcraft.NET.Files.BLP
 {
@@ -26,7 +25,7 @@ namespace Warcraft.NET.Files.BLP
         /// The palette of colours used in the BLP image. This is not used for DXTC-compressed
         /// textures.
         /// </summary>
-        private readonly List<Rgba32> _palette = new List<Rgba32>();
+        private readonly List<Rgba32> _palette = new();
 
         /// <summary>
         /// The size of the JPEG header. This is not used for palettized or DXTC-compressed
@@ -43,7 +42,7 @@ namespace Warcraft.NET.Files.BLP
         /// <summary>
         /// A list of byte arrays containing the compressed mipmaps.
         /// </summary>
-        private readonly List<byte[]> _rawMipMaps = new List<byte[]>();
+        private readonly List<byte[]> _rawMipMaps = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Warcraft.NET.Files.BLP.BLP"/> class.

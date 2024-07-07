@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets <see cref="MDDFEntry"/>s.
         /// </summary>
-        public List<MDDFEntry> MDDFEntrys { get; set; } = new List<MDDFEntry>();
+        public List<MDDFEntry> MDDFEntrys { get; set; } = new();
 
         public MDDF()
         {

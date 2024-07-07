@@ -1,6 +1,6 @@
 ﻿using Warcraft.NET.Extensions;
-using SharpDX;
 using System.IO;
+using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.ADT.Entrys.Legion
 {

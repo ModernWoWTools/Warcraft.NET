@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or Sets the Anim FileDataIds
         /// </summary>
-        public List<AFIDEntry> AFIDEntrys { get; set; } = new List<AFIDEntry>();
+        public List<AFIDEntry> AFIDEntrys { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="AFID"/>

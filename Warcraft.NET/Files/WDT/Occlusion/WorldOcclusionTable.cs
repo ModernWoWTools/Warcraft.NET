@@ -10,7 +10,7 @@ namespace Warcraft.NET.Files.WDT.Occlusion
         /// Gets or sets the contains the WDT version.
         /// </summary>
         [ChunkOrder(1)]
-        public MVER Version { get; set; } = new MVER(18);
+        public MVER Version { get; set; } = new(18);
 
         /// <summary>
         /// Gets or sets the WDT Header.

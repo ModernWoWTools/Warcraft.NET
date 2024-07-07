@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Warcraft.NET.Files.ADT.Terrain.MCMK.Flags
+namespace Warcraft.NET.Files.ADT.Terrain.MCNK.Flags
 {
     /// <summary>
     /// Flags for the <see cref="Header"/>.

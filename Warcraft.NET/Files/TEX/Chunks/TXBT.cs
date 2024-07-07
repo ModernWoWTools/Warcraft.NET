@@ -18,7 +18,7 @@ namespace Warcraft.NET.Files.TEX.Chunks
         /// <summary>
         /// Gets or sets model extents. Same count as <see cref="TXBT"/>
         /// </summary>
-        public List<TXBTEntry> Entries { get; set; } = new List<TXBTEntry>();
+        public List<TXBTEntry> Entries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TXBT"/> class.

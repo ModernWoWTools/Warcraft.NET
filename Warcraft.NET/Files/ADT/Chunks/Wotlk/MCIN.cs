@@ -16,7 +16,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Wotlk
         /// Gets or sets <see cref="MCNK"/> pointers.
         /// <para>Should always be 256.</para>
         /// </summary>
-        List<MCINEntry> Entries { get; set; } = new List<MCINEntry>();
+        List<MCINEntry> Entries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MCIN"/> class.

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Warcraft.NET.Files.ADT.Terrain.MCMK.Flags;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Flags;
+using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
 {
     /// <summary>
     /// MCAL Chunk - Contains alpha map data in one of three forms - uncompressed 2048, uncompressed 4096 and compressed.
@@ -63,13 +60,13 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             return Data;
         }
 
-        public byte[] GetAlphaMapForLayer(MCLYEntry mclyEntry, bool bigAlpha = false)
+        public byte[] GetAlphaMapForLayer(Entrys.MCLYEntry mclyEntry, bool bigAlpha = false)
         {
-            if (Data != null && mclyEntry.Flags.HasFlag(MCLYFlags.UseAlpha))
+            if (Data != null && mclyEntry.Flags.HasFlag(Flags.MCLYFlags.UseAlpha))
             {
                 byte[] alphaBuffer = (new List<byte>(Data)).GetRange((int)mclyEntry.AlphaMapOffset, Data.Length - (int)mclyEntry.AlphaMapOffset).ToArray();
 
-                if (mclyEntry.Flags.HasFlag(MCLYFlags.CompressedAlpha))
+                if (mclyEntry.Flags.HasFlag(Flags.MCLYFlags.CompressedAlpha))
                 {
                     return ReadCompressedAlpha(alphaBuffer);
                 }
@@ -84,14 +81,14 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             }
 
             byte[] alphaMap = new byte[64 * 64];
-            Array.Fill(alphaMap, (byte)0);
+            alphaMap.Fill((byte)0);
             return alphaMap;
         }
 
         private byte[] ReadCompressedAlpha(byte[] alphaBuffer)
         {
             byte[] alphaMap = new byte[64 * 64];
-            Array.Fill(alphaMap, (byte)0);
+            alphaMap.Fill((byte)0);
 
             int offInner = 0;
             int offOuter = 0;
@@ -145,7 +142,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
         private byte[] ReadUncompressedAlpha(byte[] alphaBuffer)
         {
             byte[] alphaMap = new byte[64 * 64];
-            Array.Fill(alphaMap, (byte)0);
+            alphaMap.Fill((byte)0);
 
             int inner = 0;
             int outer = 0;

@@ -20,7 +20,7 @@ namespace Warcraft.NET.Files.WMO.Chunks
         /// <summary>
         /// Gets a dictionary of the texture offsets mapped to texture file pathes.
         /// </summary>
-        public Dictionary<long, string> Textures { get; } = new Dictionary<long, string>();
+        public Dictionary<long, string> Textures { get; } = new();
 
         /// <summary>
         /// Next texture offset

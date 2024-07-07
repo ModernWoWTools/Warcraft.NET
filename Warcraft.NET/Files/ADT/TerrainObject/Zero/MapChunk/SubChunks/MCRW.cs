@@ -1,35 +1,35 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System.IO;
+﻿using System.IO;
+using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
+namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks
 {
     /// <summary>
-    /// MCMT chunk - Terrain material record id.
+    /// MCRW Chunk - Holds world object references.
     /// </summary>
-    public class MCMT : IIFFChunk, IBinarySerializable
+    public class MCRW : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MCMT";
+        public const string Signature = "MCRW";
 
         /// <summary>
-        /// Gets or sets an array of terrain material ids.
+        /// Holds world object references
         /// </summary>
-        public byte[] TerrainMaterialIds;
+        public uint[] WorldObjectReferences;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCMT"/> class.
+        /// Initializes a new instance of the <see cref="MCRW"/> class.
         /// </summary>
-        public MCMT()
+        public MCRW()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCMT"/> class.
+        /// Initializes a new instance of the <see cref="MCRW"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MCMT(byte[] inData)
+        public MCRW(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -40,11 +40,11 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                TerrainMaterialIds = new byte[ms.Length];
-
-                for (var i = 0; i < ms.Length; ++i)
+                long worldObjectCount = ms.Length / sizeof(uint);
+                WorldObjectReferences = new uint[worldObjectCount];
+                for (var i = 0; i < worldObjectCount; ++i)
                 {
-                    TerrainMaterialIds[i] = br.ReadByte();
+                    WorldObjectReferences[i] = br.ReadUInt32();
                 }
             }
         }
@@ -67,9 +67,9 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach(byte terrainMatrialId in TerrainMaterialIds)
+                foreach (uint worldObject in WorldObjectReferences)
                 {
-                    bw.Write(terrainMatrialId);
+                    bw.Write(worldObject);
                 }
 
                 return ms.ToArray();

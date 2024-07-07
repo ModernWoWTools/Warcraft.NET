@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warcraft.NET.Files.Structures
+﻿namespace Warcraft.NET.Files.Structures
 {
     /// <summary>
     /// A structure that represents an M2Array.

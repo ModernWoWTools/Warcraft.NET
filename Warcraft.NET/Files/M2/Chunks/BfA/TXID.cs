@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.Interfaces;
 
@@ -15,7 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
         /// <summary>
         /// Gets or Sets the Texture FileDataIds
         /// </summary>
-        public List<uint> TextureFileDataIds { get; set; } = new List<uint>();
+        public List<uint> TextureFileDataIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="TXID"/>
