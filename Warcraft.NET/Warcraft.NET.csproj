@@ -6,7 +6,7 @@
     <PackageId>Warcraft.NET</PackageId>
     <Authors>Luzifix, MaxtorCoder, Kaev</Authors>
     <Description>Library to read and write World of Warcraft file formats</Description>
-    <PackageLicenseExpression>GPLv3</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Luzifix/Warcraft.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Luzifix/Warcraft.NET</RepositoryUrl>
     <Nullable>disable</Nullable>
