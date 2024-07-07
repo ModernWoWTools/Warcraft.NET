@@ -18,7 +18,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets the texture flags.
         /// </summary>
-        public List<MTXFFlags> TextureFlags { get; } = new List<MTXFFlags>();
+        public List<MTXFFlags> TextureFlags { get; } = new();
 
         public MTXF()
         {

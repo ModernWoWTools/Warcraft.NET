@@ -22,12 +22,12 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
         /// <summary>
         /// Holds model references
         /// </summary>
-        public List<uint> ModelReferences = new List<uint>();
+        public List<uint> ModelReferences = new();
 
         /// <summary>
         /// Holds world object references
         /// </summary>
-        public List<uint> WorldObjectReferences = new List<uint>();
+        public List<uint> WorldObjectReferences = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MCRF"/> class.

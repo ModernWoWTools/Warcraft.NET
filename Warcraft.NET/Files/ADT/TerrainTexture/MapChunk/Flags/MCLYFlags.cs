@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Flags
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Flags
 {
     /// <summary>
     /// Flags for the <see cref="MCLYEntry"/>.

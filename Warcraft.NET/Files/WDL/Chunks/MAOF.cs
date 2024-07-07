@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.WDL.Chunks
         /// <summary>
         /// Gets the map area offsets.
         /// </summary>
-        public List<uint> MapAreaOffsets = new List<uint>();
+        public List<uint> MapAreaOffsets = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MAOF"/> class.

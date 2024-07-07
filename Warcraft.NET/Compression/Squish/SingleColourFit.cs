@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Warcraft.Compression.Squish
+namespace Warcraft.NET.Compression.Squish
 {
     public class SingleColourFit : ColourFit
     {

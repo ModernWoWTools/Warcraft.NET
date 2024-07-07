@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
         /// </summary>
         public const string Signature = "MPL2";
 
-        public List<MPL2Entry> Entrys = new List<MPL2Entry>();
+        public List<MPL2Entry> Entrys = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MPL2"/> class.

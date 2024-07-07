@@ -1,9 +1,9 @@
-﻿using SharpDX;
-using System.IO;
+﻿using System.IO;
+using System.Numerics;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.ADT.Terrain.MCMK.Flags;
+using Warcraft.NET.Files.ADT.Terrain.MCNK.Flags;
 
-namespace Warcraft.NET.Files.ADT.Terrain.MCMK
+namespace Warcraft.NET.Files.ADT.Terrain.MCNK
 {
     /// <summary>
     /// Header data for a map chunk.
@@ -144,7 +144,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCMK
         /// Gets or sets the map tile position. This position is a global offset that is applied to the entire heightmap
         /// to allow for far greater height differences in the world.
         /// </summary>
-        public Vector3 MapTilePosition { get; set; } = new Vector3(0);
+        public Vector3 MapTilePosition { get; set; } = new(0);
 
         /// <summary>
         /// Gets or sets the relative offset of the MCCV Chunk.

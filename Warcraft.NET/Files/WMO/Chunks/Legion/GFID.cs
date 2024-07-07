@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Legion
         /// <summary>
         /// Gets or sets the list of file ids in an GFID chunk.
         /// </summary>
-        public List<uint> GroupFileIds { get; set; } = new List<uint>();
+        public List<uint> GroupFileIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GFID"/> class.

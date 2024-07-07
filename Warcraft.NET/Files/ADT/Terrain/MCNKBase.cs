@@ -1,9 +1,9 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.ADT.Terrain.MCMK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Exceptions;
+using Warcraft.NET.Files.ADT.Terrain.MCNK;
 
 namespace Warcraft.NET.Files.ADT.Terrain
 {
@@ -21,7 +21,7 @@ namespace Warcraft.NET.Files.ADT.Terrain
         /// Gets or sets the header, which contains information about the MCNK and its subchunks such as offsets,
         /// position and flags.
         /// </summary>
-        public Header Header { get; set; } = new Header();
+        public Header Header { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the heightmap chunk.

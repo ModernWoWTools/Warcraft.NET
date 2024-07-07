@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or Sets the Bone FileDataIds
         /// </summary>
-        public List<uint> BoneFileDataIds { get; set; } = new List<uint>();
+        public List<uint> BoneFileDataIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="BFID"/>

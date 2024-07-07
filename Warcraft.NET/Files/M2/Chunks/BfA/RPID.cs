@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
         /// <summary>
         /// Gets or Sets the recursive particle FileDataIds
         /// </summary>
-        public List<uint> RecursiveParticleFileDataIds { get; set; } = new List<uint>();
+        public List<uint> RecursiveParticleFileDataIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="RPID"/>

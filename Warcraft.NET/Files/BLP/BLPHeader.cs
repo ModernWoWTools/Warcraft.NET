@@ -55,12 +55,12 @@ namespace Warcraft.NET.Files.BLP
         /// <summary>
         /// Gets or sets the a list of offsets to the start of each mipmap.
         /// </summary>
-        public List<uint> MipMapOffsets { get; set; } = new List<uint>();
+        public List<uint> MipMapOffsets { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the a list of sizes for each mipmap.
         /// </summary>
-        public List<uint> MipMapSizes { get; set; } = new List<uint>();
+        public List<uint> MipMapSizes { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Warcraft.NET.Files.BLP.BLPHeader"/> class.

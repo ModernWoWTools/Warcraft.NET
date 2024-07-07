@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets the list of indexes for models in an MWID chunk.
         /// </summary>
-        public List<uint> ModelFilenameOffsets { get; set; } = new List<uint>();
+        public List<uint> ModelFilenameOffsets { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MWID"/> class.

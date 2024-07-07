@@ -1,8 +1,8 @@
-﻿using SharpDX;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
+using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.ModelBlob.Chunks
 {
@@ -19,7 +19,7 @@ namespace Warcraft.NET.Files.ModelBlob.Chunks
         /// <summary>
         /// Gets or sets model extents.
         /// </summary>
-        public Dictionary<uint, BoundingBox> Entries { get; set; } = new Dictionary<uint, BoundingBox>();
+        public Dictionary<uint, BoundingBox> Entries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MBBB"/> class.

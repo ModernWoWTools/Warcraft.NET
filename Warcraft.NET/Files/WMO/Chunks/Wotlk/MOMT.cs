@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
         /// <summary>
         /// Gets or sets <see cref="MOMTEntry"s />
         /// </summary>
-        public List<MOMTEntry> MOMTEntries { get; set; } = new List<MOMTEntry>();
+        public List<MOMTEntry> MOMTEntries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MOMT"/> class.

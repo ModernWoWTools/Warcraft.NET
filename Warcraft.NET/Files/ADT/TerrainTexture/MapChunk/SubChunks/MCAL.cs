@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Flags;
 using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
 {
     /// <summary>
     /// MCAL Chunk - Contains alpha map data in one of three forms - uncompressed 2048, uncompressed 4096 and compressed.
@@ -62,13 +60,13 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             return Data;
         }
 
-        public byte[] GetAlphaMapForLayer(MCLYEntry mclyEntry, bool bigAlpha = false)
+        public byte[] GetAlphaMapForLayer(Entrys.MCLYEntry mclyEntry, bool bigAlpha = false)
         {
-            if (Data != null && mclyEntry.Flags.HasFlag(MCLYFlags.UseAlpha))
+            if (Data != null && mclyEntry.Flags.HasFlag(Flags.MCLYFlags.UseAlpha))
             {
                 byte[] alphaBuffer = (new List<byte>(Data)).GetRange((int)mclyEntry.AlphaMapOffset, Data.Length - (int)mclyEntry.AlphaMapOffset).ToArray();
 
-                if (mclyEntry.Flags.HasFlag(MCLYFlags.CompressedAlpha))
+                if (mclyEntry.Flags.HasFlag(Flags.MCLYFlags.CompressedAlpha))
                 {
                     return ReadCompressedAlpha(alphaBuffer);
                 }

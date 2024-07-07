@@ -3,13 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>default</LangVersion>
+    <PackageId>Warcraft.NET</PackageId>
+    <Authors>Luzifix, MaxtorCoder, Kaev</Authors>
+    <Description>Library to read and write World of Warcraft file formats</Description>
+    <PackageLicenseExpression>GPLv3</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Luzifix/Warcraft.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Luzifix/Warcraft.NET</RepositoryUrl>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpDX" Version="4.2.0" />
-    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
-      <PackageReference Include="SharpCompress" Version="0.29.0" />
-      <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
+    <PackageReference Include="SharpCompress" Version="0.29.0" />
+     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
   </ItemGroup>
 
   <ItemGroup>

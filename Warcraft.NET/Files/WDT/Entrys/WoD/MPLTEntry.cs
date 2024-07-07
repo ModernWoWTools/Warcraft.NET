@@ -1,5 +1,5 @@
-﻿using SharpDX;
-using System.IO;
+﻿using System.IO;
+using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 

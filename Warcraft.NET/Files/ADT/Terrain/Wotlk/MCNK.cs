@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.ADT.Terrain.MCMK;
+using Warcraft.NET.Files.ADT.Terrain.MCNK;
+using Warcraft.NET.Files.ADT.Terrain.MCNK.Flags;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks;
+using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entrys;
+using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
 {
@@ -89,7 +90,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 {
                     ms.Seek(Header.BakedShadowsOffset + headerAndSizeOffset, SeekOrigin.Begin);
                     BakedShadows = br.ReadIFFChunk<MCSH>(false, false);
-                    Header.Flags |= MCMK.Flags.MCNKFlags.HasBakedShadows;
+                    Header.Flags |= MCNKFlags.HasBakedShadows;
                 }
 
                 // Read MCAL
@@ -176,7 +177,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 }
 
                 // Write MCSH
-                if (newHeader.Flags.HasFlag(MCMK.Flags.MCNKFlags.HasBakedShadows) && BakedShadows != null)
+                if (newHeader.Flags.HasFlag(MCNKFlags.HasBakedShadows) && BakedShadows != null)
                 {
                     newHeader.BakedShadowsOffset = (uint)ms.Position + headerAndSizeOffset;
                     newHeader.BakedShadowsSize = ModelReferences.GetSize() + 8;
@@ -184,7 +185,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
                 }
                 else
                 {
-                    newHeader.Flags &= ~MCMK.Flags.MCNKFlags.HasBakedShadows;
+                    newHeader.Flags &= ~MCNKFlags.HasBakedShadows;
                 }
 
                 // Write MCAL

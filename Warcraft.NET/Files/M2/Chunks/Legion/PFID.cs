@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or Sets the Phys FileDataIds
         /// </summary>
-        public List<uint> PhysFileDataIds { get; set; } = new List<uint>();
+        public List<uint> PhysFileDataIds { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="PFID"/>

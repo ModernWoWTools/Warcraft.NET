@@ -1,37 +1,35 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys;
+﻿using System.IO;
+using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
+namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks
 {
     /// <summary>
-    /// MCLY Chunk - Contains definitions for the alpha map layers.
+    /// MCRD Chunk - Holds model references.
     /// </summary>
-    public class MCLY : IIFFChunk, IBinarySerializable
+    public class MCRD : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MCLY";
+        public const string Signature = "MCRD";
 
         /// <summary>
-        /// Gets or sets an array of alpha map layers in this MCNK.
+        /// Holds model references
         /// </summary>
-        public List<MCLYEntry> Layers { get; set; } = new List<MCLYEntry>();
+        public uint[] ModelReferences;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCLY"/> class.
+        /// Initializes a new instance of the <see cref="MCRD"/> class.
         /// </summary>
-        public MCLY()
+        public MCRD()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MCLY"/> class.
+        /// Initializes a new instance of the <see cref="MCRD"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MCLY(byte[] inData)
+        public MCRD(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -42,11 +40,11 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long layerCount = ms.Length / MCLYEntry.GetSize();
-
-                for (var i = 0; i < layerCount; ++i)
+                long modelCount = ms.Length / sizeof(uint);
+                ModelReferences = new uint[modelCount];
+                for (var i = 0; i < modelCount; ++i)
                 {
-                    Layers.Add(new MCLYEntry(br.ReadBytes(MCLYEntry.GetSize())));
+                    ModelReferences[i] = br.ReadUInt32();
                 }
             }
         }
@@ -69,9 +67,9 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.SubChunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MCLYEntry layer in Layers)
+                foreach (uint model in ModelReferences)
                 {
-                    bw.Write(layer.Serialize());
+                    bw.Write(model);
                 }
 
                 return ms.ToArray();

@@ -1,4 +1,4 @@
-﻿namespace Warcraft.Compression.Squish
+﻿namespace Warcraft.NET.Compression.Squish
 {
     public struct SourceBlock
     {

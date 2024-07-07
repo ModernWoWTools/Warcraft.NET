@@ -1,6 +1,6 @@
 ﻿using Warcraft.NET.Extensions;
 using System.IO;
-using SharpDX;
+using System.Numerics;
 using Warcraft.NET.Files.Structures;
 using Warcraft.NET.Files.ADT.Flags;
 

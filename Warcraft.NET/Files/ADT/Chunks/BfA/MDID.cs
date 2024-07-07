@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.BfA
         /// <summary>
         /// Gets or sets a list of file id to the diffuse textures reference in this ADT.
         /// </summary>
-        public List<uint> Textures { get; set; } = new List<uint>();
+        public List<uint> Textures { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MDID"/> class.

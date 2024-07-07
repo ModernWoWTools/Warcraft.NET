@@ -17,12 +17,12 @@ namespace Warcraft.NET.Files.WDL.Chunks
         /// <summary>
         /// Gets the high-resolution vertices.
         /// </summary>
-        public List<short> HighResVertices { set; get; } = new List<short>();
+        public List<short> HighResVertices { set; get; } = new();
 
         /// <summary>
         /// Gets the low-resolution vertices.
         /// </summary>
-        public List<short> LowResVertices { set; get; } = new List<short>();
+        public List<short> LowResVertices { set; get; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MARE"/> class.

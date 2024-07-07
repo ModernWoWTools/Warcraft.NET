@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets <see cref="MODFEntry"/>s.
         /// </summary>
-        public List<MODFEntry> MODFEntrys { get; set; } = new List<MODFEntry>();
+        public List<MODFEntry> MODFEntrys { get; set; } = new();
 
         public MODF()
         {

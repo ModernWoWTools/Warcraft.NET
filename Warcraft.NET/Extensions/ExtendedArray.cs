@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Warcraft.NET.Extensions
 {
@@ -46,5 +47,7 @@ namespace Warcraft.NET.Extensions
                 array[i] = value;
             }
         }
+
+        public static float[] ToArray(this Vector3 vector) => [vector.X, vector.Y, vector.Z];
     }
 }

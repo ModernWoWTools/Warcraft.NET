@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
         /// </summary>
         public const string Signature = "MPLT";
 
-        public List<MPLTEntry> Entrys = new List<MPLTEntry>();
+        public List<MPLTEntry> Entrys = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MPLT"/> class.

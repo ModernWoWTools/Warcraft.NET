@@ -1,7 +1,6 @@
 ﻿using System.IO;
-using Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Flags;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entrys
 {
     /// <summary>
     /// Texture layer entry, representing a ground texture in the chunk.
@@ -16,7 +15,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys
         /// <summary>
         /// Gets or sets flags for the texture. Used for animation data.
         /// </summary>
-        public MCLYFlags Flags { get; set; }
+        public Flags.MCLYFlags Flags { get; set; }
 
         /// <summary>
         /// Gets or sets the offset into MCAL where the alpha map begins.
@@ -39,7 +38,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MCMK.Entrys
                 using (var br = new BinaryReader(ms))
                 {
                     TextureID = br.ReadUInt32();
-                    Flags = (MCLYFlags)br.ReadUInt32();
+                    Flags = (Flags.MCLYFlags)br.ReadUInt32();
                     AlphaMapOffset = br.ReadUInt32();
                     EffectID = br.ReadUInt32();
                 }

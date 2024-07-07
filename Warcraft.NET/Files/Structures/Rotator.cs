@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
+using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using SharpDX;
 
 namespace Warcraft.NET.Files.Structures
 {

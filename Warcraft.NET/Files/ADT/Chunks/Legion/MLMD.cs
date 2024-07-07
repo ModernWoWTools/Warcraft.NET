@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// <summary>
         /// Gets or sets <see cref="MLMDEntry"/>s.
         /// </summary>
-        public List<MLMDEntry> MLMDEntrys { get; set; } = new List<MLMDEntry>();
+        public List<MLMDEntry> MLMDEntrys { get; set; } = new();
 
         public MLMD()
         {

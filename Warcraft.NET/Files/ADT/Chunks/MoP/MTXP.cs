@@ -18,7 +18,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.MoP
         /// <summary>
         /// Gets the texture flags.
         /// </summary>
-        public List<MTXPEntry> TextureFlagEntries { get; } = new List<MTXPEntry>();
+        public List<MTXPEntry> TextureFlagEntries { get; } = new();
 
         public MTXP()
         {
