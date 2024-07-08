@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.M2.Entrys
+namespace Warcraft.NET.Files.M2.Entries
 {
     public class AFIDEntry
     {

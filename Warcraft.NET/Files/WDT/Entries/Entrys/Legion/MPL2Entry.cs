@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
-using Warcraft.NET.Files.WDT.Entrys.WoD;
+using Warcraft.NET.Files.WDT.Entries.WoD;
 
-namespace Warcraft.NET.Files.WDT.Entrys.Legion
+namespace Warcraft.NET.Files.WDT.Entries.Legion
 {
     /// <summary>
     /// An entry struct containing light information

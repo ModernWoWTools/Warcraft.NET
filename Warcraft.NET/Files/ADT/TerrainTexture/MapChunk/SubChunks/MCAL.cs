@@ -60,7 +60,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
             return Data;
         }
 
-        public byte[] GetAlphaMapForLayer(Entrys.MCLYEntry mclyEntry, bool bigAlpha = false)
+        public byte[] GetAlphaMapForLayer(Entries.MCLYEntry mclyEntry, bool bigAlpha = false)
         {
             if (Data != null && mclyEntry.Flags.HasFlag(Flags.MCLYFlags.UseAlpha))
             {

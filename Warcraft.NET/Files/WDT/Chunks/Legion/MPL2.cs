@@ -1,7 +1,7 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Collections.Generic;
-using Warcraft.NET.Files.WDT.Entrys.Legion;
+using Warcraft.NET.Files.WDT.Entries.Legion;
 
 namespace Warcraft.NET.Files.WDT.Chunks.Legion
 {
@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
         /// </summary>
         public const string Signature = "MPL2";
 
-        public List<MPL2Entry> Entrys = new();
+        public List<MPL2Entry> Entries = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MPL2"/> class.
@@ -43,7 +43,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
 
                 for (var i = 0; i < mpltCount; ++i)
                 {
-                    Entrys.Add(new MPL2Entry(br.ReadBytes(MPL2Entry.GetSize())));
+                    Entries.Add(new MPL2Entry(br.ReadBytes(MPL2Entry.GetSize())));
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MPL2Entry mpl2Entry in Entrys)
+                foreach (MPL2Entry mpl2Entry in Entries)
                 {
                     bw.Write(mpl2Entry.Serialize());
                 }

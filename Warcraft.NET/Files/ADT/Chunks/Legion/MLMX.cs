@@ -1,4 +1,4 @@
-﻿using Warcraft.NET.Files.ADT.Entrys.Legion;
+﻿using Warcraft.NET.Files.ADT.Entries.Legion;
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;

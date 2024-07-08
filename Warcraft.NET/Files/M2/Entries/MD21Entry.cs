@@ -2,7 +2,7 @@
 using System.Numerics;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.M2.Entrys
+namespace Warcraft.NET.Files.M2.Entries
 {
     public struct SequenceStruct
     {

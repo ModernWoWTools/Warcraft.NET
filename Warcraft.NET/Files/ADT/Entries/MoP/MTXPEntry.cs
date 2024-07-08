@@ -2,7 +2,7 @@
 using System.Collections;
 using System.IO;
 
-namespace Warcraft.NET.Files.ADT.Entrys.MoP
+namespace Warcraft.NET.Files.ADT.Entries.MoP
 {
     /// <summary>
     /// An entry struct containing information about the WMO.

@@ -1,6 +1,6 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.WDT.Entrys;
+using Warcraft.NET.Files.WDT.Entries;
 
 namespace Warcraft.NET.Files.WDT.Chunks
 {
@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.WDT.Chunks
         /// </summary>
         public const string Signature = "MAIN";
 
-        public MAINEntry[,] Entrys = new MAINEntry[64, 64];
+        public MAINEntry[,] Entries = new MAINEntry[64, 64];
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MAIN"/> class.
@@ -42,7 +42,7 @@ namespace Warcraft.NET.Files.WDT.Chunks
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        Entrys[x, y] = new MAINEntry(br.ReadBytes(MAINEntry.GetSize()));
+                        Entries[x, y] = new MAINEntry(br.ReadBytes(MAINEntry.GetSize()));
                     }
                 }
             }
@@ -70,7 +70,7 @@ namespace Warcraft.NET.Files.WDT.Chunks
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        bw.Write(Entrys[x, y].Serialize());
+                        bw.Write(Entries[x, y].Serialize());
                     }
                 }
 

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.WDT.Entrys.WoD
+namespace Warcraft.NET.Files.WDT.Entries.WoD
 {
     /// <summary>
     /// An entry struct containing occlusion index information

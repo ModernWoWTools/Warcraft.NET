@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entrys;
+using Warcraft.NET.Files.M2.Entries;
 using Warcraft.NET.Files.M2.Flags;
 using Warcraft.NET.Files.Structures;
 

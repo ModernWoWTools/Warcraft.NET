@@ -3,7 +3,7 @@ using Warcraft.NET.Files.TEX.Flags;
 using System.Collections;
 using Warcraft.NET.Files.TEX.Chunks;
 
-namespace Warcraft.NET.Files.TEX.Entrys
+namespace Warcraft.NET.Files.TEX.Entries
 {
     /// <summary>
     /// An entry struct containing information about blob texture.

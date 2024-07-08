@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Warcraft.NET.Files.WDT.Flags;
 
-namespace Warcraft.NET.Files.WDT.Entrys
+namespace Warcraft.NET.Files.WDT.Entries
 {
     /// <summary>
     /// Contains tile information

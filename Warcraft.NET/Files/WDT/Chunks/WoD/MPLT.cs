@@ -1,7 +1,7 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Collections.Generic;
-using Warcraft.NET.Files.WDT.Entrys.WoD;
+using Warcraft.NET.Files.WDT.Entries.WoD;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
         /// </summary>
         public const string Signature = "MPLT";
 
-        public List<MPLTEntry> Entrys = new();
+        public List<MPLTEntry> Entries = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MPLT"/> class.
@@ -43,7 +43,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
 
                 for (var i = 0; i < mpltCount; ++i)
                 {
-                    Entrys.Add(new MPLTEntry(br.ReadBytes(MPLTEntry.GetSize())));
+                    Entries.Add(new MPLTEntry(br.ReadBytes(MPLTEntry.GetSize())));
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.WoD
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MPLTEntry entry in Entrys)
+                foreach (MPLTEntry entry in Entries)
                     bw.Write(entry.Serialize());
 
                 return ms.ToArray();

@@ -2,7 +2,7 @@
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.ADT.Entrys
+namespace Warcraft.NET.Files.ADT.Entries
 {
     /// <summary>
     /// Contains informations about the vertex data in the current MH2O instance subchunk.

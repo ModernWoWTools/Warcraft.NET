@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.ADT.Entrys.Wotlk
+namespace Warcraft.NET.Files.ADT.Entries.Wotlk
 {
     /// <summary>
     /// Pointers to MCNK chunks and their sizes.

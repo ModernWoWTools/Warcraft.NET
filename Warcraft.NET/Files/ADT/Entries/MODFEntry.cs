@@ -4,7 +4,7 @@ using System.Numerics;
 using Warcraft.NET.Files.Structures;
 using Warcraft.NET.Files.ADT.Flags;
 
-namespace Warcraft.NET.Files.ADT.Entrys
+namespace Warcraft.NET.Files.ADT.Entries
 {
     /// <summary>
     /// An entry struct containing information about the WMO.

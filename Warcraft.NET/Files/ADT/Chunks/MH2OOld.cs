@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.ADT.Entrys;
+using Warcraft.NET.Files.ADT.Entries;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {

@@ -3,7 +3,7 @@ using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.WDT.Entrys.WoD
+namespace Warcraft.NET.Files.WDT.Entries.WoD
 {
     /// <summary>
     /// An entry struct containing light information

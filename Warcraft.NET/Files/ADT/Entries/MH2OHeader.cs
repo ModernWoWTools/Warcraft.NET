@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.ADT.Entrys
+namespace Warcraft.NET.Files.ADT.Entries
 {
     /// <summary>
     /// Contains informations for each subchunk on the ADT.

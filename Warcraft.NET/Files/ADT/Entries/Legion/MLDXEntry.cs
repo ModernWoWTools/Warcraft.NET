@@ -2,7 +2,7 @@
 using System.IO;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.ADT.Entrys.Legion
+namespace Warcraft.NET.Files.ADT.Entries.Legion
 {
     /// <summary>
     /// An entry struct containing information about model bounding.

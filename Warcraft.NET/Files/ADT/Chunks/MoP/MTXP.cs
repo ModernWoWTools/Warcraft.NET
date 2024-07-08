@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Warcraft.NET.Files.ADT.Entrys.MoP;
+using Warcraft.NET.Files.ADT.Entries.MoP;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.MoP

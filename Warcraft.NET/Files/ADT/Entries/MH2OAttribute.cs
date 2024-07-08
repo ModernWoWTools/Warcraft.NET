@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace Warcraft.NET.Files.ADT.Entrys
+namespace Warcraft.NET.Files.ADT.Entries
 {
     public class MH2OAttribute
     {

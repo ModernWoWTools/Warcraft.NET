@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entrys
+namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entries
 {
     /// <summary>
     /// Texture layer entry, representing a ground texture in the chunk.

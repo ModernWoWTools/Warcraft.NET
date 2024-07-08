@@ -4,7 +4,7 @@ using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCNK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.Flags;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks;
-using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entrys;
+using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.Entries;
 using Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
