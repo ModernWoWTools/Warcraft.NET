@@ -2,7 +2,7 @@
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.TEX.Chunks;
-using Warcraft.NET.Files.TEX.Entrys;
+using Warcraft.NET.Files.TEX.Entries;
 
 namespace Warcraft.NET.Files.TEX
 {

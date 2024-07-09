@@ -1,4 +1,4 @@
-﻿using Warcraft.NET.Files.ADT.Entrys.Wotlk;
+﻿using Warcraft.NET.Files.ADT.Entries.Wotlk;
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;

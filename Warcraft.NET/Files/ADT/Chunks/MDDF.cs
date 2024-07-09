@@ -1,4 +1,4 @@
-﻿using Warcraft.NET.Files.ADT.Entrys;
+﻿using Warcraft.NET.Files.ADT.Entries;
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets <see cref="MDDFEntry"/>s.
         /// </summary>
-        public List<MDDFEntry> MDDFEntrys { get; set; } = new();
+        public List<MDDFEntry> MDDFEntries { get; set; } = new();
 
         public MDDF()
         {
@@ -49,7 +49,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
 
                 for (var i = 0; i < doodadCount; ++i)
                 {
-                    MDDFEntrys.Add(new MDDFEntry(br.ReadBytes(MDDFEntry.GetSize())));
+                    MDDFEntries.Add(new MDDFEntry(br.ReadBytes(MDDFEntry.GetSize())));
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MDDFEntry doodad in MDDFEntrys)
+                foreach (MDDFEntry doodad in MDDFEntries)
                 {
                     bw.Write(doodad.Serialize());
                 }

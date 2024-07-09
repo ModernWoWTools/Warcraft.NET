@@ -1,4 +1,4 @@
-﻿using Warcraft.NET.Files.ADT.Entrys.Legion;
+﻿using Warcraft.NET.Files.ADT.Entries.Legion;
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// <summary>
         /// Gets or sets <see cref="MLMDEntry"/>s.
         /// </summary>
-        public List<MLMDEntry> MLMDEntrys { get; set; } = new();
+        public List<MLMDEntry> MLMDEntries { get; set; } = new();
 
         public MLMD()
         {
@@ -49,7 +49,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
 
                 for (var i = 0; i < objCount; ++i)
                 {
-                    MLMDEntrys.Add(new MLMDEntry(br.ReadBytes(MLMDEntry.GetSize())));
+                    MLMDEntries.Add(new MLMDEntry(br.ReadBytes(MLMDEntry.GetSize())));
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MLMDEntry obj in MLMDEntrys)
+                foreach (MLMDEntry obj in MLMDEntries)
                 {
                     bw.Write(obj.Serialize());
                 }

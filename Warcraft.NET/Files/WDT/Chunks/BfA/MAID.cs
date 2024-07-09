@@ -1,6 +1,6 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
-using Warcraft.NET.Files.WDT.Entrys.BfA;
+using Warcraft.NET.Files.WDT.Entries.BfA;
 
 namespace Warcraft.NET.Files.WDT.Chunks.BfA
 {
@@ -14,7 +14,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.BfA
         /// </summary>
         public const string Signature = "MAID";
 
-        public MAIDEntry[,] Entrys = new MAIDEntry[64,64];
+        public MAIDEntry[,] Entries = new MAIDEntry[64,64];
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MAID"/> class.
@@ -42,7 +42,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.BfA
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        Entrys[x, y] = new MAIDEntry(br.ReadBytes(MAIDEntry.GetSize()));
+                        Entries[x, y] = new MAIDEntry(br.ReadBytes(MAIDEntry.GetSize()));
                     }
                 }
             }
@@ -70,7 +70,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.BfA
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        bw.Write(Entrys[x, y].Serialize());
+                        bw.Write(Entries[x, y].Serialize());
                     }
                 }
 

@@ -44,15 +44,15 @@ namespace Warcraft.NET.Files
                     .GetProperties()
                     .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
 
-                foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
+                foreach (PropertyInfo chunkProperty in terrainChunkProperties)
                 {
                     try
                     {
-                        ChunkArrayAttribute chunkArray = (ChunkArrayAttribute)chunkPropertie.GetCustomAttribute(typeof(ChunkArrayAttribute), false);
+                        ChunkArrayAttribute chunkArray = (ChunkArrayAttribute)chunkProperty.GetCustomAttribute(typeof(ChunkArrayAttribute), false);
 
-                        if (chunkArray != null && chunkPropertie.PropertyType.IsArray)
+                        if (chunkArray != null && chunkProperty.PropertyType.IsArray)
                         {
-                            var chunks = Array.CreateInstance(chunkPropertie.PropertyType.GetElementType(), chunkArray.Length);
+                            var chunks = Array.CreateInstance(chunkProperty.PropertyType.GetElementType(), chunkArray.Length);
                             ms.Seek(0, SeekOrigin.Begin);
 
                             for (int i = 0; i < chunkArray.Length; i++)
@@ -60,31 +60,31 @@ namespace Warcraft.NET.Files
                                 IIFFChunk chunk = (IIFFChunk)br
                                 .GetType()
                                 .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
-                                .MakeGenericMethod(chunkPropertie.PropertyType.GetElementType())
+                                .MakeGenericMethod(chunkProperty.PropertyType.GetElementType())
                                 .Invoke(null, new object[] { br, false, false, IsReverseSignature() });
 
                                 chunks.SetValue(chunk, i);
                             }
 
-                            chunkPropertie.SetValue(this, chunks);
+                            chunkProperty.SetValue(this, chunks);
                         }
                         else
                         {
                             IIFFChunk chunk = (IIFFChunk)br
                             .GetType()
                             .GetExtensionMethod(Assembly.GetExecutingAssembly(), "ReadIFFChunk")
-                            .MakeGenericMethod(chunkPropertie.PropertyType)
+                            .MakeGenericMethod(chunkProperty.PropertyType)
                             .Invoke(null, new object[] { br, false, true, IsReverseSignature() });
 
-                            chunkPropertie.SetValue(this, chunk);
+                            chunkProperty.SetValue(this, chunk);
                         }
                     }
                     catch (TargetInvocationException ex)
                     {
-                        ChunkOptionalAttribute chuckIsOptional = (ChunkOptionalAttribute)chunkPropertie.GetCustomAttribute(typeof(ChunkOptionalAttribute), false);
+                        ChunkOptionalAttribute chunkIsOptional = (ChunkOptionalAttribute)chunkProperty.GetCustomAttribute(typeof(ChunkOptionalAttribute), false);
 
                         // If chunk is not optional throw the exception
-                        if (ex.InnerException.GetType() != typeof(ChunkSignatureNotFoundException) || chuckIsOptional == null || !chuckIsOptional.Optional)
+                        if (ex.InnerException.GetType() != typeof(ChunkSignatureNotFoundException) || chunkIsOptional == null || !chunkIsOptional.Optional)
                         {
                             throw ex.InnerException;
                         }

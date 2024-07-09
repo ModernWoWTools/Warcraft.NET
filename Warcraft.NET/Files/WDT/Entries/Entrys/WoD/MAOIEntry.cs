@@ -1,35 +1,48 @@
 ﻿using System.IO;
-using Warcraft.NET.Files.WDT.Flags;
 
-namespace Warcraft.NET.Files.WDT.Entrys
+namespace Warcraft.NET.Files.WDT.Entries.WoD
 {
     /// <summary>
-    /// Contains tile information
+    /// An entry struct containing occlusion index information
     /// </summary>
-    public class MAINEntry
+    public class MAOIEntry
     {
         /// <summary>
-        /// Tile Flags
+        /// Map Tile X
         /// </summary>
-        public MAINFlags Flags { get; set; } = 0;
+        public ushort TileX { get; set; }
 
         /// <summary>
-        /// Only set during runtime
+        /// Map Tile X
         /// </summary>
-        public uint AsyncId { get; set; } = 0;
+        public ushort TileY { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MAINEntry"/> class.
+        /// Offset in MAOH chunk
+        /// </summary>
+        public uint Offset { get; set; }
+
+        /// <summary>
+        /// Size always (17*17+16*16)*2
+        /// </summary>
+        public uint Size { get; set; }
+
+        public MAOIEntry() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MAOIEntry"/> class.
         /// </summary>
         /// <param name="data">ExtendedData.</param>
-        public MAINEntry(byte[] data)
+        public MAOIEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             {
                 using (var br = new BinaryReader(ms))
                 {
-                    Flags = (MAINFlags)br.ReadUInt32();
-                    AsyncId = br.ReadUInt32();
+                    TileX = br.ReadUInt16();
+                    TileY = br.ReadUInt16();
+                    Offset = br.ReadUInt32();
+                    Size = br.ReadUInt32();
                 }
             }
         }
@@ -40,7 +53,7 @@ namespace Warcraft.NET.Files.WDT.Entrys
         /// <returns>The size.</returns>
         public static int GetSize()
         {
-            return 8;
+            return 12;
         }
 
         /// <summary>
@@ -52,8 +65,10 @@ namespace Warcraft.NET.Files.WDT.Entrys
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write((uint)Flags);
-                bw.Write(AsyncId);
+                bw.Write(TileX);
+                bw.Write(TileY);
+                bw.Write(Offset);
+                bw.Write(Size);
 
                 return ms.ToArray();
             }

@@ -1,58 +1,75 @@
 ﻿using System.IO;
+using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
-using Warcraft.NET.Files.WDT.Entrys.WoD;
 
-namespace Warcraft.NET.Files.WDT.Entrys.Legion
+namespace Warcraft.NET.Files.WDT.Entries.WoD
 {
     /// <summary>
     /// An entry struct containing light information
     /// </summary>
-    public class MPL2Entry : MPLTEntry
+    public class MPLTEntry
     {
         /// <summary>
-        /// Contains unknow light data
+        /// Light Id
         /// </summary>
-        public float[] UnknowLightData { get; set; } = new float[3] { 0, 0, 0 };
+        public uint Id { get; set; }
 
         /// <summary>
-        /// Index to MLTA chunk entry
+        /// Map Tile X
         /// </summary>
-        public short MLTAIndex { get; set; } = -1;
+        public ushort TileX { get; set; }
 
         /// <summary>
-        /// Index to MLTA chunk entry
+        /// Map Tile X
         /// </summary>
-        public short UnknowIndex { get; set; } = -1;
-
-        public MPL2Entry() { }
+        public ushort TileY { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MPL2Entry"/> class.
+        /// Color
+        /// </summary>
+        public RGBA Color { get; set; }
+
+        /// <summary>
+        /// Position
+        /// </summary>
+        public Vector3 Position { get; set; }
+
+        /// <summary>
+        /// Light radius (light radius must be smaller than blend radius)
+        /// </summary>
+        public float LightRadius { get; set; }
+
+        /// <summary>
+        /// Blend radius
+        /// </summary>
+        public float BlendRadius { get; set; }
+
+        /// <summary>
+        /// Light Intensity (0.5 - 2 is recommended)
+        /// </summary>
+        public float Intensity { get; set; }
+
+        public MPLTEntry() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MPLTEntry"/> class.
         /// </summary>
         /// <param name="data">ExtendedData.</param>
-        public MPL2Entry(byte[] data)
+        public MPLTEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             {
                 using (var br = new BinaryReader(ms))
                 {
                     Id = br.ReadUInt32();
-                    Color = br.ReadBGRA();
+                    TileX = br.ReadUInt16();
+                    TileY = br.ReadUInt16();
+                    Color = br.ReadRGBA();
                     Position = br.ReadVector3(AxisConfiguration.Native);
                     LightRadius = br.ReadSingle();
                     BlendRadius = br.ReadSingle();
                     Intensity = br.ReadSingle();
-                    
-                    // UnknowLightData
-                    UnknowLightData[0] = br.ReadSingle();
-                    UnknowLightData[1] = br.ReadSingle();
-                    UnknowLightData[2] = br.ReadSingle();
-
-                    TileX = br.ReadUInt16();
-                    TileY = br.ReadUInt16();
-                    MLTAIndex = br.ReadInt16();
-                    UnknowIndex = br.ReadInt16();
                 }
             }
         }
@@ -61,36 +78,28 @@ namespace Warcraft.NET.Files.WDT.Entrys.Legion
         /// Gets the size of an entry.
         /// </summary>
         /// <returns>The size.</returns>
-        public new static int GetSize()
+        public static int GetSize()
         {
-            return 52;
+            return 36;
         }
 
         /// <summary>
         /// Gets the size of the data contained in this chunk.
         /// </summary>
         /// <returns>The size.</returns>
-        public new byte[] Serialize(long offset = 0)
+        public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(Id);
-                bw.WriteBGRA(Color);
+                bw.Write(TileX);
+                bw.Write(TileY);
+                bw.WriteRGBA(Color);
                 bw.WriteVector3(Position, AxisConfiguration.Native);
                 bw.Write(LightRadius);
                 bw.Write(BlendRadius);
                 bw.Write(Intensity);
-
-                // UnknowLightData
-                bw.Write(UnknowLightData[0]);
-                bw.Write(UnknowLightData[1]);
-                bw.Write(UnknowLightData[2]);
-
-                bw.Write(TileX);
-                bw.Write(TileY);
-                bw.Write(MLTAIndex);
-                bw.Write(UnknowIndex);
 
                 return ms.ToArray();
             }

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Warcraft.NET.Files.WDT.Entrys.BfA
+namespace Warcraft.NET.Files.WDT.Entries.BfA
 {
     /// <summary>
     /// An entry struct containing adt part file ids.

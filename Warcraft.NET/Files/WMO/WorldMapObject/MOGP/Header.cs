@@ -75,7 +75,7 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.MOGP
         /// <summary>
         /// Gets or sets a set of unknown flags.
         /// </summary>
-        public MOGPTerrainFlags TerrainFlags { get; set; }
+        public MOGPFlags2 TerrainFlags { get; set; }
 
         /// <summary>
         /// Gets or sets an unused value.
@@ -109,7 +109,7 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.MOGP
                     FogIndices = br.ReadBytes(4);
                     LiquidType = br.ReadUInt32();
                     GroupID = br.ReadUInt32();
-                    TerrainFlags = (MOGPTerrainFlags)br.ReadUInt32();
+                    TerrainFlags = (MOGPFlags2)br.ReadUInt32();
                     Unused = br.ReadUInt32();
                 }
             }

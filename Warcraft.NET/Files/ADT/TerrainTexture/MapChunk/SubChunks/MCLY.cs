@@ -17,7 +17,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
         /// <summary>
         /// Gets or sets an array of alpha map layers in this MCNK.
         /// </summary>
-        public List<Entrys.MCLYEntry> Layers { get; set; } = new();
+        public List<Entries.MCLYEntry> Layers { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MCLY"/> class.
@@ -41,11 +41,11 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                long layerCount = ms.Length / Entrys.MCLYEntry.GetSize();
+                long layerCount = ms.Length / Entries.MCLYEntry.GetSize();
 
                 for (var i = 0; i < layerCount; ++i)
                 {
-                    Layers.Add(new Entrys.MCLYEntry(br.ReadBytes(Entrys.MCLYEntry.GetSize())));
+                    Layers.Add(new Entries.MCLYEntry(br.ReadBytes(Entries.MCLYEntry.GetSize())));
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (Entrys.MCLYEntry layer in Layers)
+                foreach (Entries.MCLYEntry layer in Layers)
                 {
                     bw.Write(layer.Serialize());
                 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entrys;
+using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Gets or Sets the Anim FileDataIds
         /// </summary>
-        public List<AFIDEntry> AFIDEntrys { get; set; } = new();
+        public List<AFIDEntry> AFIDEntries { get; set; } = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="AFID"/>
@@ -44,7 +44,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
 
                 for (var i = 0; i < animCount; ++i)
                 {
-                    AFIDEntrys.Add(new AFIDEntry(br.ReadBytes(AFIDEntry.GetSize())));
+                    AFIDEntries.Add(new AFIDEntry(br.ReadBytes(AFIDEntry.GetSize())));
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (AFIDEntry obj in AFIDEntrys)
+                foreach (AFIDEntry obj in AFIDEntries)
                 {
                     bw.Write(obj.Serialize());
                 }

@@ -1,4 +1,4 @@
-﻿using Warcraft.NET.Files.ADT.Entrys;
+﻿using Warcraft.NET.Files.ADT.Entries;
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
         /// <summary>
         /// Gets or sets <see cref="MODFEntry"/>s.
         /// </summary>
-        public List<MODFEntry> MODFEntrys { get; set; } = new();
+        public List<MODFEntry> MODFEntries { get; set; } = new();
 
         public MODF()
         {
@@ -49,7 +49,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
 
                 for (var i = 0; i < objCount; ++i)
                 {
-                    MODFEntrys.Add(new MODFEntry(br.ReadBytes(MODFEntry.GetSize())));
+                    MODFEntries.Add(new MODFEntry(br.ReadBytes(MODFEntry.GetSize())));
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Warcraft.NET.Files.ADT.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MODFEntry obj in MODFEntrys)
+                foreach (MODFEntry obj in MODFEntries)
                 {
                     bw.Write(obj.Serialize());
                 }

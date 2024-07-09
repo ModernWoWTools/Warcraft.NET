@@ -5,7 +5,7 @@ using System.IO;
 namespace Warcraft.NET.Files.WMO.Chunks.BfA
 {
     /// <summary>
-    /// MDDI Chunk - Contains scale values to doodads entrys
+    /// MDDI Chunk - Contains scale values to doodads entries
     /// </summary>
     public class MDDI : IIFFChunk, IBinarySerializable
     {

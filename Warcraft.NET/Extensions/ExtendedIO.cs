@@ -222,7 +222,7 @@ namespace Warcraft.NET.Extensions
                 if (returnDefault)
                     return default(T);
 
-                throw new ChunkSignatureNotFoundException($"Chuck \"{chunk.GetSignature()}\" not found.");
+                throw new ChunkSignatureNotFoundException($"Chunk \"{chunk.GetSignature()}\" not found.");
             }
 
             string chunkSignature = reader.ReadBinarySignature(reverseSignature);

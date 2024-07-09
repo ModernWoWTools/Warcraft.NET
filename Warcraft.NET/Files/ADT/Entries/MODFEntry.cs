@@ -4,12 +4,12 @@ using System.Numerics;
 using Warcraft.NET.Files.Structures;
 using Warcraft.NET.Files.ADT.Flags;
 
-namespace Warcraft.NET.Files.ADT.Entrys.Legion
+namespace Warcraft.NET.Files.ADT.Entries
 {
     /// <summary>
     /// An entry struct containing information about the WMO.
     /// </summary>
-    public class MLMDEntry
+    public class MODFEntry
     {
         /// <summary>
         /// Gets or sets the specifies which WMO to use via the MMID chunk.
@@ -20,7 +20,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         /// Gets or sets the a unique actor ID for the model. Blizzard implements this as game global, but it's only
         /// checked in loaded tiles. When not in use, it's set to -1.
         /// </summary>
-        public uint UniqueID { get; set; }
+        public int UniqueId { get; set; }
 
         /// <summary>
         /// Gets or sets the position of the WMO.
@@ -33,9 +33,14 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         public Rotator Rotation { get; set; }
 
         /// <summary>
+        /// Gets or sets the the bounding box of the model.
+        /// </summary>
+        public BoundingBox BoundingBox { get; set; }
+
+        /// <summary>
         /// Gets or sets the flags of the model.
         /// </summary>
-        public MLMDFlags Flags { get; set; }
+        public MODFFlags Flags { get; set; }
 
         /// <summary>
         /// Gets or sets the doodadset of the model.
@@ -53,28 +58,29 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         public ushort Scale { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MLMDEntry"/> class.
+        /// Initializes a new instance of the <see cref="MODFEntry"/> class.
         /// </summary>
-        public MLMDEntry()
+        public MODFEntry()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MLMDEntry"/> class.
+        /// Initializes a new instance of the <see cref="MODFEntry"/> class.
         /// </summary>
         /// <param name="data">ExtendedData.</param>
-        public MLMDEntry(byte[] data)
+        public MODFEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
                 NameId = br.ReadUInt32();
-                UniqueID = br.ReadUInt32();
+                UniqueId = br.ReadInt32();
 
                 Position = br.ReadVector3(AxisConfiguration.Native);
                 Rotation = br.ReadRotator();
+                BoundingBox = br.ReadBoundingBox();
 
-                Flags = (MLMDFlags)br.ReadUInt16();
+                Flags = (MODFFlags)br.ReadUInt16();
                 DoodadSet = br.ReadUInt16();
                 NameSet = br.ReadUInt16();
                 Scale = br.ReadUInt16();
@@ -87,7 +93,7 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
         /// <returns>The size.</returns>
         public static int GetSize()
         {
-            return 40;
+            return 64;
         }
 
         /// <inheritdoc/>
@@ -98,10 +104,11 @@ namespace Warcraft.NET.Files.ADT.Entrys.Legion
                 using (var bw = new BinaryWriter(ms))
                 {
                     bw.Write(NameId);
-                    bw.Write(UniqueID);
+                    bw.Write(UniqueId);
 
                     bw.WriteVector3(Position, AxisConfiguration.Native);
                     bw.WriteRotator(Rotation);
+                    bw.WriteBoundingBox(BoundingBox);
 
                     bw.Write((ushort)Flags);
                     bw.Write(DoodadSet);
