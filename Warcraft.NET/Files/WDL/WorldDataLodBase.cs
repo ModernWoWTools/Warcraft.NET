@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.WDL.Chunks;
 using Warcraft.NET.Types;
 
+#nullable enable
 namespace Warcraft.NET.Files.WDL
 {
     public abstract class WorldDataLodBase : ChunkedFile
@@ -92,3 +92,4 @@ namespace Warcraft.NET.Files.WDL
         public abstract byte[] Serialize();
     }
 }
+#nullable disable

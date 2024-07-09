@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Warcraft.NET.Compression.Squish;
 using Warcraft.NET.Extensions;
 
+#nullable enable
 namespace Warcraft.NET.Files.BLP
 {
     /// <summary>
@@ -1173,3 +1173,4 @@ namespace Warcraft.NET.Files.BLP
         }
     }
 }
+#nullable disable

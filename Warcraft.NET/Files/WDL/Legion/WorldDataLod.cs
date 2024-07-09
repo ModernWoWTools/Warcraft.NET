@@ -4,6 +4,7 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.WDL.Chunks;
 
+#nullable enable
 namespace Warcraft.NET.Files.WDL.Legion
 {
     public class WorldDataLod : WorldDataLodBase
@@ -188,3 +189,4 @@ namespace Warcraft.NET.Files.WDL.Legion
         }
     }
 }
+#nullable disable
