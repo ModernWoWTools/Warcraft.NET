@@ -645,15 +645,25 @@ namespace Warcraft.NET.Extensions
 
             try
             {
-                var foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
-                while (foundChuckSignature != chunkSignature)
+                var foundChunkSignature = reader.ReadBinarySignature(reverseSignature);
+                while (foundChunkSignature != chunkSignature)
                 {
                     var size = reader.ReadUInt32();
+
+                    // Return if we are about to seek outside of range
+                    if ((reader.BaseStream.Position + size) > reader.BaseStream.Length)
+                        return false;
+
                     reader.BaseStream.Position += size;
-                    foundChuckSignature = reader.ReadBinarySignature(reverseSignature);
+
+                    // Return if we're done reading
+                    if (reader.BaseStream.Position == reader.BaseStream.Length)
+                        return false;
+
+                    foundChunkSignature = reader.ReadBinarySignature(reverseSignature);
                 }
 
-                if (foundChuckSignature == chunkSignature)
+                if (foundChunkSignature == chunkSignature)
                 {
                     if (!skipSignature)
                         reader.BaseStream.Position -= sizeof(uint);
