@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +8,8 @@ namespace Warcraft.NET.Extensions
 {
     public static class ReflectionExtensions
     {
+        private static ConcurrentDictionary<string, MethodInfo> extensionMethodCache = new();
+
         /// <summary>
         /// Get all extension methods by Assembly
         /// </summary>
@@ -27,7 +30,19 @@ namespace Warcraft.NET.Extensions
 
         public static MethodInfo GetExtensionMethod(this Type type, Assembly extensionsAssembly, string name)
         {
-            return type.GetExtensionMethods(extensionsAssembly).FirstOrDefault(m => m.Name == name);
+            // This is a bit dirty, but it allows us to cache the MethodInfo for future use as reflecting is very expensive.
+            var uniqueKey = type.ToString() + "-" + extensionsAssembly.ToString() + "-" + name;
+
+            if (extensionMethodCache.TryGetValue(uniqueKey, out var cachedMethodInfo))
+            {
+                return cachedMethodInfo;
+            }
+            else
+            {
+                var methodInfo = type.GetExtensionMethods(extensionsAssembly).FirstOrDefault(m => m.Name == name);
+                extensionMethodCache.TryAdd(uniqueKey, methodInfo);
+                return methodInfo;
+            }
         }
 
         /// <summary>
