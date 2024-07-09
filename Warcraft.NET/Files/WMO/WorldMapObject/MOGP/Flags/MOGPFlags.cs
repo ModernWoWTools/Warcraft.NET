@@ -3,12 +3,52 @@
 namespace Warcraft.NET.Files.WMO.WorldMapObject.MOGP.Flags
 {
     [Flags]
-    public enum MOGPTerrainFlags : uint
+    public enum MOGPFlags2 : uint
     {
         /// <summary>
         /// Has portal palnes to cut terrain (available since MoP)
         /// </summary>
         CanCutTerrain = 0x1,
+
+        /// <summary>
+        /// An unused value.
+        /// </summary>
+        Unused_0x2 = 0x2,
+
+        /// <summary>
+        /// An unused value.
+        /// </summary>
+        Unused_0x4 = 0x4,
+
+        /// <summary>
+        /// An unused value.
+        /// </summary>
+        Unused_0x8 = 0x8,
+
+        /// <summary>
+        /// An unused value.
+        /// </summary>
+        Unused_0x10 = 0x10,
+
+        /// <summary>
+        /// An unused value.
+        /// </summary>
+        Unused_0x20 = 0x20,
+
+        /// <summary>
+        /// If this group is a split group parent. Added in Shadowlands.
+        /// </summary>
+        IsSplitGroupParent = 0x40,
+
+        /// <summary>
+        /// If this group is a split group child. Added in Shadowlands.
+        /// </summary>
+        IsSplitGroupChild = 0x80,
+
+        /// <summary>
+        /// Attachment mesh. Added in Shadowlands.
+        /// </summary>
+        AttachmentMesh = 0x100
     }
 
     /// <summary>
