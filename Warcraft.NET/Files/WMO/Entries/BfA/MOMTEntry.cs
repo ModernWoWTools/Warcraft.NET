@@ -61,17 +61,17 @@ namespace Warcraft.NET.Files.WMO.Entries.BfA
         public uint Texture3FileId{ get; set; }
 
         /// <summary>
-        /// Gets or sets the diffuse color of the third texture.
+        /// Gets or sets the diffuse color of the third texture. For shader 23, this can be a texture file id.
         /// </summary>
         public RGBA Texture3DiffuseColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the third texture unknown(?) flags.
+        /// Gets or sets the third texture unknown(?) flags. For shader 23, this can be a texture file id.
         /// </summary>
         public uint Texture3Flags { get; set; }
 
         /// <summary>
-        /// This data is explicitly nulled upon loading. Cotains textures or similar stuff.
+        /// This data is explicitly nulled upon loading. For shader 23, this can contain textures file ids.
         /// </summary>
         public uint[] RunTimeData { get; set; } = new uint[4];
 
