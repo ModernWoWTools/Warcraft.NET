@@ -1,4 +1,5 @@
 # Warcraft.NET
+<a href="https://www.nuget.org/packages/Warcraft.NET"><img alt="NuGet Version" src="https://img.shields.io/nuget/v/Warcraft.NET?style=for-the-badge&logo=nuget&label=Warcraft.NET"></a> 
 
 ## About
 Warcraft.NET is a open source C# library for World of Warcraft binary file formats. The goal of the library is to support following game versions:
