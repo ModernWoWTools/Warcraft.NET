@@ -21,6 +21,13 @@ namespace Warcraft.NET.Files.WDT.Entries
         /// <summary>
         /// Initializes a new instance of the <see cref="MAINEntry"/> class.
         /// </summary>
+        public MAINEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MAINEntry"/> class.
+        /// </summary>
         /// <param name="data">ExtendedData.</param>
         public MAINEntry(byte[] data)
         {
