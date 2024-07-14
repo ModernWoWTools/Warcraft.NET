@@ -18,5 +18,5 @@ The use of the GPLv3 license and not the LGPLv3 license is a conscious choice by
 
 Special thanks to:
 - [wowdev.wiki](https://wowdev.wiki/)
-- [libwarcarft](https://github.com/WowDevTools/libwarcraft)
+- [libwarcraft](https://github.com/WowDevTools/libwarcraft)
  
