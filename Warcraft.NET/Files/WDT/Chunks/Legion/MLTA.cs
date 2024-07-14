@@ -1,34 +1,36 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WDT.Entries.Legion;
 
 namespace Warcraft.NET.Files.WDT.Chunks.Legion
 {
     /// <summary>
-    /// MPL2 Chunk - Contains Legion point light information
+    /// MLTA Chunk - Contains light animations
     /// </summary>
-    public class MPL2 : IIFFChunk, IBinarySerializable
+    public class MLTA : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "MPL2";
+        public const string Signature = "MLTA";
 
-        public List<MPL2Entry> Entries = [];
+        public List<MLTAEntry> Entries = new();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MPL2"/> class.
+        /// Initializes a new instance of the <see cref="MLTA"/> class.
         /// </summary>
-        public MPL2()
+        public MLTA()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MPL2"/> class.
+        /// Initializes a new instance of the <see cref="MLTA"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MPL2(byte[] inData)
+        public MLTA(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -39,11 +41,11 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var mpl2Count = br.BaseStream.Length / MPL2Entry.GetSize();
+                var mltaCount = br.BaseStream.Length / MLTAEntry.GetSize();
 
-                for (var i = 0; i < mpl2Count; ++i)
+                for (var i = 0; i < mltaCount; ++i)
                 {
-                    Entries.Add(new MPL2Entry(br.ReadBytes(MPL2Entry.GetSize())));
+                    Entries.Add(new MLTAEntry(br.ReadBytes(MLTAEntry.GetSize())));
                 }
             }
         }
@@ -66,9 +68,9 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (MPL2Entry mpl2Entry in Entries)
+                foreach (MLTAEntry mltaEntry in Entries)
                 {
-                    bw.Write(mpl2Entry.Serialize());
+                    bw.Write(mltaEntry.Serialize());
                 }
 
                 return ms.ToArray();

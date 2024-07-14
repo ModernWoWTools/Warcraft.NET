@@ -1,15 +1,16 @@
 ﻿using Warcraft.NET.Attribute;
-using Warcraft.NET.Files.WDT.Chunks.WoD;
+using Warcraft.NET.Files.WDT.Chunks.SL;
+using WorldLightTableLegion = Warcraft.NET.Files.WDT.Light.Legion.WorldLightTable;
 
-namespace Warcraft.NET.Files.WDT.Light.WoD
+namespace Warcraft.NET.Files.WDT.Light.SL
 {
-    public class WorldLightTable : WorldLightTableBase
+    public class WorldLightTable : WorldLightTableLegion
     {
         /// <summary>
-        /// WoD Point Light Table
+        /// SL Point Light Table
         /// </summary>
-        [ChunkOrder(2), ChunkOptional]
-        public MPLT PointLights { get; set; }
+        [ChunkOrder(3), ChunkOptional]
+        public MPL3 PointLights3 { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldLightTable"/> class.
