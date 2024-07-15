@@ -23,7 +23,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// Initializes a new instance of the <see cref="MLDD"/> class.
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public MLDD(byte[] inData): base(inData)
+        public MLDD(byte[] inData) : base(inData)
         {
         }
 

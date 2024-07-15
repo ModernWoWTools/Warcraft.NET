@@ -1,5 +1,5 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System.IO;
+﻿using System.IO;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
 {
