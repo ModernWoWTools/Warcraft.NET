@@ -6,7 +6,7 @@ using Warcraft.NET.Files.WDT.Entries.WoD;
 namespace Warcraft.NET.Files.WDT.Entries.Legion
 {
     /// <summary>
-    /// An entry struct containing light information
+    /// An entry struct containing point light information
     /// </summary>
     public class MPL2Entry : MPLTEntry
     {

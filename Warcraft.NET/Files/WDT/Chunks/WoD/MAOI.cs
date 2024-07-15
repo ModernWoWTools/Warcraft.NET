@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
     /// <summary>
-    /// MAOH Chunk - Contains occlusion heighmap
+    /// MAOH Chunk - Contains occlusion heightmap
     /// </summary>
     public class MAOH : IIFFChunk, IBinarySerializable
     {

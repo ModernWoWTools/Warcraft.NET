@@ -1,35 +1,43 @@
 ﻿using System.IO;
-using Warcraft.NET.Files.WDT.Flags;
 
-namespace Warcraft.NET.Files.WDT.Entries
+namespace Warcraft.NET.Files.WDT.Entries.Legion
 {
     /// <summary>
-    /// Contains tile information
+    /// An entry struct containing light animations
     /// </summary>
-    public class MAINEntry
+    public class MLTAEntry
     {
         /// <summary>
-        /// Tile Flags
+        /// Flicker intensity
         /// </summary>
-        public MAINFlags Flags { get; set; } = 0;
+        public float FlickerIntensity { get; set; }
 
         /// <summary>
-        /// Only set during runtime
+        /// Flicker intensity
         /// </summary>
-        public uint AsyncId { get; set; } = 0;
+        public float FlickerSpeed { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MAINEntry"/> class.
+        /// Flicker mode
+        /// 0 = off, 1 = sine curve, 2 = noise curve, 3 = noise step curve
+        /// </summary>
+        public int FlickerMode { get; set; }
+
+        public MLTAEntry() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MLTAEntry"/> class.
         /// </summary>
         /// <param name="data">ExtendedData.</param>
-        public MAINEntry(byte[] data)
+        public MLTAEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             {
                 using (var br = new BinaryReader(ms))
                 {
-                    Flags = (MAINFlags)br.ReadUInt32();
-                    AsyncId = br.ReadUInt32();
+                    FlickerIntensity = br.ReadSingle();
+                    FlickerSpeed = br.ReadSingle();
+                    FlickerMode = br.ReadInt32();
                 }
             }
         }
@@ -40,7 +48,7 @@ namespace Warcraft.NET.Files.WDT.Entries
         /// <returns>The size.</returns>
         public static int GetSize()
         {
-            return 8;
+            return 12;
         }
 
         /// <summary>
@@ -52,8 +60,9 @@ namespace Warcraft.NET.Files.WDT.Entries
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write((uint)Flags);
-                bw.Write(AsyncId);
+                bw.Write(FlickerIntensity);
+                bw.Write(FlickerSpeed);
+                bw.Write(FlickerMode);
 
                 return ms.ToArray();
             }

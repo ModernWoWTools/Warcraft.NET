@@ -12,6 +12,13 @@ namespace Warcraft.NET.Files.WDT.Root.BfA
         public MAID Ids { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="WorldDataTableBase"/> class.
+        /// </summary>
+        public WorldDataTable() : base()
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WorldDataTable"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>

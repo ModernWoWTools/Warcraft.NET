@@ -235,7 +235,8 @@ namespace Warcraft.NET.Files.BLP
         /// </summary>
         /// <param name="image">Image.</param>
         /// <param name="pixelFormat">Only DXT pixel format!</param>
-        public BLP(Image<Rgba32> image, BLPPixelFormat pixelFormat)
+        /// <param name="makeMipMaps">If set to true, make mipmaps.</param>
+        public BLP(Image<Rgba32> image, BLPPixelFormat pixelFormat, bool makeMipMaps = true)
         {
             if (pixelFormat != BLPPixelFormat.DXT1 && pixelFormat != BLPPixelFormat.DXT3 && pixelFormat != BLPPixelFormat.DXT5)
                 throw new ArgumentException("This constructor only support DXT pixel format!");
@@ -256,7 +257,7 @@ namespace Warcraft.NET.Files.BLP
             Header.Resolution = new Resolution((uint)image.Width, (uint)image.Height);
 
             // It's now time to compress the image
-            _rawMipMaps = CompressImage(image);
+            _rawMipMaps = CompressImage(image, makeMipMaps);
 
             // Calculate the offsets and sizes
             var mipOffset = (uint)(Header.GetSize() + (_palette.Count * 4));
@@ -534,7 +535,8 @@ namespace Warcraft.NET.Files.BLP
         /// </summary>
         /// <returns>The compressed image data.</returns>
         /// <param name="inImage">The image to be compressed.</param>
-        private List<byte[]> CompressImage(Image<Rgba32> inImage)
+        /// <param name="makeMipMaps">If set to true, make mipmaps.</param>
+        private List<byte[]> CompressImage(Image<Rgba32> inImage, bool makeMipMaps = true)
         {
             var mipMaps = new List<byte[]>();
 
@@ -548,10 +550,13 @@ namespace Warcraft.NET.Files.BLP
             // Add the original image as the first mipmap
             mipMaps.Add(CompressImage(inImage, 0));
 
-            // Then, compress the image N amount of times into mipmaps
-            for (uint i = 1; i < GetNumReasonableMipMapLevels(); ++i)
+            // Then, if needed, compress the image N amount of times into mipmaps
+            if (makeMipMaps)
             {
-                mipMaps.Add(CompressImage(inImage, i));
+                for (uint i = 1; i < GetNumReasonableMipMapLevels(); ++i)
+                {
+                    mipMaps.Add(CompressImage(inImage, i));
+                }
             }
 
             return mipMaps;

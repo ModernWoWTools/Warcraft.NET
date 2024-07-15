@@ -40,6 +40,13 @@ namespace Warcraft.NET.Files.WDT.Root
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldDataTableBase"/> class.
         /// </summary>
+        public WorldDataTableBase() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldDataTableBase"/> class.
+        /// </summary>
         /// <param name="inData">The binary data.</param>
         public WorldDataTableBase(byte[] inData) : base(inData)
         {
