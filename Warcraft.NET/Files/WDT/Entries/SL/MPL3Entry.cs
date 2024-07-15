@@ -110,7 +110,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// Gets the size of an entry.
         /// </summary>
         /// <returns>The size.</returns>
-        public new static int GetSize()
+        public static int GetSize()
         {
             return 56;
         }
@@ -119,7 +119,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// Gets the size of the data contained in this chunk.
         /// </summary>
         /// <returns>The size.</returns>
-        public new byte[] Serialize(long offset = 0)
+        public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
