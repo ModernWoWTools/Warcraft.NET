@@ -7,7 +7,7 @@ namespace Warcraft.NET.Attribute
     public sealed class ChunkOrderAttribute : System.Attribute
     {
         private readonly int order_;
-        public ChunkOrderAttribute([CallerLineNumber]int order = 0)
+        public ChunkOrderAttribute([CallerLineNumber] int order = 0)
         {
             order_ = order;
         }
@@ -31,7 +31,7 @@ namespace Warcraft.NET.Attribute
     public sealed class ChunkArrayAttribute : System.Attribute
     {
         private readonly int length;
-        public ChunkArrayAttribute([CallerLineNumber]int length = 0)
+        public ChunkArrayAttribute([CallerLineNumber] int length = 0)
         {
             this.length = length;
         }
@@ -42,7 +42,6 @@ namespace Warcraft.NET.Attribute
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     public sealed class ChunkIgnoreAttribute : System.Attribute
     {
-        private readonly bool optional_;
         public ChunkIgnoreAttribute() { }
     }
 }
