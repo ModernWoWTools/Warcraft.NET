@@ -1,11 +1,11 @@
-﻿using Warcraft.NET.Attribute;
-using Warcraft.NET.Exceptions;
-using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Interfaces;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System;
+using Warcraft.NET.Attribute;
+using Warcraft.NET.Exceptions;
+using Warcraft.NET.Extensions;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files
 {
@@ -40,11 +40,12 @@ namespace Warcraft.NET.Files
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var terrainChunkProperties = GetType()
+                var chunkProperties = GetType()
                     .GetProperties()
+                    .Where(p => (ChunkIgnoreAttribute)p.GetCustomAttribute(typeof(ChunkIgnoreAttribute), false) == null)
                     .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
 
-                foreach (PropertyInfo chunkProperty in terrainChunkProperties)
+                foreach (PropertyInfo chunkProperty in chunkProperties)
                 {
                     try
                     {
@@ -113,6 +114,7 @@ namespace Warcraft.NET.Files
             {
                 var terrainChunkProperties = GetType()
                     .GetProperties()
+                    .Where(p => (ChunkIgnoreAttribute)p.GetCustomAttribute(typeof(ChunkIgnoreAttribute), false) == null)
                     .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
 
                 foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
@@ -156,7 +158,7 @@ namespace Warcraft.NET.Files
                 return ms.ToArray();
             }
         }
-    
+
         public virtual bool IsReverseSignature()
         {
             return true;

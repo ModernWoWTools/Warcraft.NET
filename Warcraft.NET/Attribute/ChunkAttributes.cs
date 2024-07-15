@@ -27,7 +27,6 @@ namespace Warcraft.NET.Attribute
         public bool Optional { get { return optional_; } }
     }
 
-
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     public sealed class ChunkArrayAttribute : System.Attribute
     {
@@ -38,5 +37,12 @@ namespace Warcraft.NET.Attribute
         }
 
         public int Length { get { return length; } }
+    }
+
+    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    public sealed class ChunkIgnoreAttribute : System.Attribute
+    {
+        private readonly bool optional_;
+        public ChunkIgnoreAttribute() { }
     }
 }

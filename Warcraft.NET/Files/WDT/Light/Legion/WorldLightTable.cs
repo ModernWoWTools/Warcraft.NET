@@ -1,4 +1,5 @@
-﻿using Warcraft.NET.Attribute;
+﻿using System;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.WDT.Chunks.Legion;
 using WorldLightTableWoD = Warcraft.NET.Files.WDT.Light.WoD.WorldLightTable;
 
@@ -11,6 +12,12 @@ namespace Warcraft.NET.Files.WDT.Light.Legion
         /// </summary>
         [ChunkOrder(2), ChunkOptional]
         public MPL2 PointLights2 { get; set; }
+
+        /// <summary>
+        /// (Obsolete) Legion Point Light Table
+        /// </summary>
+        [ChunkIgnore, Obsolete("Use PointLights2 instead.")]
+        public MPL2 LightTable2 { get { return PointLights2; } set { PointLights2 = value; } }
 
         /// <summary>
         /// Texture FileDataIDs
