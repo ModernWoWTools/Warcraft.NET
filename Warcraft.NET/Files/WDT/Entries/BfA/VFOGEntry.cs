@@ -77,10 +77,10 @@ namespace Warcraft.NET.Files.WDT.Entries.BfA
             {
                 using (var br = new BinaryReader(ms))
                 {
-                    Color = br.ReadVector3(Structures.AxisConfiguration.Native);
+                    Color = br.ReadVector3();
                     RadiusRelatedIntensity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()];
                     Unknown0 = [br.ReadByte(), br.ReadByte(), br.ReadByte(), br.ReadByte()];
-                    Position = br.ReadVector3(Structures.AxisConfiguration.Native);
+                    Position = br.ReadVector3();
                     Unknown1 = br.ReadSingle();
                     Rotation = br.ReadQuaternion();
                     StartRadius = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()];
@@ -128,6 +128,7 @@ namespace Warcraft.NET.Files.WDT.Entries.BfA
                 bw.Write(FogLevels[1]);
                 bw.Write(FogLevels[2]);
                 bw.Write(FogLevels[3]);
+                bw.Write(FogLevels[4]);
                 bw.Write(ModelFileDataID);
                 bw.Write(Unknown2);
                 bw.Write(ID);

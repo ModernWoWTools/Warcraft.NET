@@ -72,7 +72,7 @@ namespace Warcraft.NET.Files.WDT.Chunks
             using (var bw = new BinaryWriter(ms))
             {
                 foreach (VFOGEntry entry in Entries)
-                        bw.Write(entry.Serialize());
+                    bw.Write(entry.Serialize());
 
                 return ms.ToArray();
             }

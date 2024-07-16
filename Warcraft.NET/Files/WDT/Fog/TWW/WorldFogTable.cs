@@ -38,13 +38,13 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
             using var br = new BinaryReader(ms);
 
             Version = br.ReadIFFChunk<MVER>(false, false);
-            VolumeFogs = br.ReadIFFChunk<VFOG>();
+            VolumeFogs = br.ReadIFFChunk<VFOG>(false, false);
 
             if(VolumeFogs != null)
             {
                 for (var i = 0; i < VolumeFogs.Entries.Count; i++)
                 {
-                    VFEXList.Add(br.ReadIFFChunk<VFEX>());
+                    VFEXList.Add(br.ReadIFFChunk<VFEX>(false, false));
                 }
             }
         }
@@ -56,10 +56,13 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
             using (var bw = new BinaryWriter(ms))
             {
                 bw.WriteIFFChunk(Version);
-                bw.WriteIFFChunk(VolumeFogs);
-                foreach (var vfex in VFEXList)
+                if(VolumeFogs != null)
                 {
-                    bw.WriteIFFChunk(vfex);
+                    bw.WriteIFFChunk(VolumeFogs);
+                    foreach (var vfex in VFEXList)
+                    {
+                        bw.WriteIFFChunk(vfex);
+                    }
                 }
             }
 
