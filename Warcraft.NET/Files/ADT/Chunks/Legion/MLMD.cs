@@ -1,7 +1,7 @@
-﻿using Warcraft.NET.Files.ADT.Entries.Legion;
-using Warcraft.NET.Files.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Files.ADT.Entries.Legion;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
 {
