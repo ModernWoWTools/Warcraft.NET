@@ -26,7 +26,7 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
         /// Initializes a new instance of the <see cref="WorldDataTable"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public WorldFogTable(byte[] inData) : base(inData)
+        public WorldFogTable(byte[] inData)
         {
             LoadBinaryData(inData);
         }
@@ -39,9 +39,13 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
 
             Version = br.ReadIFFChunk<MVER>(false, false);
             VolumeFogs = br.ReadIFFChunk<VFOG>();
-            for (var i = 0; i < VolumeFogs.Entries.Count; i++)
+
+            if(VolumeFogs != null)
             {
-                VFEXList.Add(br.ReadIFFChunk<VFEX>());
+                for (var i = 0; i < VolumeFogs.Entries.Count; i++)
+                {
+                    VFEXList.Add(br.ReadIFFChunk<VFEX>());
+                }
             }
         }
 
