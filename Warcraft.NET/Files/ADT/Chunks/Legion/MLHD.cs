@@ -49,7 +49,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
             using (var br = new BinaryReader(ms))
             {
                 Unknown0 = br.ReadUInt32();
-                UnkBoundingBox = new BoundingBox(br.ReadVector3(AxisConfiguration.Native), br.ReadVector3(AxisConfiguration.Native));
+                UnkBoundingBox = br.ReadBoundingBox();
             }
         }
 
@@ -72,8 +72,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(Unknown0);
-                bw.WriteVector3(UnkBoundingBox.Minimum);
-                bw.WriteVector3(UnkBoundingBox.Maximum);
+                bw.WriteBoundingBox(UnkBoundingBox);
                 return ms.ToArray();
             }
         }

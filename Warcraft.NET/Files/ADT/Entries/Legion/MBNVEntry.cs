@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Numerics;
 using Warcraft.NET.Extensions;
+using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.ADT.Entries.Legion
 {
@@ -27,7 +28,7 @@ namespace Warcraft.NET.Files.ADT.Entries.Legion
         /// <summary>
         /// Color.
         /// </summary>
-        public uint[] Color { get; set; }
+        public RGBA[] Color { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MBNVEntry"/> class.
@@ -48,10 +49,10 @@ namespace Warcraft.NET.Files.ADT.Entries.Legion
                 Position = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
                 Normal = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
                 TextureCoordinates = new Vector2(br.ReadSingle(), br.ReadSingle());
-                Color = new uint[3];
+                Color = new RGBA[3];
                 for (var i = 0; i < 3; i++)
                 {
-                    Color[i] = br.ReadUInt32();
+                    Color[i] = br.ReadRGBA();
                 }
             }
         }
@@ -81,7 +82,7 @@ namespace Warcraft.NET.Files.ADT.Entries.Legion
 
                 for (var i = 0; i < 3; i++)
                 {
-                    bw.Write(Color[i]);
+                    bw.WriteRGBA(Color[i]);
                 }
 
                 return ms.ToArray();

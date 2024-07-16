@@ -12,37 +12,37 @@ namespace Warcraft.NET.Files.ADT.TerrainLOD.Legion
     public class TerrainLOD : TerrainLODBase
     {
         /// <summary>
-        /// 
+        /// LOD header.
         /// </summary>
         [ChunkOrder(2)]
         public MLHD Header { get; set; }
 
         /// <summary>
-        /// 
+        /// LOD heightmap.
         /// </summary>
         [ChunkOrder(3)]
         public MLVH Heightmap { get; set; }
 
         /// <summary>
-        /// 
+        /// LOD levels.
         /// </summary>
         [ChunkOrder(4)]
         public MLLL Levels { get; set; }
 
         /// <summary>
-        /// 
+        /// LOD quad-tree.
         /// </summary>
         [ChunkOrder(5)]
         public MLND QuadTree { get; set; }
 
         /// <summary>
-        /// 
+        /// LOD Vertex Indices.
         /// </summary>
         [ChunkOrder(6)]
         public MLVI VertexIndices { get; set; }
 
         /// <summary>
-        /// 
+        /// LOD Skirt Indices.
         /// </summary>
         [ChunkOrder(7)]
         public MLSI SkirtIndices { get; set; }
@@ -85,17 +85,17 @@ namespace Warcraft.NET.Files.ADT.TerrainLOD.Legion
         public MLLD LiquidData { get; set; }
 
         /// <summary>
-        /// 
+        /// Unknown name. Wiki says "MLLN introduces a new liquid".
         /// </summary>
         public SynchronizedList<MLLN?> LiquidN { get; set; } = new SynchronizedList<MLLN?>(new List<MLLN?>(4096));
 
         /// <summary>
-        /// 
+        /// Liquid indices.
         /// </summary>
         public SynchronizedList<MLLI?> LiquidIndices { get; set; } = new SynchronizedList<MLLI?>(new List<MLLI?>(4096));
 
         /// <summary>
-        /// 
+        /// Liquid veritices.
         /// </summary>
         public SynchronizedList<MLLV?> LiquidVertices { get; set; } = new SynchronizedList<MLLV?>(new List<MLLV?>(4096));
 
@@ -111,6 +111,12 @@ namespace Warcraft.NET.Files.ADT.TerrainLOD.Legion
         /// </summary>
         /// <param name="inData">The binary data.</param>
         public TerrainLOD(byte[] inData)
+        {
+            LoadBinaryData(inData);
+        }
+
+        /// <inheritdoc/>
+        public void LoadBinaryData(byte[] inData)
         {
             using var ms = new MemoryStream(inData);
             using var br = new BinaryReader(ms);

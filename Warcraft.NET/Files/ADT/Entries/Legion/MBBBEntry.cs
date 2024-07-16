@@ -36,7 +36,7 @@ namespace Warcraft.NET.Files.ADT.Entries.Legion
             using (var br = new BinaryReader(ms))
             {
                 MapObjectID = br.ReadUInt32();
-                BoundingBox = new BoundingBox(br.ReadVector3(AxisConfiguration.Native), br.ReadVector3(AxisConfiguration.Native));
+                BoundingBox = br.ReadBoundingBox();
             }
         }
 
@@ -59,8 +59,7 @@ namespace Warcraft.NET.Files.ADT.Entries.Legion
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(MapObjectID);
-                bw.WriteVector3(BoundingBox.Minimum);
-                bw.WriteVector3(BoundingBox.Maximum);
+                bw.WriteBoundingBox(BoundingBox);
                 return ms.ToArray();
             }
         }

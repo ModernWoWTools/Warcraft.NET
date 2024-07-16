@@ -47,7 +47,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
                 LiquidVertices = new Vector3[vertexCount];
                 for (var i = 0; i < vertexCount; ++i)
                 {
-                    LiquidVertices[i] = br.ReadVector3(Structures.AxisConfiguration.Native);
+                    LiquidVertices[i] = br.ReadVector3();
                 }
             }
         }
@@ -72,9 +72,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
             {
                 foreach (var vertex in LiquidVertices)
                 {
-                    bw.Write(vertex.X);
-                    bw.Write(vertex.Y);
-                    bw.Write(vertex.Z);
+                    bw.WriteVector3(vertex);
                 }
                 return ms.ToArray();
             }

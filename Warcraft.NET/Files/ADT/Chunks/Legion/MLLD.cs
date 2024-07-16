@@ -38,7 +38,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// Data of the second (possibly compressed) alpha chunk.
         /// Note: there might be 4-7 extra bytes at the end due to not full understand of this chunk.
         /// </summary>
-        public byte[] AlphaChunkDataMaybe { get; set; }
+        public byte[] AlphaChunkData { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MLLD"/> class.
@@ -66,7 +66,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
                 DepthChunkSize = br.ReadUInt16();
                 ApproxAlphaChunkSize = br.ReadUInt16();
                 DepthChunkData = br.ReadBytes(DepthChunkSize);
-                AlphaChunkDataMaybe = br.ReadBytes((int)(ms.Length - ms.Position));
+                AlphaChunkData = br.ReadBytes((int)(ms.Length - ms.Position));
             }
         }
 
@@ -92,7 +92,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
                 bw.Write(DepthChunkSize);
                 bw.Write(ApproxAlphaChunkSize);
                 bw.Write(DepthChunkData);
-                bw.Write(AlphaChunkDataMaybe);
+                bw.Write(AlphaChunkData);
                 return ms.ToArray();
             }
         }
