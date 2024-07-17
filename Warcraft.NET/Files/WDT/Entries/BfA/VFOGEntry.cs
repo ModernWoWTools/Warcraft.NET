@@ -22,7 +22,7 @@ namespace Warcraft.NET.Files.WDT.Entries.BfA
         /// <summary>
         /// Unknown 0.
         /// </summary>
-        public byte[] Unknown0 { get; set; }
+        public float Unknown0 { get; set; }
 
         /// <summary>
         /// Position (server coordinates).
@@ -77,10 +77,10 @@ namespace Warcraft.NET.Files.WDT.Entries.BfA
             {
                 using (var br = new BinaryReader(ms))
                 {
-                    Color = br.ReadVector3();
+                    Color = br.ReadVector3(Structures.AxisConfiguration.Native);
                     RadiusRelatedIntensity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()];
-                    Unknown0 = [br.ReadByte(), br.ReadByte(), br.ReadByte(), br.ReadByte()];
-                    Position = br.ReadVector3();
+                    Unknown0 = br.ReadSingle();
+                    Position = br.ReadVector3(Structures.AxisConfiguration.Native);
                     Unknown1 = br.ReadSingle();
                     Rotation = br.ReadQuaternion();
                     StartRadius = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()];
@@ -110,15 +110,12 @@ namespace Warcraft.NET.Files.WDT.Entries.BfA
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.WriteVector3(Color);
+                bw.WriteVector3(Color, Structures.AxisConfiguration.Native);
                 bw.Write(RadiusRelatedIntensity[0]);
                 bw.Write(RadiusRelatedIntensity[1]);
                 bw.Write(RadiusRelatedIntensity[2]);
-                bw.Write(Unknown0[0]);
-                bw.Write(Unknown0[1]);
-                bw.Write(Unknown0[2]);
-                bw.Write(Unknown0[3]);
-                bw.WriteVector3(Position);
+                bw.Write(Unknown0);
+                bw.WriteVector3(Position, Structures.AxisConfiguration.Native);
                 bw.Write(Unknown1);
                 bw.WriteQuaternion(Rotation);
                 bw.Write(StartRadius[0]);
