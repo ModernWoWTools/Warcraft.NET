@@ -21,6 +21,6 @@ jobs:
       uses: actions-js/push@master
       with:
         author_name: Automatic documentation
-        message: Automatic documentation ${date}'
+        message: Automatic documentation for ${{ github.sha }}
         branch: ${{ github.head_ref || github.ref_name }} 
         github_token: ${{ secrets.ACTION_TOKEN }}
