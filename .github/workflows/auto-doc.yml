@@ -1,6 +1,7 @@
 name: Automatic documentation
 on:
   push:
+    branches: [ "master" ]
 
 jobs:
   auto-doc:
