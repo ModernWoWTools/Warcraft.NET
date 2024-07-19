@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.WDT.Chunks.Legion
@@ -7,6 +8,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
     /// <summary>
     /// MTEX Chunk - Contains textures used for lights
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class MTEX : IIFFChunk, IBinarySerializable
     {
         /// <summary>

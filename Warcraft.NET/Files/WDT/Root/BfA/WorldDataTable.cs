@@ -3,6 +3,7 @@ using Warcraft.NET.Files.WDT.Chunks.BfA;
 
 namespace Warcraft.NET.Files.WDT.Root.BfA
 {
+    [AutoDocFile("wdt", "Root WDT")]
     public class WorldDataTable : WorldDataTableBase
     {
         /// <summary>

@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using System.Collections.Generic;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
     /// <summary>
     /// MAOH Chunk - Contains occlusion heightmap
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MAOH : IIFFChunk, IBinarySerializable
     {
         /// <summary>

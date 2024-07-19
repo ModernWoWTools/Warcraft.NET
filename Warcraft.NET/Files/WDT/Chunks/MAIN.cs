@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using Warcraft.NET.Files.WDT.Entries;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks
 {
     /// <summary>
     /// MAIN Chunk - Contains file ids for map files
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MAIN : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WMO.Chunks.Legion
 {
     /// <summary>
     /// GFID Chunk - Contains a list group and lod file ids.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class GFID : IIFFChunk, IBinarySerializable
     {
         /// <summary>

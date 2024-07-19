@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks.BfA
 {
     /// <summary>
     /// MDID Chunk - Contains a file id list of all diffuse textures (_s.blp) in this ADT.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MDID : IIFFChunk, IBinarySerializable
     {
         /// <summary>

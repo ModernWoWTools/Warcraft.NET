@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ModelBlob.Chunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ModelBlob.Chunks
     /// <summary>
     /// MBVR Chunk - Contains the model blob version.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MBVR : IIFFChunk, IBinarySerializable
     {
         /// <summary>

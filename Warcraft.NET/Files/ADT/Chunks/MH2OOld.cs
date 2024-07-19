@@ -1,12 +1,15 @@
 ﻿using System.IO;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.ADT.Entries;
+using System;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MH2O Chunk - Contains all informations about liquids on the chunk.
     /// </summary>
+    [Obsolete("Use MH2O insted.")]
     public class MH2OOld : IIFFChunk, IBinarySerializable
     {
         /// <summary>

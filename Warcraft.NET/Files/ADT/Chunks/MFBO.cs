@@ -2,12 +2,14 @@
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Structures;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MFBO chunk - holds a bounding box for the terrain chunk.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MFBO : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Structures;
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
     /// <summary>
     /// MCNR chunk - Holds per-vertex normals of a map chunk.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCNR : IIFFChunk, IBinarySerializable
     {
         /// <summary>

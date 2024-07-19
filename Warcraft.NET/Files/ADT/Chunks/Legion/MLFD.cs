@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
     /// <summary>
     /// MLFD Chunk - Level of detail offset information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MLFD : IIFFChunk, IBinarySerializable
     {
         /// <summary>

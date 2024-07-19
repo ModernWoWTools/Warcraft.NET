@@ -1,10 +1,12 @@
 ﻿using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.WMO.Chunks;
+using Warcraft.NET.Files.WMO.Chunks.Legion;
 using MOHD = Warcraft.NET.Files.WMO.Chunks.Legion.MOHD;
 using MOMT = Warcraft.NET.Files.WMO.Chunks.Wotlk.MOMT;
 
 namespace Warcraft.NET.Files.WMO.WorldMapObject.Legion
 {
+    [AutoDocFile("wmo", "Root WMO")]
     public class WorldMapObjectRoot : WorldMapObjectRootBase
     {
         /// <summary>
@@ -24,6 +26,18 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.Legion
         /// </summary>
         [ChunkOrder(4)]
         public MOMT Materials { get; set; }
+
+        /// <summary>
+        /// List of filenames for M2 (mdx) models that appear in this WMO.
+        /// </summary>
+        [ChunkOrder(5)]
+        public MODN DoodadNames { get; set; }
+
+        /// <summary>
+        /// List of file ids for group files
+        /// </summary>
+        [ChunkOrder(6)]
+        public GFID GroupFileFileIds { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Legion.WorldMapObjectRoot"/> class.

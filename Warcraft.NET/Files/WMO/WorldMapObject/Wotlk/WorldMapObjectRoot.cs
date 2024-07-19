@@ -4,6 +4,7 @@ using Warcraft.NET.Files.WMO.Chunks.Wotlk;
 
 namespace Warcraft.NET.Files.WMO.WorldMapObject.Wotlk
 {
+    [AutoDocFile("wmo", "Root WMO")]
     public class WorldMapObjectRoot : WorldMapObjectRootBase
     {
         /// <summary>
@@ -23,6 +24,12 @@ namespace Warcraft.NET.Files.WMO.WorldMapObject.Wotlk
         /// </summary>
         [ChunkOrder(4)]
         public MOMT Materials { get; set; }
+
+        /// <summary>
+        /// List of filenames for M2 (mdx) models that appear in this WMO.
+        /// </summary>
+        [ChunkOrder(5)]
+        public MODN DoodadNames { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Wotlk.WorldMapObjectRoot"/> class.

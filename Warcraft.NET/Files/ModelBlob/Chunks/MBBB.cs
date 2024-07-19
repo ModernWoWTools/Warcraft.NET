@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Structures;
@@ -9,6 +10,7 @@ namespace Warcraft.NET.Files.ModelBlob.Chunks
     /// <summary>
     /// MBBB Chunk - Contains model blob extents referenced by fileid.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MBBB : IIFFChunk, IBinarySerializable
     {
         /// <summary>

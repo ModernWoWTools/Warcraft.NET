@@ -1,10 +1,12 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.TEX.Chunks
 {
     /// <summary>
     /// TXMD Chunk - Contains texture binary data from the lowest 7 mipmap.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class TXMD : IIFFChunk, IBinarySerializable
     {
         /// <summary>

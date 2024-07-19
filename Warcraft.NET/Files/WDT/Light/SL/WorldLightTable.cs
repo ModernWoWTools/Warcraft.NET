@@ -4,6 +4,7 @@ using WorldLightTableLegion = Warcraft.NET.Files.WDT.Light.Legion.WorldLightTabl
 
 namespace Warcraft.NET.Files.WDT.Light.SL
 {
+    [AutoDocFile("wdt", "_lgt WDT")]
     public class WorldLightTable : WorldLightTableLegion
     {
         /// <summary>

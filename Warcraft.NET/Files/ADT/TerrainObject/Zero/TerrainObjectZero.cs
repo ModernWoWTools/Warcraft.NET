@@ -3,6 +3,7 @@ using Warcraft.NET.Files.ADT.Chunks;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.Zero
 {
+    [AutoDocFile("adt", "Obj0 ADT")]
     public class TerrainObjectZero : TerrainObjectBase
     {
         /// <summary>

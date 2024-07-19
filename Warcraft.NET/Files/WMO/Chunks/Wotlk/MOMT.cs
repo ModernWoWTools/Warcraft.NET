@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WMO.Entries.Wotlk;
 
 namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeBfA, AutoDocChunkVersionHelper.VersionAfterLegion)]
     public class MOMT : IIFFChunk, IBinarySerializable
     {
         /// <summary>

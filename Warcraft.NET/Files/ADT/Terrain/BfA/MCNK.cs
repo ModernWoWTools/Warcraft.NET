@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Exceptions;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCNK;
@@ -9,6 +10,8 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
     /// <summary>
     /// MCNK - BfA MCNK chunk
     /// </summary>
+    [AutoDocFile("adt", "Root ADT")]
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MCNK : MCNKBase
     {
         /// <summary>

@@ -9,6 +9,7 @@ using Warcraft.NET.Types;
 namespace Warcraft.NET.Files.ADT.TerrainLOD.Legion
 {
 #nullable enable
+    [AutoDocFile("adt", "Lod ADT")]
     public class TerrainLOD : TerrainLODBase
     {
         /// <summary>

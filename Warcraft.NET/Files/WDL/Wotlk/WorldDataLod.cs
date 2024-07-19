@@ -5,6 +5,7 @@ using Warcraft.NET.Files.WDL.Chunks;
 
 namespace Warcraft.NET.Files.WDL.Wotlk
 {
+    [AutoDocFile("wdl")]
     public class WorldDataLod : WorldDataLodBase
     {
         /// <summary>

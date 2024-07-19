@@ -2,12 +2,14 @@
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MTXF Chunk - Array of flags for entries in MTEX. Always same number of entries as MTEX
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MTXF : IIFFChunk, IBinarySerializable
     {
         /// <summary>
