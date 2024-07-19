@@ -19,8 +19,8 @@ We support most of the World of Warcraft binary formats. Check out the link's be
 - [TEX](Docs/TEX.md)
 - [BLOB](Docs/BLOB.md)
 
-## Used in
-- [MapUpconverter](https://github.com/Marlamin/MapUpconverter)
+## Projects
+- [MapUpconverter](https://github.com/Marlamin/MapUpconverter) - Converts 3.3.5 ADTs to 8.2.x+ ADTs 
 
 ## Licensing
 Warcraft.NET is Free Software, and is distributed under the GPLv3 license. This means, in simple terms, that you are free to do whatever you want with the source code and any binaries compiled or generated from it as long as you pass on those rights to anyone aquiring a copy of the source code or binaries. The full licence can be read in the file "LICENSE" at the root of the source tree, or at http://choosealicense.com/licenses/gpl-3.0/, where a more people-friendly summary is also available.
