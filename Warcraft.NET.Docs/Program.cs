@@ -10,6 +10,8 @@ namespace Warcraft.NET.Docs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
+
             if (args.Length == 0)
                 throw new System.Exception("Please provide an output folder");
 
@@ -17,8 +19,15 @@ namespace Warcraft.NET.Docs
             if (!Directory.Exists(outputFolder))
                 throw new Exception("Output folder does not exist");
 
+            Console.WriteLine($"Output folder: {outputFolder}");
+
+            Console.WriteLine("Generating documentation...");
             var autoDocData = GenerateAutoDocDataStep.Process();
+
+            Console.WriteLine("Converting to markdown...");
             ConvertToMarkdownStep.Process(autoDocData, outputFolder);
+
+            Console.WriteLine("Done!");
         }
     }
 }

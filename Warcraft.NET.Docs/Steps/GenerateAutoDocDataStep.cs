@@ -10,8 +10,7 @@ namespace Warcraft.NET.Docs.Steps
         {
             Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<AutoDocChunkVersion, AutoDocChunkImplementation>>>> docData = new();
 
-            var classWithDocs =
-                Assembly.LoadFrom("Warcraft.NET.dll")
+            var classWithDocs = Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Warcraft.NET.dll"))
                 .GetTypes()
                 .Where(type => !type.IsAbstract)
                 .Where(type => type.GetCustomAttribute(typeof(AutoDocFile), false) != null);
