@@ -13,7 +13,7 @@ namespace Warcraft.NET.Docs
             if (args.Length == 0)
                 throw new System.Exception("Please provide an output folder");
 
-            string outputFolder = args[0];
+            string outputFolder = Path.GetFullPath(args[0]);
             if (!Directory.Exists(outputFolder))
                 throw new Exception("Output folder does not exist");
 
