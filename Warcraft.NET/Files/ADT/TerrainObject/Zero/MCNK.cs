@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero
     /// <summary>
     /// MCNK
     /// </summary>
-    [AutoDocFile("adt", "Obj0 ADT")]
+    [AutoDocFile("adt", "_obj0 ADT")]
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MCNK : IIFFChunk, IBinarySerializable
     {

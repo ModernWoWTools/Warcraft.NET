@@ -13,7 +13,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
     /// <summary>
     /// MCNK - Wotlk MCNK chunk
     /// </summary>
-    [AutoDocFile("adt", "Root ADT")]
+    [AutoDocFile("adt")]
     [AutoDocChunk(AutoDocChunkVersion.LK, AutoDocChunkVersionHelper.VersionAfterLK)]
     public class MCNK : MCNKBase
     {

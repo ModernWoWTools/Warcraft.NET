@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
     /// <summary>
     /// MCMT chunk - Terrain material record id.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MCMT : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -8,7 +8,7 @@
                 "adt", new ()
                 {
                     {
-                        "Root ADT", new()
+                        "ADT", new()
                         {
                             "MVER",
                             "MHDR",
@@ -85,13 +85,16 @@
                         "_lod ADT", new()
                         {
                             "MVER",
-                            "MLDL",
-                            "MLFD",
-                            "MLDD",
-                            "MLDX",
-                            "MLMD",
-                            "MLMX",
-                            "MLDB",
+                            "MLHD",
+                            "MLVH",
+                            "MLLL",
+                            "MLND",
+                            "MLVI",
+                            "MLSI",
+                            "MLLD",
+                            "MLLN",
+                            "MLLI",
+                            "MLLV",
                             "MLMB",
                         }
                     },

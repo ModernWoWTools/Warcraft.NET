@@ -3,7 +3,7 @@ using Warcraft.NET.Files.ADT.Chunks;
 
 namespace Warcraft.NET.Files.ADT.Terrain.BfA
 {
-    [AutoDocFile("adt", "Root ADT")]
+    [AutoDocFile("adt")]
     public class Terrain : TerrainBase
     {
         /// <summary>

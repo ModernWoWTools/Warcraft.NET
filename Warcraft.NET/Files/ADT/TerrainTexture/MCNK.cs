@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture
     /// <summary>
     /// MCNK
     /// </summary>
-    [AutoDocFile("adt", "Tex ADT")]
+    [AutoDocFile("adt", "_tex0 ADT")]
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MCNK : IIFFChunk, IBinarySerializable
     {

@@ -10,7 +10,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.BfA
     /// <summary>
     /// MCNK - BfA MCNK chunk
     /// </summary>
-    [AutoDocFile("adt", "Root ADT")]
+    [AutoDocFile("adt")]
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MCNK : MCNKBase
     {

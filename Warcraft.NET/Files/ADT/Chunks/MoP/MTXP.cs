@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.MoP
     /// <summary>
     /// MTXP Chunk - Array of flags for entries in MTEX. Always same number of entries as MTEX
     /// </summary>
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersionHelper.VersionAfterWoD)]
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MTXP : IIFFChunk, IBinarySerializable
     {
         /// <summary>
