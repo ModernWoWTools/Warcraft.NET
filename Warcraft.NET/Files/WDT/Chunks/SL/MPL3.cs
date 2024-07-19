@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WDT.Entries.SL;
 
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.SL
     /// <summary>
     /// MPL3 Chunk - Contains Shadowlands point light information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class MPL3 : IIFFChunk, IBinarySerializable
     {
         /// <summary>

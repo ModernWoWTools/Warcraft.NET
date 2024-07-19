@@ -2,12 +2,14 @@
 using System.IO;
 using System.Collections.Generic;
 using Warcraft.NET.Files.WDT.Entries.WoD;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
     /// <summary>
     /// MAOI Chunk - Contains occlusion index information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MAOI : IIFFChunk, IBinarySerializable
     {
         /// <summary>

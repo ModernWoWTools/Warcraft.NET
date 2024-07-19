@@ -2,9 +2,11 @@
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MDDF : IIFFChunk, IBinarySerializable
     {
         public const string Signature = "MDDF";

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.WMO.Chunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.WMO.Chunks
     /// <summary>
     /// MVER Chunk - Contains the WMO version.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MVER : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -28,4 +28,9 @@
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <ItemGroup>
+  	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+  	  <_Parameter1>Warcraft.NET.Docs</_Parameter1>
+  	</AssemblyAttribute>
+  </ItemGroup>
 </Project>

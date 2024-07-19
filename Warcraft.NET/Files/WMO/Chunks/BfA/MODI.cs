@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WMO.Chunks.BfA
 {
     /// <summary>
     /// MODI Chunk - Contains a list model file ids.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MODI : IIFFChunk, IBinarySerializable
     {
         /// <summary>

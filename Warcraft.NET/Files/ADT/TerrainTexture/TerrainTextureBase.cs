@@ -20,7 +20,10 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture
         public MCNK[] Chunks { get; set; }
 
         [ChunkOrder(7), ChunkOptional]
-        public MTXP TextureFlags { get; set; }
+        public MTXP TextureParameters { get; set; }
+
+        [ChunkOrder(8), ChunkOptional]
+        public MTXF TextureFlags { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TerrainTexture"/> class.

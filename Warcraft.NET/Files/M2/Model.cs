@@ -5,6 +5,7 @@ using Warcraft.NET.Files.M2.Chunks.Legion;
 
 namespace Warcraft.NET.Files.M2
 {
+    [AutoDocFile("m2")]
     public class Model : ChunkedFile
     {
         /// <summary>

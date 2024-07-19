@@ -2,12 +2,15 @@
 using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.Zero
 {
     /// <summary>
     /// MCNK
     /// </summary>
+    [AutoDocFile("adt", "_obj0 ADT")]
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MCNK : IIFFChunk, IBinarySerializable
     {
         /// <summary>

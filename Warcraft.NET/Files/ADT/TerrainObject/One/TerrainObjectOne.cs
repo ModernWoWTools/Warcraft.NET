@@ -3,6 +3,7 @@ using Warcraft.NET.Files.ADT.Chunks.Legion;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.One
 {
+    [AutoDocFile("adt", "_obj1 ADT")]
     public class TerrainObjectOne : TerrainObjectBase
     {
         /// <summary>

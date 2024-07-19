@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.M2.Entries;
@@ -13,6 +14,7 @@ namespace Warcraft.NET.Files.M2.Chunks
     /// <summary>
     /// MD21 Chunk - Contains model base information
     /// </summary>
+    [AutoDocChunk(0, AutoDocChunkVersionHelper.VersionBeforeLegion, AutoDocChunkVersionHelper.VersionAfterWoD)]
     public class MD21 : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,0 +1,27 @@
+name: Automatic documentation
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  auto-doc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet publish --no-restore -o build
+    - name: Automatic documentation
+      run: dotnet build/Warcraft.NET.Docs.dll ${{ github.workspace }}/Docs
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        author_name: Automatic documentation
+        message: Automatic documentation for ${{ github.sha }}
+        branch: ${{ github.head_ref || github.ref_name }} 
+        github_token: ${{ secrets.ACTION_TOKEN }}

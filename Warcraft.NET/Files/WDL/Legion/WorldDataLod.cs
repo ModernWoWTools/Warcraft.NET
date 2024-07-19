@@ -7,6 +7,7 @@ using Warcraft.NET.Files.WDL.Chunks;
 #nullable enable
 namespace Warcraft.NET.Files.WDL.Legion
 {
+    [AutoDocFile("wdl")]
     public class WorldDataLod : WorldDataLodBase
     {
         /// <summary>

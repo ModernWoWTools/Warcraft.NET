@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
     /// <summary>
     /// MCAL Chunk - Contains alpha map data in one of three forms - uncompressed 2048, uncompressed 4096 and compressed.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCAL : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WDT.Entries.Legion;
 
@@ -10,6 +9,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
     /// <summary>
     /// MLTA Chunk - Contains light animations
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class MLTA : IIFFChunk, IBinarySerializable
     {
         /// <summary>

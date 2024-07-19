@@ -4,6 +4,7 @@ using Warcraft.NET.Files.WDT.Chunks.WoD;
 
 namespace Warcraft.NET.Files.WDT.Occlusion
 {
+    [AutoDocFile("wdt", "_occ WDT")]
     public class WorldOcclusionTable : ChunkedFile
     {
         /// <summary>

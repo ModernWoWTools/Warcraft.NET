@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
@@ -7,6 +8,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
     /// MCVT Chunk - Contains heightmap information
     /// The vertices are arranged as two distinct grids, one inside the other.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCVT : IIFFChunk, IBinarySerializable
     {
         /// <summary>

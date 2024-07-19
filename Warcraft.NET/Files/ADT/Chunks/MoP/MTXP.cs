@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.ADT.Entries.MoP;
 using Warcraft.NET.Files.Interfaces;
 
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.MoP
     /// <summary>
     /// MTXP Chunk - Array of flags for entries in MTEX. Always same number of entries as MTEX
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MTXP : IIFFChunk, IBinarySerializable
     {
         /// <summary>

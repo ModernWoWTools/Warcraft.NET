@@ -1,10 +1,12 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.WDL.Chunks
 {
     /// <summary>
     /// MAOE Chunk - Represents the ocean texture
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class MAOE : IIFFChunk, IBinarySerializable
     {
         /// <summary>

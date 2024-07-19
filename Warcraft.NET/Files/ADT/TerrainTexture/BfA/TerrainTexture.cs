@@ -3,6 +3,7 @@ using Warcraft.NET.Files.ADT.Chunks.BfA;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture.BfA
 {
+    [AutoDocFile("adt", "_tex0 ADT")]
     public class TerrainTexture : TerrainTextureBase
     {
         [ChunkOrder(4)]

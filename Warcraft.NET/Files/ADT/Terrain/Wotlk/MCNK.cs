@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.ADT.Terrain.MCNK;
 using Warcraft.NET.Files.ADT.Terrain.MCNK.Flags;
@@ -12,9 +13,10 @@ namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
     /// <summary>
     /// MCNK - Wotlk MCNK chunk
     /// </summary>
+    [AutoDocFile("adt")]
+    [AutoDocChunk(AutoDocChunkVersion.LK, AutoDocChunkVersionHelper.VersionAfterLK)]
     public class MCNK : MCNKBase
     {
-
         /// <summary>
         /// Gets or sets the alphamap Layer chunk.
         /// </summary>

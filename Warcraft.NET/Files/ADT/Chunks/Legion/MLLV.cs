@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Numerics;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
     /// <summary>
     /// MLLV Chunk - Level of detail vertices
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MLLV : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.156
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.NET", "Warcraft.NET\Warcraft.NET.csproj", "{9741F8CD-15A7-4F8D-BA23-B86075505B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcraft.NET.Tests", "Warcraft.NET.Tests\Warcraft.NET.Tests.csproj", "{72173C5D-E096-4CF0-BF44-A064E27F6630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.NET.Tests", "Warcraft.NET.Tests\Warcraft.NET.Tests.csproj", "{72173C5D-E096-4CF0-BF44-A064E27F6630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcraft.NET.Docs", "Warcraft.NET.Docs\Warcraft.NET.Docs.csproj", "{AD2D9D68-CDCC-4765-A6F5-07011CB5F827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{72173C5D-E096-4CF0-BF44-A064E27F6630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72173C5D-E096-4CF0-BF44-A064E27F6630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72173C5D-E096-4CF0-BF44-A064E27F6630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD2D9D68-CDCC-4765-A6F5-07011CB5F827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2D9D68-CDCC-4765-A6F5-07011CB5F827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2D9D68-CDCC-4765-A6F5-07011CB5F827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2D9D68-CDCC-4765-A6F5-07011CB5F827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
