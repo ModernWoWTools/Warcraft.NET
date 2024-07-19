@@ -26,7 +26,7 @@ N/A = Not in this file for this expansion<br>
 |-----|-----|-----|-----|-----|-----|-----|-----|
 |MVER|✔|✔|✔|✔|✔|✔|✔|
 |MPLT|N/A|N/A|N/A|✔|N/A|N/A|N/A|
-|MPL2|N/A|N/A|N/A|**NYI**|✔|✔|✔|
+|MPL2|N/A|N/A|✔|✔|✔|✔|✔|
 |MPL3|N/A|N/A|N/A|N/A|✔|✔|✔|
 |MSLT|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
 |MTEX|N/A|N/A|✔|✔|✔|✔|✔|

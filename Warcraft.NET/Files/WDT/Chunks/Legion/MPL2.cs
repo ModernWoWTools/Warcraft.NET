@@ -9,7 +9,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.Legion
     /// <summary>
     /// MPL2 Chunk - Contains Legion point light information
     /// </summary>
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeBfA)]
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class MPL2 : IIFFChunk, IBinarySerializable
     {
         /// <summary>
