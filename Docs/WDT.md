@@ -18,12 +18,6 @@ N/A = Not in this file for this expansion<br>
 |Chunk|LK|WoD|Legion|BfA|SL|DF|TWW|
 |-----|-----|-----|-----|-----|-----|-----|-----|
 |MVER|✔|✔|✔|✔|✔|✔|✔|
-|MPHD|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|MAIN|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|MAID|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|MWMO|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|MODF|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|MANM|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
 |MAOI|N/A|N/A|N/A|✔|✔|✔|✔|
 |MAOH|N/A|N/A|N/A|✔|✔|✔|✔|
 
@@ -33,7 +27,7 @@ N/A = Not in this file for this expansion<br>
 |MVER|✔|✔|✔|✔|✔|✔|✔|
 |MPLT|N/A|N/A|N/A|✔|N/A|N/A|N/A|
 |MPL2|N/A|N/A|N/A|**NYI**|✔|✔|✔|
-|MPL3|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
+|MPL3|N/A|N/A|N/A|N/A|✔|✔|✔|
 |MSLT|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
 |MTEX|N/A|N/A|✔|✔|✔|✔|✔|
 |MLTA|N/A|N/A|✔|✔|✔|✔|✔|

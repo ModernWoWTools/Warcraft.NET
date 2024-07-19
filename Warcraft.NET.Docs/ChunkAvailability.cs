@@ -196,12 +196,8 @@
                         "_occ WDT", new()
                         {
                             "MVER",
-                            "MPHD",
-                            "MAIN",
-                            "MAID",
-                            "MWMO",
-                            "MODF",
-                            "MANM",
+                            "MAOI",
+                            "MAOH",
                         }
                     },
                     {
