@@ -1,4 +1,5 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {

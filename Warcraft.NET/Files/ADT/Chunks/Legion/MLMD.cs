@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.ADT.Entries.Legion;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MLMD : IIFFChunk, IBinarySerializable
     {
         public const string Signature = "MLMD";

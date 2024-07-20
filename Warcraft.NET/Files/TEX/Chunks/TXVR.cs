@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.TEX.Chunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.TEX.Chunks
     /// <summary>
     /// TXVR Chunk - Contains the texture blob version.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class TXVR : IIFFChunk, IBinarySerializable
     {
         /// <summary>

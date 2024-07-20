@@ -1,10 +1,12 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
 {
     /// <summary>
     /// MLDD Chunk - Level of detail offset information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MLDD : MDDF, IIFFChunk, IBinarySerializable
     {
         /// <summary>

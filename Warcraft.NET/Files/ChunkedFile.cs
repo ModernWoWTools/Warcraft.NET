@@ -44,7 +44,7 @@ namespace Warcraft.NET.Files
                 var chunkProperties = GetType()
                     .GetProperties()
                     .Where(p => (ChunkIgnoreAttribute)p.GetCustomAttribute(typeof(ChunkIgnoreAttribute), false) == null)
-                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
+                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).FirstOrDefault())?.Order ?? short.MaxValue);
 
                 foreach (PropertyInfo chunkProperty in chunkProperties)
                 {
@@ -116,7 +116,7 @@ namespace Warcraft.NET.Files
                 var terrainChunkProperties = GetType()
                     .GetProperties()
                     .Where(p => (ChunkIgnoreAttribute)p.GetCustomAttribute(typeof(ChunkIgnoreAttribute), false) == null)
-                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).Single()).Order);
+                    .OrderBy(p => ((ChunkOrderAttribute)p.GetCustomAttributes(typeof(ChunkOrderAttribute), false).FirstOrDefault())?.Order ?? short.MaxValue);
 
                 foreach (PropertyInfo chunkPropertie in terrainChunkProperties)
                 {

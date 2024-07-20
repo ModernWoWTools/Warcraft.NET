@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
@@ -7,6 +8,7 @@ namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
     /// <summary>
     /// MCRF Chunk - Holds model and world object references
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersion.LK, AutoDocChunkVersionHelper.VersionAfterLK)]
     public class MCRF : IIFFChunk, IBinarySerializable
     {
         /// <summary>

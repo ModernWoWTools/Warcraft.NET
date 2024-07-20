@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
@@ -7,6 +8,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
     /// <summary>
     /// MCLY Chunk - Contains definitions for the alpha map layers.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCLY : IIFFChunk, IBinarySerializable
     {
         /// <summary>

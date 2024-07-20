@@ -2,12 +2,14 @@
 using System.IO;
 using System.Collections.Generic;
 using Warcraft.NET.Files.WDT.Entries.Legion;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks.Legion
 {
     /// <summary>
     /// MPL2 Chunk - Contains Legion point light information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class MPL2 : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WMO.Chunks.BfA
 {
     /// <summary>
     /// MDDI Chunk - Contains scale values to doodads entries
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MDDI : IIFFChunk, IBinarySerializable
     {
         /// <summary>

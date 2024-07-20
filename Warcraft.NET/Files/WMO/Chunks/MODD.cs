@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WMO.Entries;
 
 namespace Warcraft.NET.Files.WMO.Chunks
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MODD : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -1,10 +1,12 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Terrain.MCNK.SubChunks
 {
     /// <summary>
     /// MCSE Chunk - Holds sound emitters.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCSE : IIFFChunk, IBinarySerializable
     {
         /// <summary>

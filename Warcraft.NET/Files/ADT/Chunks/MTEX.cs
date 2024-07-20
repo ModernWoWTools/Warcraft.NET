@@ -2,12 +2,14 @@
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MTEX Chunk - Contains a list of all referenced textures in this ADT.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeBfA, AutoDocChunkVersionHelper.VersionAfterLegion)]
     public class MTEX : IIFFChunk, IBinarySerializable
     {
         /// <summary>

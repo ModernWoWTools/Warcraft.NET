@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.MapChunk.SubChunks
     /// <summary>
     /// MCSH chunk - holds baked terrain shadows.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MCSH : IIFFChunk, IBinarySerializable
     {
         /// <summary>

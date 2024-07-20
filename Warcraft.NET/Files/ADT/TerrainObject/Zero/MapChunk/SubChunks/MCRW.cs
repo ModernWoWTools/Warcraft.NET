@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ADT.TerrainObject.Zero.MapChunk.SubChunks
     /// <summary>
     /// MCRW Chunk - Holds world object references.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MCRW : IIFFChunk, IBinarySerializable
     {
         /// <summary>

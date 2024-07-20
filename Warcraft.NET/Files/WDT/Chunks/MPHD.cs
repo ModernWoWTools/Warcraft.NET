@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using Warcraft.NET.Files.WDT.Flags;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks
 {
     /// <summary>
     /// MPHD Chunk - Contains the WDT flags.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MPHD : IIFFChunk, IBinarySerializable
     {
         /// <summary>

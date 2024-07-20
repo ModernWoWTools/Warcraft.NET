@@ -1,11 +1,13 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Cata
 {
     /// <summary>
     /// MAMP Chunk
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MAMP : IIFFChunk, IBinarySerializable
     {
         /// <summary>

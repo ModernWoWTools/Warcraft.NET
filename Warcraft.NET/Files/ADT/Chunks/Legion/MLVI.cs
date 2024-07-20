@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Legion
@@ -6,6 +7,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
     /// <summary>
     /// MLVI Chunk - Level of detail 
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class MLVI : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -6,7 +6,8 @@ using Warcraft.NET.Files.TEX.Entries;
 
 namespace Warcraft.NET.Files.TEX
 {
-    public class ModelBlob : ChunkedFile
+    [AutoDocFile("tex")]
+    public class TextureBlob : ChunkedFile
     {
         /// <summary>
         /// Gets or sets the texture blob version.
@@ -27,17 +28,17 @@ namespace Warcraft.NET.Files.TEX
         public TXMD[] TextureData { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelBlob"/> class.
+        /// Initializes a new instance of the <see cref="TextureBlob"/> class.
         /// </summary>
-        public ModelBlob()
+        public TextureBlob()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelBlob"/> class.
+        /// Initializes a new instance of the <see cref="TextureBlob"/> class.
         /// </summary>
         /// <param name="inData">The binary data.</param>
-        public ModelBlob(byte[] inData)
+        public TextureBlob(byte[] inData)
         {
             LoadBinaryData(inData);
 

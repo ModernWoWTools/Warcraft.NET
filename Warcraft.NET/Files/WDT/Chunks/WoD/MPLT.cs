@@ -2,12 +2,14 @@
 using System.IO;
 using System.Collections.Generic;
 using Warcraft.NET.Files.WDT.Entries.WoD;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks.WoD
 {
     /// <summary>
     /// MPLT Chunk - Contains WoD light placement information
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersion.BfA, AutoDocChunkVersionHelper.VersionBeforeBfA | AutoDocChunkVersionHelper.VersionAfterBfA)]
     public class MPLT : IIFFChunk, IBinarySerializable
     {
         /// <summary>

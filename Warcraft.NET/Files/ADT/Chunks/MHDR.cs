@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.ADT.Flags;
 using Warcraft.NET.Files.Interfaces;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MHDR Chunk - Contains offsets in the file for specific chunks. WoW only takes this for parsing the ADT file.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MHDR : IIFFChunk, IBinarySerializable
     {
         /// <summary>

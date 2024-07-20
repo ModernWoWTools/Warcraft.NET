@@ -1,9 +1,11 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeSL, AutoDocChunkVersionHelper.VersionAfterBfA)]
     public class MWID : IIFFChunk, IBinarySerializable
     {
         /// <summary>

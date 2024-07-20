@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 
@@ -10,6 +11,7 @@ namespace Warcraft.NET.Files.WMO.Chunks
     /// <summary>
     /// MOTX Chunk - Contains pathes to used textures
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeBfA, AutoDocChunkVersionHelper.VersionAfterLegion)]
     public class MOTX : IIFFChunk, IBinarySerializable
     {
         /// <summary>

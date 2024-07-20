@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Structures;
@@ -9,6 +10,7 @@ namespace Warcraft.NET.Files.WMO.Chunks.Wotlk
     /// <summary>
     /// MOHD Chunk - Header chunk of the WMO root file that contains informations about it's data
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeLegion, AutoDocChunkVersionHelper.VersionAfterWoD)]
     public class MOHD : IIFFChunk, IBinarySerializable
     {
         /// <summary>

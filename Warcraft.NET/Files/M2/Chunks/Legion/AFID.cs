@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class AFID : IIFFChunk, IBinarySerializable
     {
         /// <summary>

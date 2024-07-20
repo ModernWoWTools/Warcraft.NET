@@ -3,6 +3,7 @@ using Warcraft.NET.Files.WDT.Chunks.WoD;
 
 namespace Warcraft.NET.Files.WDT.Light.WoD
 {
+    [AutoDocFile("wdt", "_lgt WDT")]
     public class WorldLightTable : WorldLightTableBase
     {
         /// <summary>

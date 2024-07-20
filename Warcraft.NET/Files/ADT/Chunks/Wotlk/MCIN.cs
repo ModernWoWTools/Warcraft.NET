@@ -2,12 +2,14 @@
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks.Wotlk
 {
     /// <summary>
     /// MCIN Chunk - Contains a list of all MCNKs with associated information in the ADT file.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersion.LK, AutoDocChunkVersionHelper.VersionAfterLK)]
     public class MCIN : IIFFChunk, IBinarySerializable
     {
         public const string Signature = "MCIN";

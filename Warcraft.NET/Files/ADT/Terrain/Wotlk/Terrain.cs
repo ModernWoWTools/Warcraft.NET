@@ -4,6 +4,7 @@ using Warcraft.NET.Files.ADT.Chunks.Wotlk;
 
 namespace Warcraft.NET.Files.ADT.Terrain.Wotlk
 {
+    [AutoDocFile("adt")]
     public class Terrain : TerrainBase
     {
         /// <summary>

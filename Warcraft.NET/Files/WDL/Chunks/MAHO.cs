@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.WDL.Chunks
@@ -7,6 +8,7 @@ namespace Warcraft.NET.Files.WDL.Chunks
     /// <summary>
     /// MAHO Chunk - Represents the holes in a LOD level of a map area.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MAHO : IIFFChunk, IBinarySerializable
     {
         /// <summary>

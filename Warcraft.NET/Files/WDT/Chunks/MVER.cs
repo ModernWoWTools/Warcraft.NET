@@ -1,11 +1,13 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks
 {
     /// <summary>
     /// MVER Chunk - Contains the WDT version.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAll)]
     public class MVER : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -2,12 +2,14 @@
 using Warcraft.NET.Files.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.ADT.Chunks
 {
     /// <summary>
     /// MMDX Chunk - Contains a list of all referenced M2 models in this ADT.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionBeforeSL, AutoDocChunkVersionHelper.VersionAfterBfA)]
     public class MMDX : IIFFChunk, IBinarySerializable
     {
         /// <summary>

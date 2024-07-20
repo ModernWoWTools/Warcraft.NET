@@ -1,12 +1,14 @@
 ﻿using Warcraft.NET.Files.Interfaces;
 using System.IO;
 using Warcraft.NET.Files.WDT.Entries.BfA;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.WDT.Chunks.BfA
 {
     /// <summary>
     /// MAID Chunk - Contains file ids for map files
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class MAID : IIFFChunk, IBinarySerializable
     {
         /// <summary>

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Files.TEX.Entries;
+using Warcraft.NET.Attribute;
 
 namespace Warcraft.NET.Files.TEX.Chunks
 {
     /// <summary>
     /// TXBT Chunk - Contains blob texture information.
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLK, AutoDocChunkVersion.LK)]
     public class TXBT : IIFFChunk, IBinarySerializable
     {
         /// <summary>

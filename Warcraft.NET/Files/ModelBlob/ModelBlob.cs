@@ -3,6 +3,7 @@ using Warcraft.NET.Files.ModelBlob.Chunks;
 
 namespace Warcraft.NET.Files.ModelBlob
 {
+    [AutoDocFile("blob")]
     public class ModelBlob : ChunkedFile
     {
         /// <summary>

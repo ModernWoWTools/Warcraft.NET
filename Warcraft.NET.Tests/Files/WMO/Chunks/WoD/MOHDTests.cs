@@ -1,36 +1,48 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Warcraft.NET.Tests.Files.ADT;
+using WoDWMO = Warcraft.NET.Files.WMO.WorldMapObject.WoD.WorldMapObjectRoot;
 
 namespace Warcraft.NET.Tests.Files.WMO.Chunks.WoD
 {
     [TestClass]
     public class MOHDTests
     {
+        public WoDWMO WoDWMO;
+        public WoDWMO WoDWrittenWMO;
+
+        public MOHDTests()
+        {
+            // duskwood_lumbermill.wmo
+            WoDWMO = new WoDWMO(TestResource.Download(106759, "6.2.4.21742"));
+            WoDWrittenWMO = new WoDWMO(WoDWMO.Serialize());
+        }
+
         [TestMethod]
         public void TestLoadBinaryData()
         {
-            Assert.AreEqual(Tests.WoDWMO.Header.Materials, Tests.WoDWrittenWMO.Header.Materials);
-            Assert.AreEqual(Tests.WoDWMO.Header.Portals, Tests.WoDWrittenWMO.Header.Portals);
-            Assert.AreEqual(Tests.WoDWMO.Header.Lights, Tests.WoDWrittenWMO.Header.Lights);
-            Assert.AreEqual(Tests.WoDWMO.Header.DoodadNames, Tests.WoDWrittenWMO.Header.DoodadNames);
-            Assert.AreEqual(Tests.WoDWMO.Header.DoodadDefinitions, Tests.WoDWrittenWMO.Header.DoodadDefinitions);
-            Assert.AreEqual(Tests.WoDWMO.Header.DoodadSets, Tests.WoDWrittenWMO.Header.DoodadSets);
-            Assert.AreEqual(Tests.WoDWMO.Header.Color, Tests.WoDWrittenWMO.Header.Color);
-            Assert.AreEqual(Tests.WoDWMO.Header.WMOId, Tests.WoDWrittenWMO.Header.WMOId);
-            Assert.AreEqual(Tests.WoDWMO.Header.BoundingBox, Tests.WoDWrittenWMO.Header.BoundingBox);
-            Assert.AreEqual(Tests.WoDWMO.Header.Flags, Tests.WoDWrittenWMO.Header.Flags);
-            Assert.AreEqual(Tests.WoDWMO.Header.Groups, Tests.WoDWrittenWMO.Header.Groups);
+            Assert.AreEqual(WoDWMO.Header.Materials, WoDWrittenWMO.Header.Materials);
+            Assert.AreEqual(WoDWMO.Header.Portals, WoDWrittenWMO.Header.Portals);
+            Assert.AreEqual(WoDWMO.Header.Lights, WoDWrittenWMO.Header.Lights);
+            Assert.AreEqual(WoDWMO.Header.DoodadNames, WoDWrittenWMO.Header.DoodadNames);
+            Assert.AreEqual(WoDWMO.Header.DoodadDefinitions, WoDWrittenWMO.Header.DoodadDefinitions);
+            Assert.AreEqual(WoDWMO.Header.DoodadSets, WoDWrittenWMO.Header.DoodadSets);
+            Assert.AreEqual(WoDWMO.Header.Color, WoDWrittenWMO.Header.Color);
+            Assert.AreEqual(WoDWMO.Header.WMOId, WoDWrittenWMO.Header.WMOId);
+            Assert.AreEqual(WoDWMO.Header.BoundingBox, WoDWrittenWMO.Header.BoundingBox);
+            Assert.AreEqual(WoDWMO.Header.Flags, WoDWrittenWMO.Header.Flags);
+            Assert.AreEqual(WoDWMO.Header.Groups, WoDWrittenWMO.Header.Groups);
         }
 
         [TestMethod]
         public void TestGetSignature()
         {
-            Assert.AreEqual(Tests.WoDWMO.Header.GetSignature(), Tests.WoDWrittenWMO.Header.GetSignature());
+            Assert.AreEqual(WoDWMO.Header.GetSignature(), WoDWrittenWMO.Header.GetSignature());
         }
 
         [TestMethod]
         public void TestGetSize()
         {
-            Assert.AreEqual(Tests.WoDWMO.Header.GetSize(), Tests.WoDWrittenWMO.Header.GetSize());
+            Assert.AreEqual(WoDWMO.Header.GetSize(), WoDWrittenWMO.Header.GetSize());
         }
     }
 }
