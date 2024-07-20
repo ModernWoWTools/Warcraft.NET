@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -162,6 +163,28 @@ namespace Warcraft.NET.Files
         public virtual bool IsReverseSignature()
         {
             return true;
+        }
+
+        public static List<string> GetChunkList(byte[] inData)
+        {
+            var chunkList = new List<string>();
+
+            using (var ms = new MemoryStream(inData))
+            using (var br = new BinaryReader(ms))
+            {
+                while (ms.Position < ms.Length)
+                {
+                    var stringSig = new string(br.ReadChars(4).Reverse().ToArray());
+                    
+                    if(!chunkList.Contains(stringSig))
+                        chunkList.Add(stringSig);
+                    
+                    var size = br.ReadUInt32();
+                    br.BaseStream.Position += size;
+                }
+            }
+
+            return chunkList;
         }
     }
 }
