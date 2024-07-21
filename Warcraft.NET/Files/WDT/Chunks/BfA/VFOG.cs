@@ -1,7 +1,7 @@
-﻿using Warcraft.NET.Files.Interfaces;
+﻿using System.Collections.Generic;
 using System.IO;
-using Warcraft.NET.Files.WDT.Flags;
-using System.Collections.Generic;
+using Warcraft.NET.Attribute;
+using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.WDT.Entries.BfA;
 
 namespace Warcraft.NET.Files.WDT.Chunks
@@ -9,6 +9,7 @@ namespace Warcraft.NET.Files.WDT.Chunks
     /// <summary>
     /// VFOG Chunk
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
     public class VFOG : IIFFChunk, IBinarySerializable
     {
         /// <summary>

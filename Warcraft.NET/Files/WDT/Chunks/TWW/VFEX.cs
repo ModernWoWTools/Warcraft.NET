@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.WDT.Chunks.TWW
@@ -8,6 +9,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.TWW
     /// <summary>
     /// VFEX Chunk
     /// </summary>
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterDF, AutoDocChunkVersionHelper.VersionBeforeTWW)]
     public class VFEX : IIFFChunk, IBinarySerializable
     {
         /// <summary>

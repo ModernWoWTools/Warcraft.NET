@@ -4,10 +4,10 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.WDT.Chunks;
 using Warcraft.NET.Files.WDT.Chunks.TWW;
-using Warcraft.NET.Types;
 
 namespace Warcraft.NET.Files.WDT.Fog.TWW
 {
+    [AutoDocFile("wdt", "_fogs WDT")]
     public class WorldFogTable : BfA.WorldFogTable
     {
         /// <summary>
@@ -40,7 +40,7 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
             Version = br.ReadIFFChunk<MVER>(false, false);
             VolumeFogs = br.ReadIFFChunk<VFOG>(false, false);
 
-            if(VolumeFogs != null)
+            if (VolumeFogs != null)
             {
                 for (var i = 0; i < VolumeFogs.Entries.Count; i++)
                 {
@@ -56,7 +56,7 @@ namespace Warcraft.NET.Files.WDT.Fog.TWW
             using (var bw = new BinaryWriter(ms))
             {
                 bw.WriteIFFChunk(Version);
-                if(VolumeFogs != null)
+                if (VolumeFogs != null)
                 {
                     bw.WriteIFFChunk(VolumeFogs);
                     foreach (var vfex in VFEXList)

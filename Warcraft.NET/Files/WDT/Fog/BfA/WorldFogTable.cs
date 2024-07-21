@@ -3,6 +3,7 @@ using Warcraft.NET.Files.WDT.Chunks;
 
 namespace Warcraft.NET.Files.WDT.Fog.BfA
 {
+    [AutoDocFile("wdt", "_fogs WDT")]
     public class WorldFogTable : WorldFogTableBase
     {
         /// <summary>
