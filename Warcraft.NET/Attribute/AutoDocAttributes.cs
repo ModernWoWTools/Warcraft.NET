@@ -22,6 +22,7 @@ namespace Warcraft.NET.Attribute
         internal const AutoDocChunkVersion VersionAfterLegion = AutoDocChunkVersion.BfA | AutoDocChunkVersion.SL | AutoDocChunkVersion.DF | AutoDocChunkVersion.TWW;
         internal const AutoDocChunkVersion VersionAfterBfA = AutoDocChunkVersion.SL | AutoDocChunkVersion.DF | AutoDocChunkVersion.TWW;
         internal const AutoDocChunkVersion VersionAfterSL = AutoDocChunkVersion.DF | AutoDocChunkVersion.TWW;
+        internal const AutoDocChunkVersion VersionAfterDF = AutoDocChunkVersion.TWW;
 
         internal const AutoDocChunkVersion VersionBeforeLegion = AutoDocChunkVersion.LK | AutoDocChunkVersion.WoD;
         internal const AutoDocChunkVersion VersionBeforeBfA = AutoDocChunkVersion.LK | AutoDocChunkVersion.WoD | AutoDocChunkVersion.Legion;
