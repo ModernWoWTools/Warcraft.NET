@@ -35,9 +35,9 @@ N/A = Not in this file for this expansion<br>
 ### _fogs WDT
 |Chunk|LK|WoD|Legion|BfA|SL|DF|TWW|
 |-----|-----|-----|-----|-----|-----|-----|-----|
-|MVER|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|VFOG|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
-|VFEX|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|**NYI**|
+|MVER|✔|✔|✔|✔|✔|✔|✔|
+|VFOG|N/A|N/A|N/A|✔|✔|✔|✔|
+|VFEX|N/A|N/A|N/A|N/A|N/A|N/A|✔|
 
 ### _mpv WDT
 |Chunk|LK|WoD|Legion|BfA|SL|DF|TWW|
