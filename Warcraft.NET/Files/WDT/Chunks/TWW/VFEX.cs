@@ -23,7 +23,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.TWW
         /// <summary>
         /// Reference to the ID in the VFOG entry this VFEX belongs to.
         /// </summary>
-        public uint VFOG_ID { get; set; }
+        public uint VfogId { get; set; }
 
         public uint Unknown3 { get; set; }
         public uint Unknown4 { get; set; }
@@ -61,7 +61,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.TWW
                     Unknown1[i] = br.ReadSingle();
                 }
 
-                VFOG_ID = br.ReadUInt32();
+                VfogId = br.ReadUInt32();
                 Unknown3 = br.ReadUInt32();
                 Unknown4 = br.ReadUInt32();
                 Unknown5 = br.ReadUInt32();
@@ -94,7 +94,7 @@ namespace Warcraft.NET.Files.WDT.Chunks.TWW
                 {
                     bw.Write(Unknown1[i]);
                 }
-                bw.Write(VFOG_ID);
+                bw.Write(VfogId);
                 bw.Write(Unknown3);
                 bw.Write(Unknown4);
                 bw.Write(Unknown5);
