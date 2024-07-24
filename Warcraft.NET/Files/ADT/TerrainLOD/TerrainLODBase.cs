@@ -23,5 +23,8 @@ namespace Warcraft.NET.Files.ADT.TerrainLOD
         public TerrainLODBase(byte[] inData) : base(inData)
         {
         }
+
+        /// <inheritdoc/>
+        public abstract byte[] Serialize();
     }
 }
