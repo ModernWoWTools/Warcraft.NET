@@ -166,6 +166,57 @@ namespace Warcraft.NET.Files.ADT.TerrainLOD.Legion
                 }
             }
         }
+
+        /// <inheritdoc/>
+        public override byte[] Serialize()
+        {
+            using var ms = new MemoryStream();
+            using (var bw = new BinaryWriter(ms))
+            {
+                bw.WriteIFFChunk(Version);
+                bw.WriteIFFChunk(Header);
+                bw.WriteIFFChunk(Heightmap);
+                bw.WriteIFFChunk(Levels);
+                bw.WriteIFFChunk(QuadTree);
+                bw.WriteIFFChunk(VertexIndices);
+                bw.WriteIFFChunk(SkirtIndices);
+
+                if (BlendMeshHeaders != null)
+                    bw.WriteIFFChunk(BlendMeshHeaders);
+
+                if (BlendMeshBoundingBoxes != null)
+                    bw.WriteIFFChunk(BlendMeshBoundingBoxes);
+
+                if (BlendMeshIndices != null)
+                    bw.WriteIFFChunk(BlendMeshIndices);
+
+                if (BlendMeshVertices != null)
+                    bw.WriteIFFChunk(BlendMeshVertices);
+
+                if (BlendMeshBatches != null)
+                    bw.WriteIFFChunk(BlendMeshBatches);
+
+                if (LiquidData != null)
+                    bw.WriteIFFChunk(LiquidData);
+
+                foreach (var liquidN in LiquidN)
+                {
+                    bw.WriteIFFChunk(liquidN);
+                }
+
+                foreach (var liquidIndex in LiquidIndices)
+                {
+                    bw.WriteIFFChunk(liquidIndex);
+                }
+
+                foreach (var liquidVertex in LiquidVertices)
+                {
+                    bw.WriteIFFChunk(liquidVertex);
+                }
+
+                return ms.ToArray();
+            }
+        }
     }
 #nullable disable
 }

@@ -42,7 +42,7 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var mlviCount = br.BaseStream.Length / sizeof(uint);
+                var mlviCount = br.BaseStream.Length / sizeof(ushort);
                 VertexIndices = new ushort[mlviCount];
                 for (var i = 0; i < mlviCount; i++)
                 {
