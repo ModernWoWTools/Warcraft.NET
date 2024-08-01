@@ -27,7 +27,6 @@ namespace Warcraft.NET.Files.ADT.Chunks.Legion
         /// </summary>
         public BoundingBox UnkBoundingBox { get; set; }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MLHD"/> class.
         /// </summary>
