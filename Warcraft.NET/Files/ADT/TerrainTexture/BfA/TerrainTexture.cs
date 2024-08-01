@@ -6,10 +6,10 @@ namespace Warcraft.NET.Files.ADT.TerrainTexture.BfA
     [AutoDocFile("adt", "_tex0 ADT")]
     public class TerrainTexture : TerrainTextureBase
     {
-        [ChunkOrder(4)]
+        [ChunkOrder(4), ChunkOptional]
         public MDID TextureDiffuseIds { get; set; }
 
-        [ChunkOrder(5)]
+        [ChunkOrder(5), ChunkOptional]
         public MHID TextureHeightIds { get; set; }
 
         /// <summary>
