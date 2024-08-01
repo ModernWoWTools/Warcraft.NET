@@ -140,14 +140,14 @@ namespace Warcraft.NET.Files.ADT.Entries.MoP
             flagBits.Set(0, DontLoadSpecularOrHeightTexture);
 
             #region Unknown1
-            BitArray unknown1Bits = new BitArray(BitConverter.GetBytes(Unknown1));
+            BitArray unknown1Bits = new BitArray(BitConverter.GetBytes((short)Unknown1));
             flagBits.Set(1, unknown1Bits[0]);
             flagBits.Set(2, unknown1Bits[1]);
             flagBits.Set(3, unknown1Bits[2]);
             #endregion
 
             #region TextureScale
-            BitArray textureScaleBits = new BitArray(BitConverter.GetBytes(TextureScale));
+            BitArray textureScaleBits = new BitArray(BitConverter.GetBytes((short)TextureScale));
             flagBits.Set(4, textureScaleBits[0]);
             flagBits.Set(5, textureScaleBits[1]);
             flagBits.Set(6, textureScaleBits[2]);
