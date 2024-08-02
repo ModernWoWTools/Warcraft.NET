@@ -15,7 +15,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet publish --no-restore -o build
+      run: dotnet publish --no-restore -o build --framework net8.0
     - name: Automatic documentation
       run: dotnet build/Warcraft.NET.Docs.dll ${{ github.workspace }}/Docs
     - name: Commit & Push changes
