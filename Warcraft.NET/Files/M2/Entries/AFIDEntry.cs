@@ -49,7 +49,7 @@ namespace Warcraft.NET.Files.M2.Entries
         /// <returns>The size.</returns>
         public static int GetSize()
         {
-            return 16;
+            return 8;
         }
 
         /// <inheritdoc/>

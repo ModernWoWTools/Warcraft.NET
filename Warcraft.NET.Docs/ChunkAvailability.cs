@@ -136,6 +136,32 @@
                         }
                     },
                 }
+            },{
+                "phys", new ()
+                {
+                    {
+                        "PHYS", new()
+                        {
+                            "PHYS",
+                            "PHYT",
+                            "BDY4",
+                            "SHP2",
+                            "BOXS",
+                            "CAPS",
+                            "SPHS",
+                            "PLYT",
+                            "JOIN",
+                            "WLJ3",
+                            "SPHJ",
+                            "SHJ2",
+                            "PRS2",
+                            "REV2",
+                            "DSTJ",
+                            "SHOJ",
+                            "PHYV",
+                        }
+                    },
+                }
             },
             {
                 "tex", new ()

@@ -1,4 +1,6 @@
 ﻿using Warcraft.NET.Docs.Steps;
+using Warcraft.NET.Files.M2;
+using Warcraft.NET.Files.phys;
 
 namespace Warcraft.NET.Docs
 {
@@ -10,24 +12,40 @@ namespace Warcraft.NET.Docs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
+            string iripath = "C:\\Users\\marce\\Desktop\\WoWStuff\\wow.export\\creature\\iridikron\\";
+            byte[] data = File.ReadAllBytes(iripath+"iridikron.m2");
+            Model m = new Model(data);
 
-            if (args.Length == 0)
-                throw new System.Exception("Please provide an output folder");
+            byte[] phys_test = File.ReadAllBytes("D:\\Unity Projects\\M2Tool\\M2Godot\\buckle_panstart_a_01.phys");
+            Physics phys = new Physics(phys_test);
 
-            string outputFolder = Path.GetFullPath(args[0]);
-            if (!Directory.Exists(outputFolder))
-                throw new Exception("Output folder does not exist");
+            File.WriteAllBytes(iripath+"iridikron_output.m2", m.Serialize());
+            File.WriteAllBytes("D:\\Unity Projects\\M2Tool\\M2Godot\\buckle_panstart_a_01_output.phys", phys.Serialize());
 
-            Console.WriteLine($"Output folder: {outputFolder}");
 
-            Console.WriteLine("Generating documentation...");
-            var autoDocData = GenerateAutoDocDataStep.Process();
 
-            Console.WriteLine("Converting to markdown...");
-            ConvertToMarkdownStep.Process(autoDocData, outputFolder);
+            if (1==2) {
 
-            Console.WriteLine("Done!");
-        }
+
+                Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
+
+                if (args.Length == 0)
+                    throw new System.Exception("Please provide an output folder");
+
+                string outputFolder = Path.GetFullPath(args[0]);
+                if (!Directory.Exists(outputFolder))
+                    throw new Exception("Output folder does not exist");
+
+                Console.WriteLine($"Output folder: {outputFolder}");
+
+                Console.WriteLine("Generating documentation...");
+                var autoDocData = GenerateAutoDocDataStep.Process();
+
+                Console.WriteLine("Converting to markdown...");
+                ConvertToMarkdownStep.Process(autoDocData, outputFolder);
+
+                Console.WriteLine("Done!");
+            }
+            }
     }
 }
