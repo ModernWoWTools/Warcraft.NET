@@ -4,31 +4,28 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.M2.Entries;
 
-namespace Warcraft.NET.Files.M2.Chunks.Legion
+namespace Warcraft.NET.Files.M2.Chunks.BfA
 {
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
-    public class DBOC : IIFFChunk, IBinarySerializable
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterLegion, AutoDocChunkVersionHelper.VersionBeforeBfA)]
+    public class WFV2 : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "DBOC";
+        public const string Signature = "WFV2";
+
+        public byte[] data;
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Initializes a new instance of <see cref="WFV2"/>
         /// </summary>
-        public List<DBOCEntry> DBOCEntries = new();
+        public WFV2() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
-        /// </summary>
-        public DBOC() { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
+        /// Initializes a new instance of <see cref="WFV2"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public DBOC(byte[] inData) => LoadBinaryData(inData);
+        public WFV2(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -43,11 +40,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 using (var ms = new MemoryStream(inData))
                 using (var br = new BinaryReader(ms))
                 {
-                    var DBOCcount = br.BaseStream.Length / DBOCEntry.GetSize();
-                    for (var i = 0; i < DBOCcount; ++i)
-                    {
-                        DBOCEntries.Add(new DBOCEntry(br.ReadBytes(DBOCEntry.GetSize())));
-                    }
+                    data = inData;
                 }
             }
         }
@@ -58,10 +51,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (DBOCEntry obj in DBOCEntries)
-                {
-                    bw.Write(obj.Serialize());
-                }
+                bw.Write(data);
+
 
                 return ms.ToArray();
             }

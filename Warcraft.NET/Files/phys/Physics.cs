@@ -9,10 +9,10 @@ namespace Warcraft.NET.Files.phys
         [ChunkOrder(1)]
         public PHYS phys{get; set;}
 
-        [ChunkOrder(2)]
+        [ChunkOptional]
         public PHYT phyt{get; set;}
 
-       [ChunkOptional]
+        [ChunkOptional]
         public BOXS boxs{get;set;}
       
         [ChunkOptional]
@@ -30,27 +30,17 @@ namespace Warcraft.NET.Files.phys
         [ChunkOptional]
         public BDY4 bdy4{get; set;}
 
-
-
- 
-
-
         [ChunkOptional]
         public SHOJ shoj { get; set; }
 
         [ChunkOptional]
         public SHJ2 shj2{get; set;}
 
-
-
         [ChunkOptional]
         public WLJ3 wlj3{get; set;}
 
         [ChunkOptional]
         public SPHJ sphj{get; set;}
-
-
-
 
         [ChunkOptional]
         public PRS2 prs2{get; set;}

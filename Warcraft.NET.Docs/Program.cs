@@ -12,20 +12,6 @@ namespace Warcraft.NET.Docs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string iripath = "C:\\Users\\marce\\Desktop\\WoWStuff\\wow.export\\creature\\iridikron\\";
-            byte[] data = File.ReadAllBytes(iripath+"iridikron.m2");
-            Model m = new Model(data);
-
-            byte[] phys_test = File.ReadAllBytes("D:\\Unity Projects\\M2Tool\\M2Godot\\buckle_panstart_a_01.phys");
-            Physics phys = new Physics(phys_test);
-
-            File.WriteAllBytes(iripath+"iridikron_output.m2", m.Serialize());
-            File.WriteAllBytes("D:\\Unity Projects\\M2Tool\\M2Godot\\buckle_panstart_a_01_output.phys", phys.Serialize());
-
-
-
-            if (1==2) {
-
 
                 Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
 
@@ -45,7 +31,7 @@ namespace Warcraft.NET.Docs
                 ConvertToMarkdownStep.Process(autoDocData, outputFolder);
 
                 Console.WriteLine("Done!");
-            }
-            }
+            
+        }
     }
 }

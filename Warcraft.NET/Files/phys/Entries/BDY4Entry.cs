@@ -6,7 +6,14 @@ namespace Warcraft.NET.Files.phys.Entries
     public class BDY4Entry
     {
 
-        public ushort type { get; set; }        // maps to dmBodyDef type enum. 0 -> 1, 1 -> 0 = dm_dynamicBody, * -> 2. Only one should be of type 0 (root). possibly only 0 and 1.
+        public enum Body_Type : ushort
+        {
+            root = 0,
+            dynamic = 1,
+            unk = 2,
+        }
+
+        public Body_Type type { get; set; }        // maps to dmBodyDef type enum. 0 -> 1, 1 -> 0 = dm_dynamicBody, * -> 2. Only one should be of type 0 (root). possibly only 0 and 1.
         public ushort boneIndex { get; set; }
         public C3Vector position { get; set; }
         public ushort shapeIndex { get; set; }
@@ -38,7 +45,7 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                type = br.ReadUInt16();
+                type = (Body_Type)br.ReadUInt16();
                 boneIndex = br.ReadUInt16();
                 position = new C3Vector(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
                 shapeIndex = br.ReadUInt16();
@@ -69,7 +76,7 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(type);
+                    bw.Write((ushort)type);
                     bw.Write(boneIndex);
                     bw.Write(position.X);
                     bw.Write(position.Y);

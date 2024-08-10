@@ -4,12 +4,21 @@ using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.phys.Entries
 {
+
+
+
     public class SHP2Entry
     {
-
+        public enum Shape_Type : short
+        {
+            box = 0,
+            caps = 1,
+            sphere = 2,
+            polytope = 3,
+        }
 
         /*0x00*/
-        public ushort shapeType;
+        public Shape_Type shapeType;
         /*0x02*/
         public ushort shapeIndex; // into the corresponding chunk
         /*0x04*/
@@ -45,7 +54,7 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                shapeType = br.ReadUInt16();
+                shapeType = (Shape_Type)br.ReadUInt16();
                 shapeIndex = br.ReadUInt16();
                 unk = br.ReadBytes(4);
                 friction = br.ReadSingle();
@@ -74,7 +83,7 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(shapeType);
+                    bw.Write((ushort)shapeType);
                     bw.Write(shapeIndex);
                     bw.Write(unk);
                     bw.Write(friction);
@@ -89,5 +98,7 @@ namespace Warcraft.NET.Files.phys.Entries
                 return ms.ToArray();
             }
         }
+
+
     }
 }

@@ -45,7 +45,7 @@ namespace Warcraft.NET.Files.phys
 
         byte[] Serialize()
         {
-
+            return null;
         }
     }
 

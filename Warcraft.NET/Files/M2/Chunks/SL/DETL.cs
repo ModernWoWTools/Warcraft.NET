@@ -4,31 +4,31 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.M2.Entries;
 
-namespace Warcraft.NET.Files.M2.Chunks.Legion
+namespace Warcraft.NET.Files.M2.Chunks.SL
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
-    public class DBOC : IIFFChunk, IBinarySerializable
+    public class DETL : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "DBOC";
+        public const string Signature = "DETL";
 
         /// <summary>
         /// Gets or sets the Skin FileDataId
         /// </summary>
-        public List<DBOCEntry> DBOCEntries = new();
+        public List<DETLEntry> DETLEntries = new();
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
+        /// Initializes a new instance of <see cref="DETL"/>
         /// </summary>
-        public DBOC() { }
+        public DETL() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
+        /// Initializes a new instance of <see cref="DETL"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public DBOC(byte[] inData) => LoadBinaryData(inData);
+        public DETL(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -43,10 +43,10 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 using (var ms = new MemoryStream(inData))
                 using (var br = new BinaryReader(ms))
                 {
-                    var DBOCcount = br.BaseStream.Length / DBOCEntry.GetSize();
-                    for (var i = 0; i < DBOCcount; ++i)
+                    var DETLcount = br.BaseStream.Length / DETLEntry.GetSize();
+                    for (var i = 0; i < DETLcount; ++i)
                     {
-                        DBOCEntries.Add(new DBOCEntry(br.ReadBytes(DBOCEntry.GetSize())));
+                        DETLEntries.Add(new DETLEntry(br.ReadBytes(DETLEntry.GetSize())));
                     }
                 }
             }
@@ -58,7 +58,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (DBOCEntry obj in DBOCEntries)
+                foreach (DETLEntry obj in DETLEntries)
                 {
                     bw.Write(obj.Serialize());
                 }

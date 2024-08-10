@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
@@ -6,29 +7,29 @@ using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
-    public class DBOC : IIFFChunk, IBinarySerializable
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
+    public class PABC : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "DBOC";
+        public const string Signature = "PABC";
 
         /// <summary>
         /// Gets or sets the Skin FileDataId
         /// </summary>
-        public List<DBOCEntry> DBOCEntries = new();
+        public List<UInt16> PABCEntries = new();
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
+        /// Initializes a new instance of <see cref="PABC"/>
         /// </summary>
-        public DBOC() { }
+        public PABC() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DBOC"/>
+        /// Initializes a new instance of <see cref="PABC"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public DBOC(byte[] inData) => LoadBinaryData(inData);
+        public PABC(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -43,10 +44,10 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 using (var ms = new MemoryStream(inData))
                 using (var br = new BinaryReader(ms))
                 {
-                    var DBOCcount = br.BaseStream.Length / DBOCEntry.GetSize();
-                    for (var i = 0; i < DBOCcount; ++i)
+                    var PABCcount = br.BaseStream.Length / 2;
+                    for (var i = 0; i < PABCcount; ++i)
                     {
-                        DBOCEntries.Add(new DBOCEntry(br.ReadBytes(DBOCEntry.GetSize())));
+                        PABCEntries.Add(br.ReadUInt16());
                     }
                 }
             }
@@ -58,9 +59,9 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (DBOCEntry obj in DBOCEntries)
+                foreach (UInt16 obj in PABCEntries)
                 {
-                    bw.Write(obj.Serialize());
+                    bw.Write(obj);
                 }
 
                 return ms.ToArray();

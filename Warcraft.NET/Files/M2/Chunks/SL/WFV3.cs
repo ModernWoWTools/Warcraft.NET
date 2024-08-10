@@ -4,31 +4,31 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.M2.Entries;
 
-namespace Warcraft.NET.Files.M2.Chunks.Legion
+namespace Warcraft.NET.Files.M2.Chunks.SL
 {
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
-    public class LDV1 : IIFFChunk, IBinarySerializable
+    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
+    public class WFV3 : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "LDV1";
+        public const string Signature = "WFV3";
 
         /// <summary>
         /// Gets or sets the Skin FileDataId
         /// </summary>
-        public List<LDV1Entry> LDV1Entries = new();
+        public List<WFV3Entry> WFV3Entries = new();
 
         /// <summary>
-        /// Initializes a new instance of <see cref="LDV1"/>
+        /// Initializes a new instance of <see cref="WFV3"/>
         /// </summary>
-        public LDV1() { }
+        public WFV3() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="LDV1"/>
+        /// Initializes a new instance of <see cref="WFV3"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public LDV1(byte[] inData) => LoadBinaryData(inData);
+        public WFV3(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -43,10 +43,10 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 using (var ms = new MemoryStream(inData))
                 using (var br = new BinaryReader(ms))
                 {
-                    var LDV1count = br.BaseStream.Length / LDV1Entry.GetSize();
-                    for (var i = 0; i < LDV1count; ++i)
+                    var WFV3count = br.BaseStream.Length / WFV3Entry.GetSize();
+                    for (var i = 0; i < WFV3count; ++i)
                     {
-                        LDV1Entries.Add(new LDV1Entry(br.ReadBytes(LDV1Entry.GetSize())));
+                        WFV3Entries.Add(new WFV3Entry(br.ReadBytes(WFV3Entry.GetSize())));
                     }
                 }
             }
@@ -58,7 +58,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (LDV1Entry obj in LDV1Entries)
+                foreach (WFV3Entry obj in WFV3Entries)
                 {
                     bw.Write(obj.Serialize());
                 }

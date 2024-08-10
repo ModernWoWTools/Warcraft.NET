@@ -4,15 +4,25 @@ using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.phys.Entries
 {
+    
+
     public class JOINEntry
     {
-
+        public enum Joint_Type : ushort
+        {
+            sphericalJoint = 0,
+            shoulderJoint = 1,
+            weldJoint = 2,
+            revoluteJoint = 3,
+            prismaticJoint = 4,
+            distanceJoint = 5,
+        }
 
         public uint bodyAIdx;
         public uint bodyBIdx;
         public byte[] unk;
 
-        public ushort jointType;
+        public Joint_Type jointType;
         public ushort jointId;
 
         /// <summary>
@@ -32,7 +42,7 @@ namespace Warcraft.NET.Files.phys.Entries
                 bodyAIdx = br.ReadUInt32();
                 bodyBIdx = br.ReadUInt32();
                 unk = br.ReadBytes(4);
-                jointType = br.ReadUInt16();
+                jointType = (Joint_Type)br.ReadUInt16();
                 jointId = br.ReadUInt16();
             }
         }
@@ -56,7 +66,7 @@ namespace Warcraft.NET.Files.phys.Entries
                     bw.Write(bodyAIdx);
                     bw.Write(bodyBIdx);
                     bw.Write(unk);
-                    bw.Write(jointType);
+                    bw.Write((ushort)jointType);
                     bw.Write(jointId);
 
                 }
