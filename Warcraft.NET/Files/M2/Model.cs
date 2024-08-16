@@ -38,6 +38,63 @@ namespace Warcraft.NET.Files.M2
         [ChunkOrder(5), ChunkOptional]
         public BFID BoneFileIds { get; set; }
 
+<<<<<<< Updated upstream
+=======
+        /// <summary>
+        /// Gets or sets the TXAC
+        /// </summary>
+        [ChunkOptional]
+        public TXAC CParticleEmitter2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the particle extension
+        /// </summary>
+        [ChunkOptional]
+        public EXPT ExtendedParticle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the BlacklistAnimData
+        /// </summary>
+        [ChunkOptional]
+        public PABC M2InitBlacklistAnimData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParentAnimData
+        /// </summary>
+        [ChunkOptional]
+        public PADC M2InitParentAnimData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParentSequenceBoundsData
+        /// </summary>
+        [ChunkOptional]
+        public PSBC M2InitParentSequenceBoundsData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParentEventData
+        /// </summary>
+        [ChunkOptional]
+        public PEDC M2InitParentEventData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the model skeleton file ids
+        /// </summary>
+        [ChunkOptional]
+        public SKID SkeletonFileIds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the texture file ids
+        /// </summary>
+        [ChunkOptional]
+        public TXID TextureFileIds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the LodDataVersion1
+        /// </summary>
+        [ChunkOptional]
+        public LDV1 LodDataVersion1 { get; set; }
+
+>>>>>>> Stashed changes
         /// <summary>
         /// Gets or sets the model recursive particle file ids
         /// </summary>
@@ -51,6 +108,7 @@ namespace Warcraft.NET.Files.M2
         public GPID GeometryParticleFileIds { get; set; }
 
         /// <summary>
+<<<<<<< Updated upstream
         /// Gets or sets the model skeleton file ids
         /// </summary>
         [ChunkOrder(8), ChunkOptional]
@@ -61,6 +119,66 @@ namespace Warcraft.NET.Files.M2
         /// </summary>
         [ChunkOrder(9), ChunkOptional]
         public TXID TextureFileIds { get; set; }
+=======
+        /// Gets or sets the WaterFallVersion1
+        /// </summary>
+        [ChunkOptional]
+        public WFV1 WaterFallVersion1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the WaterFallVersion2
+        /// </summary>
+        [ChunkOptional]
+        public WFV2 WaterFallVersion2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParticleGeosetData
+        /// </summary>
+        [ChunkOptional]
+        public PGD1 ParticleGeosetData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the WaterFallVersion3
+        /// </summary>
+        [ChunkOptional]
+        public WFV3 WaterFallVersion3 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Physics of the M2
+        /// </summary>
+        [ChunkOptional]
+        public PFDC ModelPhysics { get; set; }
+
+        /// <summary>
+        /// Gets or sets the EdgeFade
+        /// </summary>
+        [ChunkOptional]
+        public EDGF EdgeFade { get; set; }
+
+        /// <summary>
+        /// Gets or sets the NERF
+        /// </summary>
+        [ChunkOptional]
+        public NERF NERF { get; set; }
+
+        /// <summary>
+        /// Gets or sets the DETL (light related)
+        /// </summary>
+        [ChunkOptional]
+        public DETL DETL { get; set; }
+
+        /// <summary>
+        /// Gets or sets the DBOC
+        /// </summary>
+        [ChunkOptional]
+        public DBOC DBOC { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AFRA
+        /// </summary>
+        [ChunkOptional]
+        public AFRA AFRA { get; set; }
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Model"/> class.

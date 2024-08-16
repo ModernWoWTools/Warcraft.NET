@@ -78,6 +78,22 @@ namespace Warcraft.NET.Extensions
         }
 
         /// <summary>
+        /// Reads a 48-byte <see cref="Mat3x4"/> structure from the data stream and advances the position of the stream by
+        /// 48 bytes.
+        /// </summary>
+        /// <returns>The Mat3x4.</returns>
+        /// <param name="binaryReader">The reader.</param>
+        /// <param name="convertTo">Which axis configuration the read mat3x4 should be converted to.</param>
+        public static Matrix3x4 ReadMatrix3x4(this BinaryReader binaryReader, AxisConfiguration convertTo = AxisConfiguration.YUp)
+        {
+            var a = binaryReader.ReadVector3(convertTo);
+            var b = binaryReader.ReadVector3(convertTo);
+            var c = binaryReader.ReadVector3(convertTo);
+            var pos = binaryReader.ReadVector3(convertTo);
+            return new Matrix3x4(a, b, c, pos);
+        }
+
+        /// <summary>
         /// Reads a 12-byte <see cref="Rotator"/> from the data stream and advances the position of the stream by
         /// 12 bytes.
         /// </summary>
@@ -272,37 +288,37 @@ namespace Warcraft.NET.Extensions
             switch (convertTo)
             {
                 case AxisConfiguration.Native:
-                {
-                    return new ShortVector3(binaryReader.ReadInt16(), binaryReader.ReadInt16(), binaryReader.ReadInt16());
-                }
+                    {
+                        return new ShortVector3(binaryReader.ReadInt16(), binaryReader.ReadInt16(), binaryReader.ReadInt16());
+                    }
                 case AxisConfiguration.YUp:
-                {
-                    var x1 = binaryReader.ReadInt16();
-                    var y1 = binaryReader.ReadInt16();
-                    var z1 = binaryReader.ReadInt16();
+                    {
+                        var x1 = binaryReader.ReadInt16();
+                        var y1 = binaryReader.ReadInt16();
+                        var z1 = binaryReader.ReadInt16();
 
-                    var x = x1;
-                    var y = z1;
-                    var z = (short)-y1;
+                        var x = x1;
+                        var y = z1;
+                        var z = (short)-y1;
 
-                    return new ShortVector3(x, y, z);
-                }
+                        return new ShortVector3(x, y, z);
+                    }
                 case AxisConfiguration.ZUp:
-                {
-                    var x1 = binaryReader.ReadInt16();
-                    var y1 = binaryReader.ReadInt16();
-                    var z1 = binaryReader.ReadInt16();
+                    {
+                        var x1 = binaryReader.ReadInt16();
+                        var y1 = binaryReader.ReadInt16();
+                        var z1 = binaryReader.ReadInt16();
 
-                    var x = x1;
-                    var y = (short)-z1;
-                    var z = y1;
+                        var x = x1;
+                        var y = (short)-z1;
+                        var z = y1;
 
-                    return new ShortVector3(x, y, z);
-                }
+                        return new ShortVector3(x, y, z);
+                    }
                 default:
-                {
-                    throw new ArgumentOutOfRangeException(nameof(convertTo), convertTo, null);
-                }
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(convertTo), convertTo, null);
+                    }
             }
         }
 
@@ -539,6 +555,25 @@ namespace Warcraft.NET.Extensions
         }
 
         /// <summary>
+        /// Writes a 48-byte <see cref="Matrix3x4"/> value to the data stream. This function
+        /// </summary>
+        /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
+        /// <param name="matrix">The Vector to write.</param>
+        /// <param name="storeAs">Which axis configuration the read vector should be stored as.</param>
+        public static void WriteMatrix3x4(this BinaryWriter binaryWriter, Matrix3x4 matrix, AxisConfiguration storeAs = AxisConfiguration.ZUp)
+        {
+            var column1 = matrix.RotationX * matrix.Scale.X;
+            var column2 = matrix.RotationY * matrix.Scale.Y;
+            var column3 = matrix.RotationZ * matrix.Scale.Z;
+            var column4 = matrix.Position;
+
+            binaryWriter.WriteVector3(column1, storeAs);
+            binaryWriter.WriteVector3(column2, storeAs);
+            binaryWriter.WriteVector3(column3, storeAs);
+            binaryWriter.WriteVector3(column4, storeAs);
+        }
+
+        /// <summary>
         /// Writes a 16-byte <see cref="Quaternion"/> to the data stream.
         /// </summary>
         /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
@@ -575,23 +610,23 @@ namespace Warcraft.NET.Extensions
             {
                 case AxisConfiguration.Native:
                 case AxisConfiguration.YUp:
-                {
-                    binaryWriter.Write(vector.X);
-                    binaryWriter.Write(vector.Y);
-                    binaryWriter.Write(vector.Z);
-                    break;
-                }
+                    {
+                        binaryWriter.Write(vector.X);
+                        binaryWriter.Write(vector.Y);
+                        binaryWriter.Write(vector.Z);
+                        break;
+                    }
                 case AxisConfiguration.ZUp:
-                {
-                    binaryWriter.Write(vector.X);
-                    binaryWriter.Write((short)(vector.Z * -1));
-                    binaryWriter.Write(vector.Y);
-                    break;
-                }
+                    {
+                        binaryWriter.Write(vector.X);
+                        binaryWriter.Write((short)(vector.Z * -1));
+                        binaryWriter.Write(vector.Y);
+                        break;
+                    }
                 default:
-                {
-                    throw new ArgumentOutOfRangeException(nameof(storeAs), storeAs, null);
-                }
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(storeAs), storeAs, null);
+                    }
             }
         }
 
