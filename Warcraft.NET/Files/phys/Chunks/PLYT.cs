@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Numerics;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.ADT.Terrain.MCNK;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Phys.Entries;
-using Warcraft.NET.Files.Phys.Structures;
 
 namespace Warcraft.NET.Files.Phys.Chunks
 {

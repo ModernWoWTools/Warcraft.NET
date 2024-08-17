@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Warcraft.NET.Extensions;
 
@@ -10,30 +9,37 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// The Transformation Matrix for Bone A of this Joint
         /// </summary>
         public Matrix3x4 FrameA;
+
         /// <summary>
         /// The Transformation Matrix for Bone B of this Joint
         /// </summary>
         public Matrix3x4 FrameB;
+
         /// <summary>
         /// The lower limit
         /// </summary>
         public float LowerLimit;
+
         /// <summary>
         /// The upper limit
         /// </summary>
         public float UpperLimit;
+
         /// <summary>
         /// Unknown value
         /// </summary>
-        public float Unk0; //prev unk_68
+        public float Unk0;
+
         /// <summary>
         /// Max motor force if enabled
         /// </summary>
         public float MaxMotorForce;
+
         /// <summary>
         /// unknown value
         /// </summary>
-        public float Unk1; //prev unk_70
+        public float Unk1;
+
         /// <summary>
         /// The MotorMode <para />
         /// 0 = disabled?
@@ -41,10 +47,12 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// 2 = motorVelocityMode
         /// </summary>
         public uint MotorMode;
+
         /// <summary>
         /// how often per second the motor damps
         /// </summary>
         public float MotorFrequencyHz;
+
         /// <summary>
         /// the ratio how much the motor damps
         /// </summary>

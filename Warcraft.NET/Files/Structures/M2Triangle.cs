@@ -1,13 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warcraft.NET.Files.Structures
+﻿namespace Warcraft.NET.Files.Structures
 {
-    public struct M2Triangle //132->Left handed; 123->right handed
+    /// <summary>
+    /// Triangle read from skin. </para> 
+    /// Default = Right Handed </para> 
+    /// To make it left handed, swap the second and third vertex
+    /// </summary>
+    public struct M2Triangle
     {
+        /// <summary>
+        /// the first vertex of the Triangle
+        /// </summary>
         public ushort Vertex1;
-        public ushort Vertex3;
+
+        /// <summary>
+        /// the second vertex of the Triangle
+        /// </summary>
         public ushort Vertex2;
+
+        /// <summary>
+        /// the third vertex of the Triangle
+        /// </summary>
+        public ushort Vertex3;
     }
 }

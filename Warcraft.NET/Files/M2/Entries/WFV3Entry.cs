@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 

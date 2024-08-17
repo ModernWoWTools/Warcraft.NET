@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using Warcraft.NET.Exceptions;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace Warcraft.NET.Extensions
 {
@@ -424,6 +425,32 @@ namespace Warcraft.NET.Extensions
             {
                 binaryWriter.Write(signature[(reverseSignature ? 3 - i : i)]);
             }
+        }
+
+        /// <summary>
+        /// Writes a struct to the BinaryWriter.
+        /// </summary>
+        /// <typeparam name="T">The type of struct to write.</typeparam>
+        /// <param name="binaryWriter">The BinaryWriter instance.</param>
+        /// <param name="value">The struct value to write.</param>
+        public static void WriteStruct<T>(this BinaryWriter binaryWriter, T value) where T : struct
+        {
+            int size = Marshal.SizeOf<T>();
+            byte[] bytes = new byte[size];
+
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            try
+            {
+                Marshal.StructureToPtr(value, ptr, true);
+                Marshal.Copy(ptr, bytes, 0, size);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(ptr);
+            }
+
+            // Write the padded bytes
+            binaryWriter.Write(bytes);
         }
 
         /// <summary>

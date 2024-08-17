@@ -4,22 +4,53 @@ using Warcraft.NET.Attribute;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.SKIN
+namespace Warcraft.NET.Files.Skin
 {
     [AutoDocFile("skin")]
     public class Skin
     {
-        public List<ushort> Vertices { get; set; } //index into M2s vertex list with offset <globalVertexOffset>
-        public List<M2Triangle> Triangles { get; set; } //3 indices per entry into vertices
+        /// <summary>
+        /// The list of Vertices used for this skin </para> 
+        /// indexed into M2s vertex list with offset 'GlobalVertexOffset'
+        /// </summary>
+        public List<ushort> Vertices { get; set; }
+
+        /// <summary>
+        /// the triangles used for this skin (Right Handed) </para>
+        /// indexed into the local list of vertices
+        /// </summary>
+        public List<M2Triangle> Triangles { get; set; }
+
+        /// <summary>
+        /// the bones used for this skin.</para>
+        /// indexed into the bone lookup table of the m2
+        /// </summary>
         public List<M2SkinBoneStruct> BoneIndices { get; set; }
+
+        /// <summary>
+        /// the submeshes used for this skin
+        /// </summary>
         public List<M2SkinSection> Submeshes { get; set; }
+
+        /// <summary>
+        /// the texture units used for this skin.
+        /// </summary>
         public List<M2Batch> TextureUnits { get; set; }
 
-        public uint GlobalVertexOffset; //start offset into M2.Vertices -> something else in wotlk
+        /// <summary>
+        /// start offset into M2.Vertices -> something else in wotlk
+        /// </summary>
+        public uint GlobalVertexOffset;
 
+        /// <summary>
+        /// the shadowbatches used in this skin
+        /// </summary>
         public List<M2ShadowBatch> ShadowBatches;
 
-        public byte[] Unk0; //Padding?
+        /// <summary>
+        /// unknown field. Maybe padding?
+        /// </summary>
+        public byte[] Unk0;
 
         public bool Wotlk = false;
 

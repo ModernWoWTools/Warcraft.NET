@@ -107,7 +107,6 @@
                         "M2", new()
                         {
                             "MD21",
-                            "PFID",
                             "SFID",
                             "AFID",
                             "BFID",

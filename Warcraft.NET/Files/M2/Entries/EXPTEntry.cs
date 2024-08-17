@@ -4,7 +4,6 @@ namespace Warcraft.NET.Files.M2.Entries
 {
     public class EXPTEntry
     {
-
         /// <summary>
         /// replaces zSource from ParticleEmitter
         /// </summary>

@@ -64,6 +64,5 @@ namespace Warcraft.NET.Files.Phys.Chunks
                 return ms.ToArray();
             }
         }
-
     }
 }

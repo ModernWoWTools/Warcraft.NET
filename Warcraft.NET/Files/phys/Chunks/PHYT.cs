@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
@@ -16,7 +15,7 @@ namespace Warcraft.NET.Files.Phys.Chunks
         /// <summary>
         /// Gets or Sets PHYT (unknown)
         /// </summary>
-        public uint Phyt;
+        public uint Phyt = 0;
 
         /// <summary>
         /// Initializes a new instance of <see cref="PHYT"/>

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Warcraft.NET.Attribute;
+﻿using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion

@@ -1,7 +1,5 @@
-using System;
 using System.IO;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.Phys.Entries
 {

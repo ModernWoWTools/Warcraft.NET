@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Phys.Entries;
-using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.Phys.Chunks
 {

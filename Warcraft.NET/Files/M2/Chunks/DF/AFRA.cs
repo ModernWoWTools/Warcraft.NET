@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Warcraft.NET.Attribute;
-using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entries;
+﻿using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.M2.Chunks.DF
 {
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterSL, AutoDocChunkVersionHelper.VersionBeforeDF)]
     public class AFRA : IIFFChunk, IBinarySerializable
     {
         /// <summary>

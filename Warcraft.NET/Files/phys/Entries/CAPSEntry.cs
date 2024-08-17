@@ -1,7 +1,6 @@
 using System.IO;
 using System.Numerics;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Phys.Chunks;
 using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.Phys.Entries

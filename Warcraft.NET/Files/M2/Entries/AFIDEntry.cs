@@ -9,7 +9,6 @@ namespace Warcraft.NET.Files.M2.Entries
         /// </summary>
         public ushort AnimationId { get; set; }
 
-
         /// <summary>
         /// Gets or sets the sub animation id.
         /// </summary>
@@ -19,7 +18,6 @@ namespace Warcraft.NET.Files.M2.Entries
         /// Gets or sets the sub file data id. Might be 0 for "none" (so this is probably not sparse, even if it could be)
         /// </summary>
         public uint FileDataId { get; set; }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AFIDEntry"/> class.

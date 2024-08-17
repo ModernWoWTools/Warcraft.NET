@@ -2,32 +2,33 @@
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
+using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
-    public class BFID : IIFFChunk, IBinarySerializable
+    public class EXPT : IIFFChunk, IBinarySerializable
     {
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "BFID";
+        public const string Signature = "EXP2";
 
         /// <summary>
-        /// Gets or Sets the Bone FileDataIds
+        /// Gets or sets the Skin FileDataId
         /// </summary>
-        public List<uint> BoneFileDataIds { get; set; } = new();
+        public List<EXPTEntry> EXP2Entries = new();
 
         /// <summary>
-        /// Initializes a new instance of <see cref="BFID"/>
+        /// Initializes a new instance of <see cref="EXPT"/>
         /// </summary>
-        public BFID() { }
+        public EXPT() { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="BFID"/>
+        /// Initializes a new instance of <see cref="EXPT"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
-        public BFID(byte[] inData) => LoadBinaryData(inData);
+        public EXPT(byte[] inData) => LoadBinaryData(inData);
 
         /// <inheritdoc />
         public string GetSignature() { return Signature; }
@@ -38,13 +39,16 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <inheritdoc />
         public void LoadBinaryData(byte[] inData)
         {
-            using (var ms = new MemoryStream(inData))
-            using (var br = new BinaryReader(ms))
             {
-                uint nBone = (uint)inData.Length / 4;
-
-                for (var i = 0; i < nBone; i++)
-                    BoneFileDataIds.Add(br.ReadUInt32());
+                using (var ms = new MemoryStream(inData))
+                using (var br = new BinaryReader(ms))
+                {
+                    var exp2count = br.BaseStream.Length / EXPTEntry.GetSize();
+                    for (var i = 0; i < exp2count; ++i)
+                    {
+                        EXP2Entries.Add(new EXPTEntry(br.ReadBytes(EXPTEntry.GetSize())));
+                    }
+                }
             }
         }
 
@@ -54,9 +58,10 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach(uint boneFileDataId in BoneFileDataIds)
-                    bw.Write(boneFileDataId);
-
+                foreach (EXPTEntry obj in EXP2Entries)
+                {
+                    bw.Write(obj.Serialize());
+                }
                 return ms.ToArray();
             }
         }

@@ -1,7 +1,5 @@
-using System;
 using System.IO;
 using Warcraft.NET.Extensions;
-using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.Phys.Entries
 {
@@ -90,8 +88,6 @@ namespace Warcraft.NET.Files.Phys.Entries
                 bw.Write(Unk0);
                 return ms.ToArray();
             }
-            
         }
-
     }
 }

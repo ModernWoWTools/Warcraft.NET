@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warcraft.NET.Files.Phys.Enums
+﻿namespace Warcraft.NET.Files.Phys.Enums
 {
     public enum JointType : ushort
     {

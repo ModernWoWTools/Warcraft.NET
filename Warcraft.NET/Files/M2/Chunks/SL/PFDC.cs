@@ -1,3 +1,4 @@
+using System;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 using Warcraft.NET.Files.Phys;
@@ -43,7 +44,21 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
         /// <inheritdoc />
         public byte[] Serialize(long offset = 0)
         {
-            return Physics.Serialize();
+            return PadTo8Bytes(Physics.Serialize());
+        }
+
+        static byte[] PadTo8Bytes(byte[] input)
+        {
+            int paddingNeeded = 8 - (input.Length % 8);
+            if (paddingNeeded == 8)
+                paddingNeeded = 0;
+            byte[] paddedArray = new byte[input.Length + paddingNeeded];
+            Array.Copy(input, paddedArray, input.Length);
+            for (int i = input.Length; i < paddedArray.Length; i++)
+            {
+                paddedArray[i] = 0x00;
+            }
+            return paddedArray;
         }
     }
 }

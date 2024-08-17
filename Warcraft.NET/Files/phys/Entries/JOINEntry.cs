@@ -3,8 +3,6 @@ using Warcraft.NET.Files.Phys.Enums;
 
 namespace Warcraft.NET.Files.Phys.Entries
 {
-    
-
     public class JOINEntry
     {
         /// <summary>

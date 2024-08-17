@@ -24,7 +24,7 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// <summary>
         /// sets or gets the default Position of the rigidbody
         /// </summary>
-        public Vector3 Position { get; set; } = new Vector3(0,0,0);
+        public Vector3 Position { get; set; } = new Vector3(0, 0, 0);
 
         /// <summary>
         /// sets or gets the index of the shape, which is connected to this rigidbody
@@ -34,7 +34,7 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// <summary>
         /// sets or gets a currently unknown field. Possibly 'Padding'
         /// </summary>
-        public byte[] Unk0 { get; set; } = {0,0};
+        public byte[] Unk0 { get; set; } = { 0, 0 };
 
         /// <summary>
         /// sets or gets the amount of shapes this rigidbody has
@@ -60,9 +60,8 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// <summary>
         /// sets or gets a currently unknown field. Possibly 'Mass/Weight'
         /// </summary>
-        public float Unk3 = 0f;                 // default 0, seems to be some sort of weight. 
-                                                // If version >= 3 and Unk3 == 0 the body will be non kinematic even if the flag is set, it needs to get its transform from the parent bone.
-                                                // See offhand_1h_artifactskulloferedar_d_06 where all the bodies have the kinematic flag
+        public float Unk3 = 0f;
+
         /// <summary>
         /// sets or gets a currently unknown field.
         /// </summary>
@@ -71,7 +70,7 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// <summary>
         /// sets or gets a currently unknown field.
         /// </summary>
-        public byte[] Unk5 { get; set; } = { 0,0,0,0};
+        public byte[] Unk5 { get; set; } = { 0, 0, 0, 0 };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BDY4Entry"/> class.

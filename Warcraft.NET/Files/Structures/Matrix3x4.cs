@@ -1,16 +1,32 @@
 using System.Collections.Generic;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.Structures;
 using System.Numerics;
-using System.IO;
-using Warcraft.NET.Extensions;
 
 public class Matrix3x4 : IFlattenableData<float>
 {
+    /// <summary>
+    /// The directional vector 'right'
+    /// </summary>
     public Vector3 RotationX { get; set; }
+
+    /// <summary>
+    /// The directional vector 'up'
+    /// </summary>
     public Vector3 RotationY { get; set; }
+
+    /// <summary>
+    /// The directional vector 'forward'
+    /// </summary>
     public Vector3 RotationZ { get; set; }
+
+    /// <summary>
+    /// The scale of the matrix
+    /// </summary>
     public Vector3 Scale { get; set; }
+
+    /// <summary>
+    /// The position of the matrix
+    /// </summary>
     public Vector3 Position { get; set; }
 
     public Matrix3x4 (Vector3 column1, Vector3 column2, Vector3 column3, Vector3 column4)

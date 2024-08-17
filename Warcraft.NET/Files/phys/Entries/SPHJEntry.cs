@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Numerics;
 using Warcraft.NET.Extensions;
