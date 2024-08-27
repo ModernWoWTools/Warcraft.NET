@@ -43,13 +43,13 @@ namespace Warcraft.NET.Files.Phys.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                var PLYTcount = br.ReadUInt32();
-                for (var i = 0; i < PLYTcount; i++)
+                var plyt_count = br.ReadUInt32();
+                for (var i = 0; i < plyt_count; i++)
                 {
                     PLYTEntry plyt_entry = new PLYTEntry(br.ReadBytes(80));
                     PLYTEntries.Add(plyt_entry);
                 }
-                for (var j = 0; j < PLYTcount; j++)
+                for (var j = 0; j < plyt_count; j++)
                 {
                     PLYTEntry plyt_entry = PLYTEntries[j];
                     plyt_entry.DeserializeData(br.ReadBytes(plyt_entry.DataSize));
