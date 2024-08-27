@@ -141,37 +141,37 @@ namespace Warcraft.NET.Files.M2
         /// <summary>
         /// Gets or sets the model recursive particle file ids
         /// </summary>
-        [ChunkOrder(), ChunkOptional]
+        [ChunkOrder(22), ChunkOptional]
         public RPID RecursiveParticleFileIds { get; set; }
 
         /// <summary>
         /// Gets or sets the model geometry particle file ids
         /// </summary>
-        [ChunkOrder(), ChunkOptional]
+        [ChunkOrder(23), ChunkOptional]
         public GPID GeometryParticleFileIds { get; set; }
 
         /// <summary>
         /// Gets or sets the ParentAnimData
         /// </summary>
-        [ChunkOrder(),ChunkOptional]
+        [ChunkOrder(24),ChunkOptional]
         public PADC M2InitParentAnimData { get; set; }
 
         /// <summary>
         /// Gets or sets the NERF
         /// </summary>
-        [ChunkOrder(),ChunkOptional]
+        [ChunkOrder(25),ChunkOptional]
         public NERF NERF { get; set; }
 
         /// <summary>
         /// Gets or sets the DETL (light related)
         /// </summary>
-        [ChunkOrder(),ChunkOptional]
+        [ChunkOrder(26),ChunkOptional]
         public DETL DETL { get; set; }
 
         /// <summary>
         /// Gets or sets the AFRA
         /// </summary>
-        [ChunkOrder(),ChunkOptional]
+        [ChunkOrder(27),ChunkOptional]
         public AFRA AFRA { get; set; }
 
         /// <summary>
