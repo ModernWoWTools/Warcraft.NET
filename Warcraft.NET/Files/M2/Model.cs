@@ -136,8 +136,6 @@ namespace Warcraft.NET.Files.M2
         [ChunkOrder(21),ChunkOptional]
         public PSBC M2InitParentSequenceBoundsData { get; set; }
 
-        
-
         /// <summary>
         /// Gets or sets the model recursive particle file ids
         /// </summary>

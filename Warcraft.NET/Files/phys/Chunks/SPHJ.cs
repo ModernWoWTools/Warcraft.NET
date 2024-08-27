@@ -43,7 +43,6 @@ namespace Warcraft.NET.Files.Phys.Chunks
             using (var br = new BinaryReader(ms))
             {
                 var SPHJcount = br.BaseStream.Length / SPHJEntry.GetSize();
-
                 for (var i = 0; i < SPHJcount; ++i)
                 {
                     SPHJEntries.Add(new SPHJEntry(br.ReadBytes(SPHJEntry.GetSize())));

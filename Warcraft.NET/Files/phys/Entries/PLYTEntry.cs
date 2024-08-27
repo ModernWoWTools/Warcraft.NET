@@ -30,7 +30,7 @@ namespace Warcraft.NET.Files.Phys.Entries
         /// <summary>
         /// Initializes a new instance of the <see cref="PLYTEntry"/> class.
         /// </summary>
-        /// <param name="Data">ExtendedData.</param>
+        /// <param name="Data">Header Data</param>
         public PLYTEntry(byte[] header)
         {
             using (var ms = new MemoryStream(header))
@@ -59,6 +59,10 @@ namespace Warcraft.NET.Files.Phys.Entries
             }
         }
 
+        /// <summary>
+        /// Deserialization of the Data Chunks
+        /// </summary>
+        /// <param name="data"></param>
         public void DeserializeData(byte[] data)
         {
             using (var ms = new MemoryStream(data))
@@ -78,7 +82,7 @@ namespace Warcraft.NET.Files.Phys.Entries
                 Data.Nodes = new PlytNode[nodeCount];
                 for (int n = 0; n < nodeCount; n++)
                 {
-                    PlytNode node = new PlytNode();
+                    PlytNode node = new();
                     node.Unk = br.ReadByte();
                     node.VertexIndex = br.ReadByte();
                     node.UnkIndex0 = br.ReadByte();
@@ -115,7 +119,11 @@ namespace Warcraft.NET.Files.Phys.Entries
             return SerializeHeader().Length + SerializeData().Length;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Serialize the Header
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <returns></returns>
         public byte[] SerializeHeader(long offset = 0)
         {
             using (var ms = new MemoryStream())
@@ -148,7 +156,11 @@ namespace Warcraft.NET.Files.Phys.Entries
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Serialize the Data
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <returns></returns>
         public byte[] SerializeData(long offset = 0)
         {
             using (var ms = new MemoryStream())

@@ -48,10 +48,10 @@ namespace Warcraft.NET.Files.Structures
         public ushort BoneComboIndex;
 
         /// <summary>
-        /// <= 4 </para> 
-        /// from <=BC documentation: Highest number of bones needed at one time in this Submesh --Tinyn (wowdev.org) </para> 
-        /// In 2.x this is the amount of of bones up the parent-chain affecting the submesh --NaK </para> 
-        /// Highest number of bones referenced by a vertex of this submesh. 3.3.5a and suspectedly all other client revisions. -- Skarn </para> 
+        /// <= 4
+        /// from <=BC documentation: Highest number of bones needed at one time in this Submesh --Tinyn (wowdev.org)
+        /// In 2.x this is the amount of of bones up the parent-chain affecting the submesh --NaK
+        /// Highest number of bones referenced by a vertex of this submesh. 3.3.5a and suspectedly all other client revisions. -- Skarn
         /// </summary>
         public ushort BoneInfluences;
 
