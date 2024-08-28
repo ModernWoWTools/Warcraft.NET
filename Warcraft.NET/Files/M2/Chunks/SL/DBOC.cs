@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "DBOC";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the DBOC Entries
         /// </summary>
         public List<DBOCEntry> DBOCEntries = new();
 
@@ -24,7 +24,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// </summary>
         public DBOC() { }
 
-        /// <summary>
+        /// <summary> 
         /// Initializes a new instance of <see cref="DBOC"/>
         /// </summary>
         /// <param name="inData">ExtendedData.</param>
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

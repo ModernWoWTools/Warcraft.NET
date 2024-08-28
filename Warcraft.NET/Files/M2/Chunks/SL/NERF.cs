@@ -3,7 +3,6 @@ using System.IO;
 using System.Numerics;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
@@ -16,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "NERF";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the NERF Entries
         /// </summary>
         public List<Vector2> NERFEntries = new();
 
@@ -64,10 +63,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                     bw.Write(obj.X);
                     bw.Write(obj.Y);
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

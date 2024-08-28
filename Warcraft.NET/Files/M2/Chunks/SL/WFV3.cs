@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
         public const string Signature = "WFV3";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the WaterFallVersion3 Entries
         /// </summary>
         public List<WFV3Entry> WFV3Entries = new();
 
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

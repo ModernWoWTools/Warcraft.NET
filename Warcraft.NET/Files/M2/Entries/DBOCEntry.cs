@@ -1,21 +1,30 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Warcraft.NET.Files.M2.Entries
 {
     public class DBOCEntry
     {
-        public float unk_float1;
-        public float unk_float2;
-        public UInt32 unk_int1;
-        public UInt32 unk_int2;
+        /// <summary>
+        /// unknown float
+        /// </summary>
+        public float Unk0;
+        /// <summary>
+        /// unknown float
+        /// </summary>
+        public float Unk1;
+        /// <summary>
+        /// unknown int
+        /// </summary>
+        public uint Unk2;
+        /// <summary>
+        /// unknown int
+        /// </summary>
+        public uint Unk3;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DBOCEntry"/> class.
         /// </summary>
-        public DBOCEntry()
-        {
-        }
+        public DBOCEntry(){}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DBOCEntry"/> class.
@@ -26,10 +35,10 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                unk_float1 = br.ReadSingle();
-                unk_float2 = br.ReadSingle();
-                unk_int1 = br.ReadUInt32();
-                unk_int2 = br.ReadUInt32();
+                Unk0 = br.ReadSingle();
+                Unk1 = br.ReadSingle();
+                Unk2 = br.ReadUInt32();
+                Unk3 = br.ReadUInt32();
             }
         }
 
@@ -49,12 +58,11 @@ namespace Warcraft.NET.Files.M2.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(unk_float1);
-                    bw.Write(unk_float2);
-                    bw.Write(unk_int1);
-                    bw.Write(unk_int2);
+                    bw.Write(Unk0);
+                    bw.Write(Unk1);
+                    bw.Write(Unk2);
+                    bw.Write(Unk3);
                 }
-
                 return ms.ToArray();
             }
         }

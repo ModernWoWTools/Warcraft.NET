@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class SHJ2 : IIFFChunk, IBinarySerializable
@@ -16,6 +14,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         /// </summary>
         public const string Signature = "SHJ2";
 
+        /// <summary>
+        /// sets or gets the shoulder(V2) joints
+        /// </summary>
         public List<SHJ2Entry> SHJ2Entries = new();
 
         /// <summary>
@@ -62,8 +63,6 @@ namespace Warcraft.NET.Files.phys.Chunks
                 }
                 return ms.ToArray();
             }
-
-
         }
     }
 }

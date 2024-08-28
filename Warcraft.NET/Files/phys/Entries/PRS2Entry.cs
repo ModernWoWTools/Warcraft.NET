@@ -1,25 +1,62 @@
-using System;
 using System.IO;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Extensions;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class PRS2Entry
     {
+        /// <summary>
+        /// The Transformation Matrix for Bone A of this Joint
+        /// </summary>
+        public Matrix3x4 FrameA;
 
+        /// <summary>
+        /// The Transformation Matrix for Bone B of this Joint
+        /// </summary>
+        public Matrix3x4 FrameB;
 
-        public Mat3x4 frameA;
-        public Mat3x4 frameB;
-        public float lowerLimit;
-        public float upperLimit;
-        public float _68;
-        public float maxMotorForce;
-        public float _70;
-        public UInt32 motorMode;
+        /// <summary>
+        /// The lower limit
+        /// </summary>
+        public float LowerLimit;
 
-        public float motorFrequencyHz;
-        public float motorDampingRatio;
+        /// <summary>
+        /// The upper limit
+        /// </summary>
+        public float UpperLimit;
 
+        /// <summary>
+        /// Unknown value
+        /// </summary>
+        public float Unk0;
+
+        /// <summary>
+        /// Max motor force if enabled
+        /// </summary>
+        public float MaxMotorForce;
+
+        /// <summary>
+        /// unknown value
+        /// </summary>
+        public float Unk1;
+
+        /// <summary>
+        /// The MotorMode <para />
+        /// 0 = disabled?
+        /// 1 = motorPositionMode (MotorFrequencyHz>0)
+        /// 2 = motorVelocityMode
+        /// </summary>
+        public uint MotorMode;
+
+        /// <summary>
+        /// how often per second the motor damps
+        /// </summary>
+        public float MotorFrequencyHz;
+
+        /// <summary>
+        /// the ratio how much the motor damps
+        /// </summary>
+        public float MotorDampingRatio;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PRS2Entry"/> class.
@@ -35,16 +72,16 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                frameA = new Mat3x4(br.ReadBytes(48));
-                frameB = new Mat3x4(br.ReadBytes(48));
-                lowerLimit = br.ReadSingle();
-                upperLimit = br.ReadSingle();
-                _68 = br.ReadSingle();
-                maxMotorForce = br.ReadSingle();
-                _70 = br.ReadSingle();
-                motorMode = br.ReadUInt32();
-                motorFrequencyHz = br.ReadSingle();
-                motorDampingRatio = br.ReadSingle();
+                FrameA = br.ReadMatrix3x4();
+                FrameB = br.ReadMatrix3x4();
+                LowerLimit = br.ReadSingle();
+                UpperLimit = br.ReadSingle();
+                Unk0 = br.ReadSingle();
+                MaxMotorForce = br.ReadSingle();
+                Unk1 = br.ReadSingle();
+                MotorMode = br.ReadUInt32();
+                MotorFrequencyHz = br.ReadSingle();
+                MotorDampingRatio = br.ReadSingle();
             }
         }
 
@@ -64,18 +101,17 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(frameA.asBytes());
-                    bw.Write(frameB.asBytes());
-                    bw.Write(lowerLimit);
-                    bw.Write(upperLimit);
-                    bw.Write(_68);
-                    bw.Write(maxMotorForce);
-                    bw.Write(_70);
-                    bw.Write(motorMode);
-                    bw.Write(motorFrequencyHz);
-                    bw.Write(motorDampingRatio);
+                    bw.WriteMatrix3x4(FrameA);
+                    bw.WriteMatrix3x4(FrameB);
+                    bw.Write(LowerLimit);
+                    bw.Write(UpperLimit);
+                    bw.Write(Unk0);
+                    bw.Write(MaxMotorForce);
+                    bw.Write(Unk1);
+                    bw.Write(MotorMode);
+                    bw.Write(MotorFrequencyHz);
+                    bw.Write(MotorDampingRatio);
                 }
-
                 return ms.ToArray();
             }
         }

@@ -1,16 +1,33 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Warcraft.NET.Files.M2.Entries
 {
     public class LDV1Entry
     {
-        public UInt16 unk0;
-        public UInt16 lodCount; //maxLod = lodCount-1;  
-        float unk2_f;
-        public byte[] particleBoneLod; //lod serves as indes into this array
-        public UInt32 unk4;
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public ushort Unk0;
 
+        /// <summary>
+        /// the maximum lod count
+        /// </summary>
+        public ushort LodCount;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk1;
+
+        /// <summary>
+        /// lod serves as indes into this array
+        /// </summary>
+        public byte[] ParticleBoneLod;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public uint Unk2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LDV1Entry"/> class.
@@ -28,11 +45,11 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                unk0 = br.ReadUInt16();
-                lodCount = br.ReadUInt16();
-                unk2_f = br.ReadSingle();
-                particleBoneLod = br.ReadBytes(4);
-                unk4 = br.ReadUInt32();
+                Unk0 = br.ReadUInt16();
+                LodCount = br.ReadUInt16();
+                Unk1 = br.ReadSingle();
+                ParticleBoneLod = br.ReadBytes(4);
+                Unk2 = br.ReadUInt32();
             }
         }
 
@@ -49,16 +66,13 @@ namespace Warcraft.NET.Files.M2.Entries
         public byte[] Serialize(long offset = 0)
         {
             using (var ms = new MemoryStream())
+            using (var bw = new BinaryWriter(ms))
             {
-                using (var bw = new BinaryWriter(ms))
-                {
-                    bw.Write(unk0);
-                    bw.Write(lodCount);
-                    bw.Write(unk2_f);
-                    bw.Write(particleBoneLod);
-                    bw.Write(unk4);
-                }
-
+                bw.Write(Unk0);
+                bw.Write(LodCount);
+                bw.Write(Unk1);
+                bw.Write(ParticleBoneLod);
+                bw.Write(Unk2);
                 return ms.ToArray();
             }
         }

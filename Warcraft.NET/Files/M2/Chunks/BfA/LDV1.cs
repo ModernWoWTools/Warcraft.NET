@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
         public const string Signature = "LDV1";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the Lod Data Version 1 Entries
         /// </summary>
         public List<LDV1Entry> LDV1Entries = new();
 
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

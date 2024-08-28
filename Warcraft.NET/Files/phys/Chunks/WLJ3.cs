@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class WLJ3 : IIFFChunk, IBinarySerializable
@@ -16,6 +14,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         /// </summary>
         public const string Signature = "WLJ3";
 
+        /// <summary>
+        /// sets or gets a list of Weld(V3) Joints
+        /// </summary>
         public List<WLJ3Entry> WLJ3Entries = new();
 
         /// <summary>
@@ -62,8 +63,6 @@ namespace Warcraft.NET.Files.phys.Chunks
                 }
                 return ms.ToArray();
             }
-
-
         }
     }
 }

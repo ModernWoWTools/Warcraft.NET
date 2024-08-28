@@ -1,44 +1,63 @@
-using System;
 using System.IO;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Enums;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
-
-
-
     public class SHP2Entry
     {
-        public enum Shape_Type : short
-        {
-            box = 0,
-            caps = 1,
-            sphere = 2,
-            polytope = 3,
-        }
+        /// <summary>
+        /// The Shape Type <para />
+        /// 0 = Box
+        /// 1 = Capsule
+        /// 2 = Sphere
+        /// 3 = Polytope
+        /// </summary>
+        public ShapeType ShapeType;
 
-        /*0x00*/
-        public Shape_Type shapeType;
-        /*0x02*/
-        public ushort shapeIndex; // into the corresponding chunk
-        /*0x04*/
-        public byte[] unk;
-        /*0x08*/
-        public float friction;
-        /*0x0c*/
-        public float restitution;
-        /*0x10*/
-        public float density;
-        /*0x14*/
-        public UInt32 _x14; // default 0
-        /*0x18*/
-        public float _x18; // default 1.0
-        /*0x1c*/
-        public UInt16 _x1c; // default 0
-        /*0x1e*/
-        public UInt16 _x1e; // no default, padding?
+        /// <summary>
+        /// The index into the corresponding chunk based on ShapeType
+        /// </summary>
+        public ushort ShapeIndex;
 
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public byte[] Unk0;
 
+        /// <summary>
+        /// the friction of the shape 
+        /// </summary>
+        public float Friction;
+
+        /// <summary>
+        /// the restitution of the shape
+        /// </summary>
+        public float Restitution;
+
+        /// <summary>
+        /// the density of the shape
+        /// </summary>
+        public float Density;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public uint Unk1 = 0;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk2 = 1f;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public ushort Unk3 = 0;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public ushort Unk4; //no default, padding?
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SHP2Entry"/> class.
@@ -54,16 +73,16 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                shapeType = (Shape_Type)br.ReadUInt16();
-                shapeIndex = br.ReadUInt16();
-                unk = br.ReadBytes(4);
-                friction = br.ReadSingle();
-                restitution = br.ReadSingle();
-                density = br.ReadSingle();
-                _x14 = br.ReadUInt32();
-                _x18 = br.ReadSingle();
-                _x1c = br.ReadUInt16();
-                _x1e = br.ReadUInt16();
+                ShapeType = (ShapeType)br.ReadUInt16();
+                ShapeIndex = br.ReadUInt16();
+                Unk0 = br.ReadBytes(4);
+                Friction = br.ReadSingle();
+                Restitution = br.ReadSingle();
+                Density = br.ReadSingle();
+                Unk1 = br.ReadUInt32();
+                Unk2 = br.ReadSingle();
+                Unk3 = br.ReadUInt16();
+                Unk4 = br.ReadUInt16();
             }
         }
 
@@ -83,22 +102,19 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write((ushort)shapeType);
-                    bw.Write(shapeIndex);
-                    bw.Write(unk);
-                    bw.Write(friction);
-                    bw.Write(restitution);
-                    bw.Write(density);
-                    bw.Write(_x14);
-                    bw.Write(_x18);
-                    bw.Write(_x1c);
-                    bw.Write(_x1e);
+                    bw.Write((ushort)ShapeType);
+                    bw.Write(ShapeIndex);
+                    bw.Write(Unk0);
+                    bw.Write(Friction);
+                    bw.Write(Restitution);
+                    bw.Write(Density);
+                    bw.Write(Unk1);
+                    bw.Write(Unk2);
+                    bw.Write(Unk3);
+                    bw.Write(Unk4);
                 }
-
                 return ms.ToArray();
             }
         }
-
-
     }
 }

@@ -1,30 +1,31 @@
 using System.IO;
-using Warcraft.NET.Files.phys.Chunks;
-using Warcraft.NET.Files.Structures;
+using System.Numerics;
+using Warcraft.NET.Extensions;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class BOXSEntry
     {
         /// <summary>
-        /// Gets or Sets the matrix of the box shape
+        /// Gets or Sets the transformation matrix of the box shape
         /// </summary>
-        public Mat3x4 a;
+        public Matrix3x4 Dimensions;
 
         /// <summary>
         /// Gets or Sets the local position of the box shape
         /// </summary>
-        public C3Vector c;
+        public Vector3 Position;
 
         public BOXSEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                a = new Mat3x4(br.ReadBytes(48));
-                c = new C3Vector(br.ReadBytes(12));
+                Dimensions = br.ReadMatrix3x4();
+                Position = br.ReadVector3();
             }
         }
+
         /// <summary>
         /// Gets the size of a box entry.
         /// </summary>
@@ -41,13 +42,11 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(a.asBytes());
-                    bw.Write(c.asBytes());
+                    bw.WriteMatrix3x4(Dimensions);
+                    bw.WriteVector3(Position);
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

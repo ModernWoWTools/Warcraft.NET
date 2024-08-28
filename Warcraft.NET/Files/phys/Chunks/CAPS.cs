@@ -1,12 +1,10 @@
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.Structures;
 using System.Collections.Generic;
-using Warcraft.NET.Files.phys.Entries;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class CAPS : IIFFChunk, IBinarySerializable
@@ -16,8 +14,10 @@ namespace Warcraft.NET.Files.phys.Chunks
         /// </summary>
         public const string Signature = "CAPS";
 
+        /// <summary>
+        /// sets or gets the capsule shapes
+        /// </summary>
         public List<CAPSEntry> CAPSEntries = new();
-
 
         /// <summary>
         /// Initializes a new instance of <see cref="CAPS"/>
@@ -63,8 +63,6 @@ namespace Warcraft.NET.Files.phys.Chunks
                 }
                 return ms.ToArray();
             }
-
-
         }
     }
 }

@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class SPHS : IIFFChunk, IBinarySerializable
@@ -15,14 +15,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         public const string Signature = "SPHS";
 
         /// <summary>
-        /// Gets or Sets the local position of the Sphere shape
+        /// sets or gets a list of sphere shapes
         /// </summary>
-        public C3Vector localPosition;
-
-        /// <summary>
-        /// Gets or Sets the radius of the Sphere shape
-        /// </summary>
-        public float radius;
+        public List<SPHSEntry> Spheres = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="SPHS"/>
@@ -47,8 +42,12 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                localPosition = new C3Vector(br.ReadBytes(12));
-                radius = br.ReadSingle();
+                var SHP2count = br.BaseStream.Length / SHP2Entry.GetSize();
+
+                for (var i = 0; i < SHP2count; ++i)
+                {
+                    Spheres.Add(new SPHSEntry(br.ReadBytes(SPHSEntry.GetSize())));
+                }
             }
         }
 
@@ -57,9 +56,11 @@ namespace Warcraft.NET.Files.phys.Chunks
         {
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
-            {                
-                bw.Write(localPosition.asBytes());
-                bw.Write(radius);
+            {
+                foreach (SPHSEntry obj in Spheres)
+                {
+                    bw.Write(obj.Serialize());
+                }
                 return ms.ToArray();
             }
         }

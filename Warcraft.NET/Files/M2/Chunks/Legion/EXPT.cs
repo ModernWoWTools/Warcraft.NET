@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "EXP2";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the EXPT Entries
         /// </summary>
         public List<EXPTEntry> EXP2Entries = new();
 
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
@@ -16,9 +14,9 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "PABC";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the ParentSequenceBounds Entries
         /// </summary>
-        public List<UInt16> PABCEntries = new();
+        public List<ushort> PABCEntries = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="PABC"/>
@@ -59,14 +57,12 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (UInt16 obj in PABCEntries)
+                foreach (ushort obj in PABCEntries)
                 {
                     bw.Write(obj);
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

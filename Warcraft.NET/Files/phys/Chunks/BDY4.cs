@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class BDY4 : IIFFChunk, IBinarySerializable
@@ -15,9 +15,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         public const string Signature = "BDY4";
 
         /// <summary>
-        /// Gets or Sets the version of the physics
+        /// Gets or Sets the used rigidbodies(V4)
         /// </summary>
-        public List<BDY4Entry> bdy4Entries = new();
+        public List<BDY4Entry> BDY4Entries = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="BDY4"/>
@@ -46,7 +46,7 @@ namespace Warcraft.NET.Files.phys.Chunks
 
                 for (var i = 0; i < bdy4count; ++i)
                 {
-                    bdy4Entries.Add(new BDY4Entry(br.ReadBytes(BDY4Entry.GetSize())));
+                    BDY4Entries.Add(new BDY4Entry(br.ReadBytes(BDY4Entry.GetSize())));
                 }
             }
         }
@@ -57,13 +57,12 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (BDY4Entry obj in bdy4Entries)
+                foreach (BDY4Entry obj in BDY4Entries)
                 {
                     bw.Write(obj.Serialize());
                 }
                 return ms.ToArray();
             }
         }
-
     }
 }

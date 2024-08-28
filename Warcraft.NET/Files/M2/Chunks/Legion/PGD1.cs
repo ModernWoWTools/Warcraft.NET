@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entries;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
@@ -16,9 +15,9 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "PGD1";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the ParticleGeosetData1 Entries
         /// </summary>
-        public List<UInt16> PGD1Entries = new();
+        public List<ushort> PGD1Entries = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="PGD1"/>
@@ -63,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj);
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "EDGF";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the EdgeFade Entries
         /// </summary>
         public List<EDGFEntry> EDGFEntries = new();
 
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }

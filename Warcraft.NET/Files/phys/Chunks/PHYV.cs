@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class PHYV : IIFFChunk, IBinarySerializable
@@ -15,9 +13,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         public const string Signature = "PHYV";
 
         /// <summary>
-        /// Gets or Sets the version of the physics
+        /// Gets or Sets the PHYV (unknown)
         /// </summary>
-        public float[] values;
+        public float[] Values;
 
         /// <summary>
         /// Initializes a new instance of <see cref="PHYV"/>
@@ -43,15 +41,15 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var br = new BinaryReader(ms))
             {
                 var PHYVcount = br.BaseStream.Length / 24;
-                values = new float[PHYVcount * 6];
+                Values = new float[PHYVcount * 6];
                 for (var i = 0; i < PHYVcount; ++i)
                 {
-                    values[i] = br.ReadSingle();
-                    values[i+1] = br.ReadSingle();
-                    values[i+2] = br.ReadSingle();
-                    values[i+3] = br.ReadSingle();
-                    values[i+4] = br.ReadSingle();
-                    values[i+5] = br.ReadSingle();
+                    Values[i] = br.ReadSingle();
+                    Values[i+1] = br.ReadSingle();
+                    Values[i+2] = br.ReadSingle();
+                    Values[i+3] = br.ReadSingle();
+                    Values[i+4] = br.ReadSingle();
+                    Values[i+5] = br.ReadSingle();
                 }
             }
         }
@@ -62,13 +60,12 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                foreach (float f in values)
+                foreach (float f in Values)
                 {
                     bw.Write(f);
                 }
                 return ms.ToArray();
             }
         }
-
     }
 }

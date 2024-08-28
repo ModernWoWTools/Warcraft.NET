@@ -61,7 +61,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }

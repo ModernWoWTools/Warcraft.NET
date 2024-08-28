@@ -1,15 +1,33 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Warcraft.NET.Files.M2.Entries
 {
     public class DETLEntry
     {
-        public UInt16 flags;
-        public UInt16 packedFloat0;
-        public UInt16 packedFloat1; // multiplier for M2Light.diffuse_color
-        public UInt16 unk0;
-        public UInt32 unk1;
+        /// <summary>
+        /// unknown Flags 
+        /// </summary>
+        public ushort Flags;
+
+        /// <summary>
+        /// multiplier for M2Light.diffuse_color
+        /// </summary>
+        public ushort PackedFloat0;
+
+        /// <summary>
+        /// multiplier for M2Light.diffuse_color
+        /// </summary>
+        public ushort PackedFloat1;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public ushort Unk0;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public uint Unk1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DETLEntry"/> class.
@@ -27,11 +45,11 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                flags = br.ReadUInt16();
-                packedFloat0 = br.ReadUInt16();
-                packedFloat1 = br.ReadUInt16();
-                unk0 = br.ReadUInt16();
-                unk1 = br.ReadUInt32();
+                Flags = br.ReadUInt16();
+                PackedFloat0 = br.ReadUInt16();
+                PackedFloat1 = br.ReadUInt16();
+                Unk0 = br.ReadUInt16();
+                Unk1 = br.ReadUInt32();
             }
         }
 
@@ -51,13 +69,12 @@ namespace Warcraft.NET.Files.M2.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(flags);
-                    bw.Write(packedFloat0);
-                    bw.Write(packedFloat1);
-                    bw.Write(unk0);
-                    bw.Write(unk1);
+                    bw.Write(Flags);
+                    bw.Write(PackedFloat0);
+                    bw.Write(PackedFloat1);
+                    bw.Write(Unk0);
+                    bw.Write(Unk1);
                 }
-
                 return ms.ToArray();
             }
         }

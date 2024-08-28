@@ -1,24 +1,57 @@
-using System;
-using System.IO;
-using Warcraft.NET.Files.Structures;
+﻿using System.IO;
+using Warcraft.NET.Extensions;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class SHJ2Entry
     {
+        /// <summary>
+        /// The Transformation Matrix for Bone A of this Joint
+        /// </summary>
+        public Matrix3x4 FrameA;
 
+        /// <summary>
+        /// The Transformation Matrix for Bone B of this Joint
+        /// </summary>
+        public Matrix3x4 FrameB;
 
-        public Mat3x4 frameA;
-        public Mat3x4 frameB;
-        public float lowerTwistAngle;
-        public float upperTwistAngle;
-        public float coneAngle;
-        public float maxMotorTorque;
-        public UInt32 motorMode; // NO BACKWARDS COMPATIBILITY as of Legion (7.0.1.20979) and Legion (7.3.0.24931)! client always assumes new size!
+        /// <summary>
+        /// The lower twist angle of the angular constraint
+        /// </summary>
+        public float LowerTwistAngle;
 
-        public float motorFrequencyHz;
-        public float motorDampingRatio;
+        /// <summary>
+        /// The upper twist angle of the angular constraint
+        /// </summary>
+        public float UpperTwistAngle;
 
+        /// <summary>
+        /// The cone angle of the angular constraint
+        /// </summary>
+        public float ConeAngle;
+
+        /// <summary>
+        /// The max motor torque 
+        /// </summary>
+        public float MaxMotorTorque;
+
+        /// <summary>
+        /// The MotorMode <para />
+        /// 0 = disabled?
+        /// 1 = motorPositionMode (MotorFrequencyHz>0)
+        /// 2 = motorVelocityMode
+        /// </summary>
+        public uint MotorMode; // 1: motorPositionMode → frequency > 0, 2: motorVelocityMode        
+
+        /// <summary>
+        /// how often per second the motor damps
+        /// </summary>
+        public float MotorFrequencyHz;
+
+        /// <summary>
+        /// the ratio how much the motor damps
+        /// </summary>
+        public float MotorDampingRatio;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SHJ2Entry"/> class.
@@ -34,15 +67,15 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                frameA = new Mat3x4(br.ReadBytes(48));
-                frameB = new Mat3x4(br.ReadBytes(48));
-                lowerTwistAngle = br.ReadSingle();
-                upperTwistAngle = br.ReadSingle();
-                coneAngle = br.ReadSingle();
-                maxMotorTorque = br.ReadSingle();
-                motorMode = br.ReadUInt32();
-                motorFrequencyHz = br.ReadSingle();
-                motorDampingRatio = br.ReadSingle();
+                FrameA = br.ReadMatrix3x4();
+                FrameB = br.ReadMatrix3x4();
+                LowerTwistAngle = br.ReadSingle();
+                UpperTwistAngle = br.ReadSingle();
+                ConeAngle = br.ReadSingle();
+                MaxMotorTorque = br.ReadSingle();
+                MotorMode = br.ReadUInt32();
+                MotorFrequencyHz = br.ReadSingle();
+                MotorDampingRatio = br.ReadSingle();
             }
         }
 
@@ -62,17 +95,16 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(frameA.asBytes());
-                    bw.Write(frameB.asBytes());
-                    bw.Write(lowerTwistAngle);
-                    bw.Write(upperTwistAngle);
-                    bw.Write(coneAngle);
-                    bw.Write(maxMotorTorque);
-                    bw.Write(motorMode);
-                    bw.Write(motorFrequencyHz);
-                    bw.Write(motorDampingRatio);
+                    bw.WriteMatrix3x4(FrameA);
+                    bw.WriteMatrix3x4(FrameB);
+                    bw.Write(LowerTwistAngle);
+                    bw.Write(UpperTwistAngle);
+                    bw.Write(ConeAngle);
+                    bw.Write(MaxMotorTorque);
+                    bw.Write(MotorMode);
+                    bw.Write(MotorFrequencyHz);
+                    bw.Write(MotorDampingRatio);
                 }
-
                 return ms.ToArray();
             }
         }

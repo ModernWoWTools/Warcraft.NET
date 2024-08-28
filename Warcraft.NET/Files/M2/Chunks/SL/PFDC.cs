@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using System.IO;
+using System;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.M2.Entries;
-using Warcraft.NET.Files.phys;
+using Warcraft.NET.Files.Phys;
 
 namespace Warcraft.NET.Files.M2.Chunks.SL
 {
@@ -16,9 +14,9 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
         public const string Signature = "PFDC";
 
         /// <summary>
-        /// Gets or sets the Physics of the chunk
+        /// Gets or sets the Physics for the M2
         /// </summary>
-        public Physics physics { get; set; } = null;
+        public Physics Physics { get; set; } = null;
 
         /// <summary>
         /// Initializes a new instance of <see cref="PFDC"/>
@@ -40,24 +38,27 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
         /// <inheritdoc />
         public void LoadBinaryData(byte[] inData)
         {
-            using (var ms = new MemoryStream(inData))
-            using (var br = new BinaryReader(ms))
-            {
-                physics = new Physics(inData);
-                //convert inData into >physics<
-            }
+            Physics = new Physics(inData);
         }
 
-         /// <inheritdoc />
+        /// <inheritdoc />
         public byte[] Serialize(long offset = 0)
         {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
+            return PadTo8Bytes(Physics.Serialize());
+        }
+
+        static byte[] PadTo8Bytes(byte[] input)
+        {
+            int paddingNeeded = 8 - (input.Length % 8);
+            if (paddingNeeded == 8)
+                paddingNeeded = 0;
+            byte[] paddedArray = new byte[input.Length + paddingNeeded];
+            Array.Copy(input, paddedArray, input.Length);
+            for (int i = input.Length; i < paddedArray.Length; i++)
             {
-                bw.Write(physics.Serialize());
-                //convert >physics< into byte[]
-                return ms.ToArray();
+                paddedArray[i] = 0x00;
             }
+            return paddedArray;
         }
     }
 }

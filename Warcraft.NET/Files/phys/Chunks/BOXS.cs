@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class BOXS : IIFFChunk, IBinarySerializable
@@ -16,8 +14,10 @@ namespace Warcraft.NET.Files.phys.Chunks
         /// </summary>
         public const string Signature = "BOXS";
 
+        /// <summary>
+        /// sets or gets the box shapes
+        /// </summary>
         public List<BOXSEntry> BOXSEntries = new();
-
 
         /// <summary>
         /// Initializes a new instance of <see cref="BOXS"/>
@@ -62,7 +62,6 @@ namespace Warcraft.NET.Files.phys.Chunks
                     bw.Write(obj.Serialize());
                 }
                 return ms.ToArray();
-
             }
         }
     }

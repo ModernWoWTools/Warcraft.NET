@@ -1,10 +1,7 @@
-﻿using System.IO;
-using Warcraft.NET.Attribute;
-using Warcraft.NET.Files.Interfaces;
+﻿using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
-    [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterWoD, AutoDocChunkVersionHelper.VersionBeforeLegion)]
     public class PADC : IIFFChunk, IBinarySerializable
     {
         /// <summary>
@@ -12,7 +9,11 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// </summary>
         public const string Signature = "PADC";
 
-        byte[] data;
+        /// <summary>
+        /// Gets or sets the ParentAnimationData (deserialization NYI)
+        /// </summary>
+        public byte[] Data;
+
         /// <summary>
         /// Initializes a new instance of <see cref="PADC"/>
         /// </summary>
@@ -33,23 +34,13 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <inheritdoc />
         public void LoadBinaryData(byte[] inData)
         {
-            using (var ms = new MemoryStream(inData))
-            using (var br = new BinaryReader(ms))
-            {
-                data = inData;
-            }
+            Data = inData;
         }
 
         /// <inheritdoc />
         public byte[] Serialize(long offset = 0)
         {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(data);
-
-                return ms.ToArray();
-            }
+            return Data;
         }
     }
 }

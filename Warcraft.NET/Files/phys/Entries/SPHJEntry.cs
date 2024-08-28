@@ -1,15 +1,26 @@
-using System;
 using System.IO;
+using System.Numerics;
+using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class SPHJEntry
     {
-        public C3Vector anchorA;
-        public C3Vector anchorB;
-        public float frictionTorque;
+        /// <summary>
+        /// the local anchor of the Bone A of the joint
+        /// </summary>
+        public Vector3 AnchorA;
 
+        /// <summary>
+        /// the local anchor of the Bone B of the joint
+        /// </summary>
+        public Vector3 AnchorB;
+
+        /// <summary>
+        /// the friction torque
+        /// </summary>
+        public float FrictionTorque;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPHJEntry"/> class.
@@ -25,9 +36,9 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                anchorA = new C3Vector(br.ReadBytes(12));
-                anchorB = new C3Vector(br.ReadBytes(12));
-                frictionTorque = br.ReadSingle();
+                AnchorA = br.ReadVector3(AxisConfiguration.ZUp);
+                AnchorB = br.ReadVector3(AxisConfiguration.ZUp);
+                FrictionTorque = br.ReadSingle();
             }
         }
 
@@ -47,11 +58,10 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(anchorA.asBytes());
-                    bw.Write(anchorB.asBytes());
-                    bw.Write(frictionTorque);
+                    bw.WriteVector3(AnchorA);
+                    bw.WriteVector3(AnchorB);
+                    bw.Write(FrictionTorque);
                 }
-
                 return ms.ToArray();
             }
         }

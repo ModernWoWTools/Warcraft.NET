@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Warcraft.NET.Attribute;
+﻿using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
@@ -12,7 +11,11 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// </summary>
         public const string Signature = "PEDC";
 
-        byte[] data;
+        /// <summary>
+        /// Gets or sets the ParentEventData (deserialization NYI)
+        /// </summary>
+        public byte[] Data;
+
         /// <summary>
         /// Initializes a new instance of <see cref="PEDC"/>
         /// </summary>
@@ -33,23 +36,13 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <inheritdoc />
         public void LoadBinaryData(byte[] inData)
         {
-            using (var ms = new MemoryStream(inData))
-            using (var br = new BinaryReader(ms))
-            {
-                data = inData;
-            }
+            Data = inData;
         }
 
         /// <inheritdoc />
         public byte[] Serialize(long offset = 0)
         {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(data);
-
-                return ms.ToArray();
-            }
+            return Data;
         }
     }
 }

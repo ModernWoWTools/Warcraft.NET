@@ -14,7 +14,10 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
         /// </summary>
         public const string Signature = "WFV2";
 
-        public byte[] data;
+        /// <summary>
+        /// Gets or sets the full data (deserialization NYI)
+        /// </summary>
+        public byte[] Data;
 
         /// <summary>
         /// Initializes a new instance of <see cref="WFV2"/>
@@ -36,27 +39,13 @@ namespace Warcraft.NET.Files.M2.Chunks.BfA
         /// <inheritdoc />
         public void LoadBinaryData(byte[] inData)
         {
-            {
-                using (var ms = new MemoryStream(inData))
-                using (var br = new BinaryReader(ms))
-                {
-                    data = inData;
-                }
-            }
+            Data = inData;
         }
 
         /// <inheritdoc />
         public byte[] Serialize(long offset = 0)
         {
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(data);
-
-
-                return ms.ToArray();
-            }
+            return Data;
         }
-
     }
 }

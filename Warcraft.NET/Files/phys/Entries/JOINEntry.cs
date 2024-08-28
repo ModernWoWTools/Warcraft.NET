@@ -1,29 +1,40 @@
-using System;
 using System.IO;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Enums;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
-    
-
     public class JOINEntry
     {
-        public enum Joint_Type : ushort
-        {
-            sphericalJoint = 0,
-            shoulderJoint = 1,
-            weldJoint = 2,
-            revoluteJoint = 3,
-            prismaticJoint = 4,
-            distanceJoint = 5,
-        }
+        /// <summary>
+        /// sets or gets the index of the first connected Rigidbody
+        /// </summary>
+        public uint BodyAIdx;
 
-        public uint bodyAIdx;
-        public uint bodyBIdx;
-        public byte[] unk;
+        /// <summary>
+        /// sets or gets the index of the second connected Rigidbody
+        /// </summary>
+        public uint BodyBIdx;
 
-        public Joint_Type jointType;
-        public ushort jointId;
+        /// <summary>
+        /// sets or gets a Unknown field.
+        /// </summary>
+        public byte[] Unk;
+
+        /// <summary>
+        /// sets or gets the JointType<para />
+        /// 0 = SphericalJoint<para />
+        /// 1 = ShoulderJoint<para />
+        /// 2 = WeldJoint<para />
+        /// 3 = RevoluteJoint<para />
+        /// 4 = PrismaticJoint<para />
+        /// 5 = DistanceJoint
+        /// </summary>
+        public JointType JointType;
+
+        /// <summary>
+        /// sets or gets the index of the joint into the joint list based on the JointType field
+        /// </summary>
+        public ushort JointID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JOINEntry"/> class.
@@ -39,11 +50,11 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                bodyAIdx = br.ReadUInt32();
-                bodyBIdx = br.ReadUInt32();
-                unk = br.ReadBytes(4);
-                jointType = (Joint_Type)br.ReadUInt16();
-                jointId = br.ReadUInt16();
+                BodyAIdx = br.ReadUInt32();
+                BodyBIdx = br.ReadUInt32();
+                Unk = br.ReadBytes(4);
+                JointType = (JointType)br.ReadUInt16();
+                JointID = br.ReadUInt16();
             }
         }
 
@@ -63,14 +74,12 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(bodyAIdx);
-                    bw.Write(bodyBIdx);
-                    bw.Write(unk);
-                    bw.Write((ushort)jointType);
-                    bw.Write(jointId);
-
+                    bw.Write(BodyAIdx);
+                    bw.Write(BodyBIdx);
+                    bw.Write(Unk);
+                    bw.Write((ushort)JointType);
+                    bw.Write(JointID);
                 }
-
                 return ms.ToArray();
             }
         }

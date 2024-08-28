@@ -4,17 +4,23 @@ namespace Warcraft.NET.Files.M2.Entries
 {
     public class EXPTEntry
     {
-        public float zSource;
-        public float colorMult;
-        public float alphaMult;
-
+        /// <summary>
+        /// replaces zSource from ParticleEmitter
+        /// </summary>
+        public float ZSource;
+        /// <summary>
+        /// colorMult is applied against particle's diffuse color 
+        /// </summary>
+        public float ColorMult;
+        /// <summary>
+        ///alphaMult is applied against particle's opacity. 
+        /// </summary>
+        public float AlphaMult;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EXPTEntry"/> class.
         /// </summary>
-        public EXPTEntry()
-        {
-        }
+        public EXPTEntry() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EXPTEntry"/> class.
@@ -25,9 +31,9 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                zSource = br.ReadSingle();
-                colorMult = br.ReadSingle();
-                alphaMult = br.ReadSingle();
+                ZSource = br.ReadSingle();
+                ColorMult = br.ReadSingle();
+                AlphaMult = br.ReadSingle();
             }
         }
 
@@ -47,11 +53,10 @@ namespace Warcraft.NET.Files.M2.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(zSource);
-                    bw.Write(colorMult);
-                    bw.Write(alphaMult);
+                    bw.Write(ZSource);
+                    bw.Write(ColorMult);
+                    bw.Write(AlphaMult);
                 }
-
                 return ms.ToArray();
             }
         }

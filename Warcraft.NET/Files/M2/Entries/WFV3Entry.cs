@@ -1,32 +1,115 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
 namespace Warcraft.NET.Files.M2.Entries
 {
     public class WFV3Entry
     {
-        public float bumpScale;  //Passed to vertex shader
-        public float value0_x;
-        public float value0_y;
-        public float value0_z;
-        public float value1_w;
-        public float value0_w;
-        public float value1_x;
-        public float value1_y;
-        public float value2_w;
-        public float value3_y;
-        public float value3_x;
-        public CImVector baseColor; // in rgba (not bgra)
-        public UInt16 flags;
-        public UInt16 unk0;
-        public float value3_w;
-        public float value3_z;
-        public float value4_y;
-        public float unk1;
-        public float unk2;
-        public float unk3;
-        public float unk4;
+        /// <summary>
+        /// BumpScale -> Passed to vertex shader
+        /// </summary>
+        public float BumpScale;
+
+        /// <summary>
+        /// value 0 x
+        /// </summary>
+        public float Value0X;
+
+        /// <summary>
+        /// value 0 y
+        /// </summary>
+        public float Value0Y;
+
+        /// <summary>
+        /// value 0 z
+        /// </summary>
+        public float Value0Z;
+
+        /// <summary>
+        /// value 1 W
+        /// </summary>
+        public float Value1W;
+
+        /// <summary>
+        /// value 0 W
+        /// </summary>
+        public float Value0W;
+
+        /// <summary>
+        /// value 1 x
+        /// </summary>
+        public float Value1X;
+
+        /// <summary>
+        /// value 1 y
+        /// </summary>
+        public float Value1Y;
+
+        /// <summary>
+        /// value 2 w
+        /// </summary>
+        public float Value2W;
+
+        /// <summary>
+        /// value 3 y
+        /// </summary>
+        public float Value3Y;
+
+        /// <summary>
+        /// value 3 x
+        /// </summary>
+        public float Value3X;
+
+        /// <summary>
+        /// BaseColor in rgba (not bgra)
+        /// </summary>
+        public RGBA BaseColor;
+
+        /// <summary>
+        /// unknown Flags
+        /// </summary>
+        public ushort Flags;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public ushort Unk0;
+
+        /// <summary>
+        /// value 3 W
+        /// </summary>
+        public float Value3W;
+
+        /// <summary>
+        /// value 3 Z
+        /// </summary>
+        public float Value3Z;
+
+        /// <summary>
+        /// value 4 y
+        /// </summary>
+        public float Value4Y;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk1;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk2;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk3;
+
+        /// <summary>
+        /// unknown field
+        /// </summary>
+        public float Unk4;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WFV3Entry"/> class.
@@ -44,34 +127,27 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                bumpScale = br.ReadSingle();
-
-                value0_x = br.ReadSingle();
-                value0_y = br.ReadSingle();
-                value0_z = br.ReadSingle();
-                value1_w = br.ReadSingle();
-
-                value0_w = br.ReadSingle();
-                value1_x = br.ReadSingle();
-                value1_y = br.ReadSingle();
-                value2_w = br.ReadSingle();
-
-                value3_y = br.ReadSingle();
-                value3_x = br.ReadSingle();
-
-                baseColor = new CImVector(br.ReadBytes(4));
-
-                flags = br.ReadUInt16();
-                unk0 = br.ReadUInt16();
-
-                value3_w = br.ReadSingle();
-                value3_z = br.ReadSingle();
-                value4_y = br.ReadSingle();
-
-                unk1 = br.ReadSingle();
-                unk2 = br.ReadSingle();
-                unk3 = br.ReadSingle();
-                unk4 = br.ReadSingle();
+                BumpScale = br.ReadSingle();
+                Value0X = br.ReadSingle();
+                Value0Y = br.ReadSingle();
+                Value0Z = br.ReadSingle();
+                Value1W = br.ReadSingle();
+                Value0W = br.ReadSingle();
+                Value1X = br.ReadSingle();
+                Value1Y = br.ReadSingle();
+                Value2W = br.ReadSingle();
+                Value3Y = br.ReadSingle();
+                Value3X = br.ReadSingle();
+                BaseColor = br.ReadRGBA();
+                Flags = br.ReadUInt16();
+                Unk0 = br.ReadUInt16();
+                Value3W = br.ReadSingle();
+                Value3Z = br.ReadSingle();
+                Value4Y = br.ReadSingle();
+                Unk1 = br.ReadSingle();
+                Unk2 = br.ReadSingle();
+                Unk3 = br.ReadSingle();
+                Unk4 = br.ReadSingle();
             }
         }
 
@@ -90,37 +166,29 @@ namespace Warcraft.NET.Files.M2.Entries
             using (var ms = new MemoryStream())
             {
                 using (var bw = new BinaryWriter(ms))
-                { 
-                    bw.Write(bumpScale);
-
-                bw.Write(value0_x);
-                bw.Write(value0_y);
-                bw.Write(value0_z);
-                bw.Write(value1_w);
-
-                bw.Write(value0_w);
-                bw.Write(value1_x);
-                bw.Write(value1_y);
-                bw.Write(value2_w);
-
-                bw.Write(value3_y);
-                bw.Write(value3_x);
-
-                bw.Write(baseColor.toBytes());
-
-                bw.Write(flags);
-                bw.Write(unk0);
-
-                bw.Write(value3_w);
-                bw.Write(value3_z);
-                bw.Write(value4_y);
-
-                bw.Write(unk1);
-                bw.Write(unk2);
-                bw.Write(unk3);
-                bw.Write(unk4);
-            }
-
+                {
+                    bw.Write(BumpScale);
+                    bw.Write(Value0X);
+                    bw.Write(Value0Y);
+                    bw.Write(Value0Z);
+                    bw.Write(Value1W);
+                    bw.Write(Value0W);
+                    bw.Write(Value1X);
+                    bw.Write(Value1Y);
+                    bw.Write(Value2W);
+                    bw.Write(Value3Y);
+                    bw.Write(Value3X);
+                    bw.WriteRGBA(BaseColor);
+                    bw.Write(Flags);
+                    bw.Write(Unk0);
+                    bw.Write(Value3W);
+                    bw.Write(Value3Z);
+                    bw.Write(Value4Y);
+                    bw.Write(Unk1);
+                    bw.Write(Unk2);
+                    bw.Write(Unk3);
+                    bw.Write(Unk4);
+                }
                 return ms.ToArray();
             }
         }

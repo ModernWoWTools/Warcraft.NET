@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
-using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
-using Warcraft.NET.Files.phys.Entries;
-using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.Phys.Entries;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class JOIN : IIFFChunk, IBinarySerializable
@@ -16,6 +14,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         /// </summary>
         public const string Signature = "JOIN";
 
+        /// <summary>
+        /// sets or gets the joints
+        /// </summary>
         public List<JOINEntry> JOINEntries = new();
 
         /// <summary>
@@ -42,7 +43,6 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var br = new BinaryReader(ms))
             {
                 var JOINcount = br.BaseStream.Length / JOINEntry.GetSize();
-
                 for (var i = 0; i < JOINcount; ++i)
                 {
                     JOINEntries.Add(new JOINEntry(br.ReadBytes(JOINEntry.GetSize())));
@@ -62,8 +62,6 @@ namespace Warcraft.NET.Files.phys.Chunks
                 }
                 return ms.ToArray();
             }
-
-
         }
     }
 }

@@ -1,35 +1,35 @@
 using System.IO;
-using Warcraft.NET.Files.phys.Chunks;
+using System.Numerics;
+using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class CAPSEntry
     {
+        /// <summary>
+        /// Gets or Sets the local start position of this capsule shape
+        /// </summary>
+        public Vector3 LocalPosition1;
 
         /// <summary>
-        /// Gets or Sets the local start position of the capsule shape
+        /// Gets or Sets the local end position of this capsule shape
         /// </summary>
-        public C3Vector localPosition1;
+        public Vector3 LocalPosition2;
 
         /// <summary>
-        /// Gets or Sets the local end position of the capsule shape
+        /// Gets or Sets the Radius of this capsule shape
         /// </summary>
-        public C3Vector localPosition2;
-
-        /// <summary>
-        /// Gets or Sets the radius of the capsule shape
-        /// </summary>
-        public float radius;
+        public float Radius;
 
         public CAPSEntry(byte[] data)
         {
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                localPosition1 = new C3Vector(br.ReadBytes(12));
-                localPosition2 = new C3Vector(br.ReadBytes(12));
-                radius = br.ReadSingle();
+                LocalPosition1 = br.ReadVector3(AxisConfiguration.ZUp);
+                LocalPosition2 = br.ReadVector3(AxisConfiguration.ZUp);
+                Radius = br.ReadSingle();
             }
         }
         /// <summary>
@@ -47,9 +47,9 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {                
-                bw.Write(localPosition1.asBytes());
-                bw.Write(localPosition2.asBytes());
-                bw.Write(radius);
+                bw.WriteVector3(LocalPosition1);
+                bw.WriteVector3(LocalPosition2);
+                bw.Write(Radius);
                 return ms.ToArray();
             }
         }

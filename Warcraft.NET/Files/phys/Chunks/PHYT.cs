@@ -2,7 +2,7 @@ using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
 
-namespace Warcraft.NET.Files.phys.Chunks
+namespace Warcraft.NET.Files.Phys.Chunks
 {
     [AutoDocChunk(AutoDocChunkVersionHelper.VersionAfterBfA, AutoDocChunkVersionHelper.VersionBeforeSL)]
     public class PHYT : IIFFChunk, IBinarySerializable
@@ -13,9 +13,9 @@ namespace Warcraft.NET.Files.phys.Chunks
         public const string Signature = "PHYT";
 
         /// <summary>
-        /// Gets or Sets the version of the physics
+        /// Gets or Sets PHYT (unknown)
         /// </summary>
-        public uint phyt;
+        public uint Phyt = 0;
 
         /// <summary>
         /// Initializes a new instance of <see cref="PHYT"/>
@@ -40,7 +40,7 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                phyt = br.ReadUInt32();
+                Phyt = br.ReadUInt32();
             }
         }
 
@@ -50,7 +50,7 @@ namespace Warcraft.NET.Files.phys.Chunks
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(phyt);
+                bw.Write(Phyt);
                 return ms.ToArray();
             }
         }

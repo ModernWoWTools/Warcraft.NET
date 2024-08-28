@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
+using System.Collections.Generic;
 
 namespace Warcraft.NET.Files.M2.Chunks.Legion
 {
@@ -13,9 +14,12 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         public const string Signature = "TXAC";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// 2 byte array
+        /// From Wiki: 
+        /// likely used in CM2SceneRender::SetupTextureTransforms and uploaded to the shader directly. 0 otherwise.
+        /// This chunk doesn't seem to be used directly. Inside CParticleEmitter2 class there are non-null checks that deal with selection of VertexBufferFormat for particles. Apart from that, the usage of these fields is unknown
         /// </summary>
-        public byte[] unk;
+        public List<byte[]> TXACEntries = new();
 
         /// <summary>
         /// Initializes a new instance of <see cref="TXAC"/>
@@ -40,7 +44,13 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                unk = br.ReadBytes((int)br.BaseStream.Length);
+                for (int i = 0; i < inData.Length / 2; i++)
+                {
+                    var entry = new byte[2];
+                    entry[0] = br.ReadByte();
+                    entry[1] = br.ReadByte();
+                    TXACEntries.Add(entry);
+                }
             }
         }
 
@@ -50,8 +60,10 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(unk);
-
+                foreach (var entry in TXACEntries)
+                {
+                    bw.Write(entry);
+                }
                 return ms.ToArray();
             }
         }

@@ -1,18 +1,25 @@
-using System;
 using System.IO;
-using Warcraft.NET.Files.Structures;
+using System.Numerics;
+using Warcraft.NET.Extensions;
 
-namespace Warcraft.NET.Files.phys.Entries
+namespace Warcraft.NET.Files.Phys.Entries
 {
     public class DSTJEntry
     {
+        /// <summary>
+        /// sets or gets the local Anchor for Bone A from the Joint
+        /// </summary>
+        public Vector3 LocalAnchorA;
 
+        /// <summary>
+        /// sets or gets the local Anchor for Bone B from the Joint
+        /// </summary>
+        public Vector3 LocalAnchorB;
 
-        public C3Vector localAnchorA;
-        public C3Vector localAnchorB;
-
-        public float some_distance_factor;
-
+        /// <summary>
+        /// sets or gets the currently unknown value for the distance joint calculation
+        /// </summary>
+        public float UnknownDistanceFactor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DSTJEntry"/> class.
@@ -28,9 +35,9 @@ namespace Warcraft.NET.Files.phys.Entries
             using (var ms = new MemoryStream(data))
             using (var br = new BinaryReader(ms))
             {
-                localAnchorA = new C3Vector(br.ReadBytes(12));
-                localAnchorB = new C3Vector(br.ReadBytes(12));
-                some_distance_factor = br.ReadSingle();
+                LocalAnchorA = br.ReadVector3();
+                LocalAnchorB = br.ReadVector3();
+                UnknownDistanceFactor = br.ReadSingle();
             }
         }
 
@@ -50,11 +57,10 @@ namespace Warcraft.NET.Files.phys.Entries
             {
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write(localAnchorA.asBytes());
-                    bw.Write(localAnchorB.asBytes());
-                    bw.Write(some_distance_factor);
+                    bw.WriteVector3(LocalAnchorA);
+                    bw.WriteVector3(LocalAnchorB);
+                    bw.Write(UnknownDistanceFactor);
                 }
-
                 return ms.ToArray();
             }
         }

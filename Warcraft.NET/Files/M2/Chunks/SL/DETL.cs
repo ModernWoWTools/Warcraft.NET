@@ -15,7 +15,7 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
         public const string Signature = "DETL";
 
         /// <summary>
-        /// Gets or sets the Skin FileDataId
+        /// Gets or sets the DETL Entries
         /// </summary>
         public List<DETLEntry> DETLEntries = new();
 
@@ -62,10 +62,8 @@ namespace Warcraft.NET.Files.M2.Chunks.SL
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }
-
     }
 }
