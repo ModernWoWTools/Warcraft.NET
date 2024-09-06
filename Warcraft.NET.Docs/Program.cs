@@ -10,6 +10,8 @@ namespace Warcraft.NET.Docs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            byte[] data = File.ReadAllBytes("C:\\Users\\marce\\Desktop\\WoWStuff\\wow.export\\character\\highmountaintauren\\female/highmountaintaurenfemale.skel");
+            Files.Skel.Skel skel = new Files.Skel.Skel(data);
             Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
 
             if (args.Length == 0)
