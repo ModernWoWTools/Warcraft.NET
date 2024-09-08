@@ -13,39 +13,39 @@ namespace Warcraft.NET.Files.Skel
         public SKL1 Skeleton { get; set; }
 
         /// <summary>
-        /// contains the attachments of the skeleton
-        /// </summary>
-        [ChunkOrder(2), ChunkOptional]
-        public SKA1 Attachments { get; set; }
-
-        /// <summary>
         /// contains the animations of the skeleton
         /// </summary>
-        [ChunkOrder(3), ChunkOptional]
+        [ChunkOptional]
         public SKS1 Animations { get; set; }
+
+        /// <summary>
+        /// contains the attachments of the skeleton
+        /// </summary>
+        [ChunkOptional]
+        public SKA1 Attachments { get; set; }
 
         /// <summary>
         /// contains the bones of the skeleton
         /// </summary>
-        [ChunkOrder(3), ChunkOptional]
+        [ChunkOptional]
         public SKB1 Bones { get; set; }
+        
+        /// <summary>
+        /// contains the animation file ids of the skeleton
+        /// </summary>
+        [ChunkOptional]
+        public AFID AnimationFileIDs { get; set; }
 
         /// <summary>
         /// contains the animations of the skeleton
         /// </summary>
-        [ChunkOrder(4), ChunkOptional]
+        [ChunkOptional]
         public SKPD ParentSkelFileID { get; set; }
-
-        /// <summary>
-        /// contains the animation file ids of the skeleton
-        /// </summary>
-        [ChunkOrder(5), ChunkOptional]
-        public AFID AnimationFileIDs { get; set; }
 
         /// <summary>
         /// contains the bone file ids of the skeleton
         /// </summary>
-        [ChunkOrder(6), ChunkOptional]
+        [ChunkOptional]
         public BFID BoneFileIDs { get; set; }
 
         /// <summary>

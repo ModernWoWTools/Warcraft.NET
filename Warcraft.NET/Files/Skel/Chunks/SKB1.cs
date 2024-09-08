@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Extensions;
@@ -46,9 +47,14 @@ namespace Warcraft.NET.Files.Skel.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Bones = ReadStructList<BoneStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
-                KeyBoneLookup = ReadStructList<KeyBoneLookupStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
+                var nBones = br.ReadUInt32();
+                var ofsBones = br.ReadUInt32();
+                var nKeyboneLookup = br.ReadUInt32();
+                var ofsKeyboneLookup = br.ReadUInt32();
+                Bones = ReadStructList<BoneStruct>(nBones, ofsBones, br);
+                KeyBoneLookup = ReadStructList<KeyBoneLookupStruct>(nKeyboneLookup, ofsKeyboneLookup, br);
             }
+            Console.WriteLine("Finished SKB1");
         }
 
         /// <inheritdoc/>

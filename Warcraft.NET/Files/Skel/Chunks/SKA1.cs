@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
 using Warcraft.NET.Extensions;
@@ -45,9 +46,14 @@ namespace Warcraft.NET.Files.Skel.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Attachments = ReadStructList<AttachmentStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
-                AttachLookup = ReadStructList<AttachLookupStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
+                var nAttachments = br.ReadUInt32();
+                var ofsAttachments = br.ReadUInt32();
+                var nAttachLookup = br.ReadUInt32();
+                var ofsAttachLookup = br.ReadUInt32();
+                Attachments = ReadStructList<AttachmentStruct>(nAttachments, ofsAttachments, br);
+                AttachLookup = ReadStructList<AttachLookupStruct>(nAttachLookup, ofsAttachLookup, br);
             }
+            Console.WriteLine("Finished SKA1");
         }
 
         /// <inheritdoc/>

@@ -1,4 +1,5 @@
 ﻿using Warcraft.NET.Docs.Steps;
+using Warcraft.NET.Files.Skel;
 
 namespace Warcraft.NET.Docs
 {
@@ -10,8 +11,9 @@ namespace Warcraft.NET.Docs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            byte[] data = File.ReadAllBytes("C:\\Users\\marce\\Desktop\\WoWStuff\\wow.export\\character\\highmountaintauren\\female/highmountaintaurenfemale.skel");
-            Files.Skel.Skel skel = new Files.Skel.Skel(data);
+            byte[] data = File.ReadAllBytes(@"D:\Desktop\WoWStuff\ExtractFromGame\character\draenei\female\draeneifemale_hd.skel");
+            Console.WriteLine(data.Length);
+            Skel skel = new Skel(data);
             Console.WriteLine($"BaseDirectory: {AppDomain.CurrentDomain.BaseDirectory}");
 
             if (args.Length == 0)

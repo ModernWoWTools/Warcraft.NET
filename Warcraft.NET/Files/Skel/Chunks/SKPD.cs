@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
@@ -60,11 +61,12 @@ namespace Warcraft.NET.Files.Skel.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Unk0 = br.ReadUInt32();
-                ParentSkeletonFileID = br.ReadUInt32();
+                Unk0 = br.ReadUInt32(); 
                 Unk1 = br.ReadUInt32();
+                ParentSkeletonFileID = br.ReadUInt32();
                 Unk2 = br.ReadUInt32();
             }
+            Console.WriteLine("Finished SKPD");
         }
 
         /// <inheritdoc/>
@@ -75,17 +77,6 @@ namespace Warcraft.NET.Files.Skel.Chunks
             {
                 return null;
             }
-        }
-
-        private List<T> ReadStructList<T>(uint count, uint offset, BinaryReader br) where T : struct
-        {
-            br.BaseStream.Position = offset;
-            List<T> list = new List<T>();
-
-            for (var i = 0; i < count; i++)
-                list.Add(br.ReadStruct<T>());
-
-            return list;
         }
     }
 }

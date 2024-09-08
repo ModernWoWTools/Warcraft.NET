@@ -57,11 +57,19 @@ namespace Warcraft.NET.Files.Skel.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Sequences = ReadStructList<SequenceStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
-                Animations = ReadStructList<AnimationStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
-                AnimationLookups = ReadStructList<AnimationLookupStruct>(br.ReadUInt32(), br.ReadUInt32(), br);
+                var nSequences = br.ReadUInt32();
+                var ofsSequences = br.ReadUInt32();
+                var nAnimations = br.ReadUInt32();
+                var ofsAnimations = br.ReadUInt32();
+                var nAnimationLookup = br.ReadUInt32();
+                var ofsAnimationLookup = br.ReadUInt32();
                 Unk = br.ReadUInt64();
+                Sequences = ReadStructList<SequenceStruct>(nSequences, ofsSequences, br);
+                Animations = ReadStructList<AnimationStruct>(nAnimations, ofsAnimations, br);
+                AnimationLookups = ReadStructList<AnimationLookupStruct>(nAnimationLookup, ofsAnimationLookup, br);
             }
+            Console.WriteLine("Finished SKS1");
+
         }
 
         /// <inheritdoc/>

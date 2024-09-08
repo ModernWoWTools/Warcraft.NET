@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Interfaces;
@@ -15,12 +16,14 @@ namespace Warcraft.NET.Files.Skel.Chunks
         /// <summary>
         /// Gets or Sets the Unk Field (always 256 so far, possibly flags?)
         /// </summary>
-        public uint Unk;
+        public uint Unk0;
 
         /// <summary>
         /// Gets or Sets the KeyBoneLookupTable
         /// </summary>
         public List<char> Name { get; set; }
+
+        public uint Unk1;
 
         /// <summary>
         /// Initializes a new instance of <see cref="SKL1"/>
@@ -45,10 +48,14 @@ namespace Warcraft.NET.Files.Skel.Chunks
             using (var ms = new MemoryStream(inData))
             using (var br = new BinaryReader(ms))
             {
-                Unk = br.ReadUInt32();
-                Name = ReadStructList<char>(br.ReadUInt32(), br.ReadUInt32(), br);
-                uint t = br.ReadUInt32();
+                Unk0 = br.ReadUInt32();
+                uint count = br.ReadUInt32();
+                uint offset = br.ReadUInt32();
+                if(count>0)
+                    Name = ReadStructList<char>(count, offset, br);
+                Unk1 = br.ReadUInt32();
             }
+            Console.WriteLine("Finished SKL1");
         }
 
         /// <inheritdoc/>
