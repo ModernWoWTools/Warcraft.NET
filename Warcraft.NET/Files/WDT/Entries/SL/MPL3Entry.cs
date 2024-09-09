@@ -2,6 +2,7 @@
 using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.WDT.Flags;
 
 namespace Warcraft.NET.Files.WDT.Entries.SL
 {
@@ -70,7 +71,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Flags
         /// </summary>
-        public ushort Flags { get; set; }
+        public MPL3Flags Flags { get; set; }
 
         /// <summary>
         /// Unknown value, wiki mentions it is "a packed value". 14336 appears to be the most common value.
@@ -100,7 +101,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                     TileY = br.ReadUInt16();
                     MLTAIndex = br.ReadInt16();
                     MTEXIndex = br.ReadInt16();
-                    Flags = br.ReadUInt16();
+                    Flags = (MPL3Flags)br.ReadUInt16();
                     Unknown1 = br.ReadUInt16();
                 }
             }
@@ -135,7 +136,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                 bw.Write(TileY);
                 bw.Write(MLTAIndex);
                 bw.Write(MTEXIndex);
-                bw.Write(Flags);
+                bw.Write((ushort)Flags);
                 bw.Write(Unknown1);
 
                 return ms.ToArray();
