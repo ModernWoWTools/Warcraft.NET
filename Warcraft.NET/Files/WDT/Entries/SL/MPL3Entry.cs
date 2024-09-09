@@ -19,7 +19,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Color
         /// </summary>
-        public uint Color { get; set; }
+        public RGBA Color { get; set; }
 
         /// <summary>
         /// Position
@@ -44,7 +44,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Unknown/unused vector3, likely rotation from another struct but unused for point lights.
         /// </summary>
-        public Vector3 Unused0 { get; set; }
+        public Vector3 Unused0 { get; set; } = new Vector3(0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// Map Tile X
@@ -71,7 +71,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Flags
         /// </summary>
-        public MPL3Flags Flags { get; set; }
+        public MPL3Flags Flags { get; set; } = 0;
 
         /// <summary>
         /// Unknown value, wiki mentions it is "a packed value". 14336 appears to be the most common value.
@@ -91,7 +91,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                 using (var br = new BinaryReader(ms))
                 {
                     Id = br.ReadUInt32();
-                    Color = br.ReadUInt32();
+                    Color = br.ReadBGRA();
                     Position = br.ReadVector3(AxisConfiguration.Native);
                     AttenuationStart = br.ReadSingle();
                     AttenuationEnd = br.ReadSingle();
@@ -126,7 +126,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(Id);
-                bw.Write(Color);
+                bw.WriteBGRA(Color);
                 bw.WriteVector3(Position, AxisConfiguration.Native);
                 bw.Write(AttenuationStart);
                 bw.Write(AttenuationEnd);
