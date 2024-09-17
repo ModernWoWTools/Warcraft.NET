@@ -85,7 +85,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// Unknown value, wiki mentions it is "a packed value". 14336 appears to be the most common value.
         /// </summary>
         [Obsolete("Use Scale instead.")]
-        public ushort Unknwon1 { get { return Scale.RawValue; } set { Scale = new HalfFloat(value); } }
+        public ushort Unknown1 { get { return Scale.RawValue; } set { Scale = new HalfFloat(value); } }
 
         public MPL3Entry() { }
 
