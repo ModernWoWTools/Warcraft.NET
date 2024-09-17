@@ -2,8 +2,8 @@
 {
     public enum BodyType : ushort
     {
-        root = 0,
-        dynamic = 1,
-        unk = 2,
+        Root = 0,
+        Dynamic = 1,
+        Unk = 2,
     }
 }

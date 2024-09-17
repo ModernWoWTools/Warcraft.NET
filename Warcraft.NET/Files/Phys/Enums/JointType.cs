@@ -2,11 +2,11 @@
 {
     public enum JointType : ushort
     {
-        sphericalJoint = 0,
-        shoulderJoint = 1,
-        weldJoint = 2,
-        revoluteJoint = 3,
-        prismaticJoint = 4,
-        distanceJoint = 5,
+        SphericalJoint = 0,
+        ShoulderJoint = 1,
+        WeldJoint = 2,
+        RevoluteJoint = 3,
+        PrismaticJoint = 4,
+        DistanceJoint = 5,
     }
 }

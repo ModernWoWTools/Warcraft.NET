@@ -2,9 +2,9 @@
 {
     public enum ShapeType : short
     {
-        box = 0,
-        caps = 1,
-        sphere = 2,
-        polytope = 3,
+        Box = 0,
+        Caps = 1,
+        Sphere = 2,
+        Polytope = 3,
     }
 }
