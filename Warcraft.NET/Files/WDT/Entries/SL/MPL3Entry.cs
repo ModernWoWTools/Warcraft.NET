@@ -3,6 +3,7 @@ using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
 using Warcraft.NET.Files.WDT.Flags;
+using Warcraft.NET.Types;
 
 namespace Warcraft.NET.Files.WDT.Entries.SL
 {
@@ -74,9 +75,10 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         public MPL3Flags Flags { get; set; } = 0;
 
         /// <summary>
-        /// Unknown value, wiki mentions it is "a packed value". 14336 appears to be the most common value.
+        /// Scale as half float value
+        /// Default value is 0.5f
         /// </summary>
-        public ushort Unknown1 { get; set; } = 14336;
+        public HalfFloat Scale { get; set; } = 0.5f;
 
         public MPL3Entry() { }
 
@@ -102,7 +104,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                     MLTAIndex = br.ReadInt16();
                     MTEXIndex = br.ReadInt16();
                     Flags = (MPL3Flags)br.ReadUInt16();
-                    Unknown1 = br.ReadUInt16();
+                    Scale = br.ReadHalfFloat();
                 }
             }
         }
@@ -137,7 +139,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                 bw.Write(MLTAIndex);
                 bw.Write(MTEXIndex);
                 bw.Write((ushort)Flags);
-                bw.Write(Unknown1);
+                bw.WriteHalfFloat(Scale);
 
                 return ms.ToArray();
             }
