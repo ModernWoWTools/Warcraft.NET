@@ -66,13 +66,11 @@ namespace Warcraft.NET.Files.Phys.Chunks
                 bw.Write((uint)PLYTEntries.Count);
                 foreach (PLYTEntry obj in PLYTEntries)
                 {
-                    Console.WriteLine("Writing Plyt Header Length: " + obj.SerializeHeader().Length);
                     bw.Write(obj.SerializeHeader());
                 }
                 foreach (PLYTEntry obj in PLYTEntries)
                 {
                     bw.Write(obj.SerializeData());
-                    Console.WriteLine("Writing Plyt Data Length:" + obj.SerializeData().Length);
                 }
                 return ms.ToArray();
             }

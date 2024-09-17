@@ -52,8 +52,6 @@ namespace Warcraft.NET.Files.Skin
         /// </summary>
         public byte[] Unk0;
 
-        public bool Wotlk = false;
-
         public Skin(byte[] inData)
         {
             using (var ms = new MemoryStream(inData))
@@ -64,10 +62,6 @@ namespace Warcraft.NET.Files.Skin
                 var ofsVertices = br.ReadUInt32();
                 var nIndices = br.ReadUInt32();
                 var ofsIndices = br.ReadUInt32();
-                if (ofsVertices == 48)
-                {
-                    Wotlk = true;
-                }
                 var nBones = br.ReadUInt32();
                 var ofsBones = br.ReadUInt32();
                 var nSubmeshes = br.ReadUInt32();
@@ -78,13 +72,10 @@ namespace Warcraft.NET.Files.Skin
 
                 ShadowBatches = new List<M2ShadowBatch>();
                 Unk0 = new byte[8];
-                if (!Wotlk)
-                {
-                    var nShadow_batches = br.ReadUInt32();
-                    var ofsShadow_batches = br.ReadUInt32();
-                    Unk0 = br.ReadBytes(8);
-                    ShadowBatches = ReadStructList<M2ShadowBatch>(nShadow_batches, ofsShadow_batches, br);
-                }
+                var nShadow_batches = br.ReadUInt32();
+                var ofsShadow_batches = br.ReadUInt32();
+                Unk0 = br.ReadBytes(8);
+                ShadowBatches = ReadStructList<M2ShadowBatch>(nShadow_batches, ofsShadow_batches, br);
                 Vertices = ReadStructList<ushort>(nVertices, ofsVertices, br);
                 Triangles = ReadStructList<M2Triangle>(nIndices / 3, ofsIndices, br);
                 BoneIndices = ReadStructList<M2SkinBoneStruct>(nBones, ofsBones, br);
@@ -109,16 +100,7 @@ namespace Warcraft.NET.Files.Skin
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                //Writing Empty Header -> Filling with data after writing the data
-                if (Wotlk)
-                {
-                    bw.Write(new byte[48]);
-                }
-                else
-                {
-                    bw.Write(new byte[64]);
-                }
-                
+                bw.Write(new byte[64]);
                 foreach (ushort vertex in Vertices)
                 {
                     bw.Write(vertex);
@@ -149,12 +131,9 @@ namespace Warcraft.NET.Files.Skin
                 }
 
                 int _ofsShadowBatches = (int)bw.BaseStream.Position;
-                if (!Wotlk)
+                foreach (M2ShadowBatch shadowBatch in ShadowBatches)
                 {
-                    foreach (M2ShadowBatch shadowBatch in ShadowBatches)
-                    {
-                        bw.WriteStruct(shadowBatch);
-                    }
+                    bw.WriteStruct(shadowBatch);
                 }
                 //Writing actual header data
                 bw.BaseStream.Position = 0;
@@ -165,8 +144,7 @@ namespace Warcraft.NET.Files.Skin
 
                 bw.Write(Vertices.Count);
                 var _ofsVertices = 64;
-                if (Wotlk)
-                    _ofsVertices = 48;
+                _ofsVertices = 48;
                 bw.Write(_ofsVertices);
 
                 bw.Write(Triangles.Count * 3);
@@ -183,12 +161,9 @@ namespace Warcraft.NET.Files.Skin
 
                 bw.Write(GlobalVertexOffset);
 
-                if (!Wotlk)
-                {
-                    bw.Write(ShadowBatches.Count);
-                    bw.Write(_ofsShadowBatches);
-                    bw.Write(Unk0);
-                }
+                bw.Write(ShadowBatches.Count);
+                bw.Write(_ofsShadowBatches);
+                bw.Write(Unk0);
                 return ms.ToArray();
             }
         }

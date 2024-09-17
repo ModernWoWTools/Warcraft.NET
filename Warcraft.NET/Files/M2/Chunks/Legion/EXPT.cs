@@ -12,7 +12,7 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
         /// <summary>
         /// Holds the binary chunk signature.
         /// </summary>
-        public const string Signature = "EXP2";
+        public const string Signature = "EXPT";
 
         /// <summary>
         /// Gets or sets the EXPT Entries

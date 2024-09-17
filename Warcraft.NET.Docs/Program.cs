@@ -1,7 +1,5 @@
 ﻿using Warcraft.NET.Docs.Steps;
-using Warcraft.NET.Files.M2;
-using Warcraft.NET.Files.phys;
-using Warcraft.NET.Files.SKIN;
+using Warcraft.NET.Files.Skel;
 
 namespace Warcraft.NET.Docs
 {
@@ -31,7 +29,6 @@ namespace Warcraft.NET.Docs
             ConvertToMarkdownStep.Process(autoDocData, outputFolder);
 
             Console.WriteLine("Done!");
-            
         }
     }
 }
