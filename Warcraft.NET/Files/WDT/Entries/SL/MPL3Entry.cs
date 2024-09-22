@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Numerics;
 using Warcraft.NET.Extensions;
 using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Files.WDT.Flags;
+using Warcraft.NET.Types;
 
 namespace Warcraft.NET.Files.WDT.Entries.SL
 {
@@ -18,7 +21,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Color
         /// </summary>
-        public uint Color { get; set; }
+        public RGBA Color { get; set; }
 
         /// <summary>
         /// Position
@@ -43,7 +46,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Unknown/unused vector3, likely rotation from another struct but unused for point lights.
         /// </summary>
-        public Vector3 Unused0 { get; set; }
+        public Vector3 Unused0 { get; set; } = new Vector3(0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// Map Tile X
@@ -70,12 +73,19 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
         /// <summary>
         /// Flags
         /// </summary>
-        public ushort Flags { get; set; }
+        public MPL3Flags Flags { get; set; } = 0;
+
+        /// <summary>
+        /// Scale as half float value
+        /// Default value is 0.5f
+        /// </summary>
+        public HalfFloat Scale { get; set; } = 0.5f;
 
         /// <summary>
         /// Unknown value, wiki mentions it is "a packed value". 14336 appears to be the most common value.
         /// </summary>
-        public ushort Unknown1 { get; set; } = 14336;
+        [Obsolete("Use Scale instead.")]
+        public ushort Unknown1 { get { return Scale.RawValue; } set { Scale = new HalfFloat(value); } }
 
         public MPL3Entry() { }
 
@@ -90,7 +100,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                 using (var br = new BinaryReader(ms))
                 {
                     Id = br.ReadUInt32();
-                    Color = br.ReadUInt32();
+                    Color = br.ReadBGRA();
                     Position = br.ReadVector3(AxisConfiguration.Native);
                     AttenuationStart = br.ReadSingle();
                     AttenuationEnd = br.ReadSingle();
@@ -100,8 +110,8 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                     TileY = br.ReadUInt16();
                     MLTAIndex = br.ReadInt16();
                     MTEXIndex = br.ReadInt16();
-                    Flags = br.ReadUInt16();
-                    Unknown1 = br.ReadUInt16();
+                    Flags = (MPL3Flags)br.ReadUInt16();
+                    Scale = br.ReadHalfFloat();
                 }
             }
         }
@@ -125,7 +135,7 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(Id);
-                bw.Write(Color);
+                bw.WriteBGRA(Color);
                 bw.WriteVector3(Position, AxisConfiguration.Native);
                 bw.Write(AttenuationStart);
                 bw.Write(AttenuationEnd);
@@ -135,8 +145,8 @@ namespace Warcraft.NET.Files.WDT.Entries.SL
                 bw.Write(TileY);
                 bw.Write(MLTAIndex);
                 bw.Write(MTEXIndex);
-                bw.Write(Flags);
-                bw.Write(Unknown1);
+                bw.Write((ushort)Flags);
+                bw.WriteHalfFloat(Scale);
 
                 return ms.ToArray();
             }

@@ -1,13 +1,14 @@
-﻿using Warcraft.NET.Files.Interfaces;
-using System;
-using System.IO;
-using System.Text;
-using Warcraft.NET.Files.Structures;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Numerics;
-using Warcraft.NET.Exceptions;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
+using Warcraft.NET.Exceptions;
+using Warcraft.NET.Files.Interfaces;
+using Warcraft.NET.Files.Structures;
+using Warcraft.NET.Types;
 
 namespace Warcraft.NET.Extensions
 {
@@ -170,6 +171,16 @@ namespace Warcraft.NET.Extensions
                 R = reader.ReadByte(),
                 A = reader.ReadByte()
             };
+        }
+
+        /// <summary>
+        /// Reads a 2-byte <see cref="HalfFloat"/> from the data stream.
+        /// </summary>
+        /// <param name="binaryReader">The reader.</param>
+        /// <returns>The half.</returns>
+        public static HalfFloat ReadHalfFloat(this BinaryReader reader)
+        {
+            return new HalfFloat(reader.ReadUInt16());
         }
 
         /// Reads ab 4.byte <see cref="UVMapEntry"/> from the data stream.
@@ -396,6 +407,17 @@ namespace Warcraft.NET.Extensions
 
             binaryWriter.Write((char)0);
         }
+
+        /// <summary>
+        /// Writes a 2-byte <see cref="HalfFloat"/> to the data stream.
+        /// </summary>
+        /// <param name="binaryWriter">The current <see cref="BinaryWriter"/> object.</param>
+        /// <param name="half"></param>
+        public static void WriteHalfFloat(this BinaryWriter binaryWriter, HalfFloat half)
+        {
+            binaryWriter.Write(half.RawValue);
+        }
+
         /// <summary>
         /// Writes the provided string to the data stream as a C-style null-terminated string.
         /// </summary>
