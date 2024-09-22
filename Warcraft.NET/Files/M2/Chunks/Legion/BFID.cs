@@ -42,7 +42,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var br = new BinaryReader(ms))
             {
                 uint nBone = (uint)inData.Length / 4;
-
                 for (var i = 0; i < nBone; i++)
                     BoneFileDataIds.Add(br.ReadUInt32());
             }
@@ -56,7 +55,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             {
                 foreach(uint boneFileDataId in BoneFileDataIds)
                     bw.Write(boneFileDataId);
-
                 return ms.ToArray();
             }
         }

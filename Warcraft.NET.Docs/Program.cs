@@ -1,4 +1,5 @@
 ﻿using Warcraft.NET.Docs.Steps;
+using Warcraft.NET.Files.Skel;
 
 namespace Warcraft.NET.Docs
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Warcraft.NET.Attribute;
 using Warcraft.NET.Files.Interfaces;
@@ -43,7 +44,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var br = new BinaryReader(ms))
             {
                 var animCount = br.BaseStream.Length / AFIDEntry.GetSize();
-
                 for (var i = 0; i < animCount; ++i)
                 {
                     AFIDEntries.Add(new AFIDEntry(br.ReadBytes(AFIDEntry.GetSize())));
@@ -61,7 +61,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
                 {
                     bw.Write(obj.Serialize());
                 }
-
                 return ms.ToArray();
             }
         }

@@ -51,7 +51,6 @@ namespace Warcraft.NET.Files.M2.Chunks.Legion
             using (var bw = new BinaryWriter(ms))
             {
                 bw.Write(SkeletonFileDataId);
-
                 return ms.ToArray();
             }
         }
